@@ -9,7 +9,7 @@
 ## Link Board
 ## Link Pagina home 
 ## Link Pagina Detalle Producto: https://wireframe.cc/Cx8bLn
-## Link Pagina carritoCompras
+## Link Pagina carritoCompras: https://wireframe.cc/9UU1Gm
 ## Link Pagina registro
 ## Link Pagina login
 ## Link Pagina crear lista
