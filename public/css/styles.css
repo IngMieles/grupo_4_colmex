@@ -1,0 +1,175 @@
+*{
+    box-sizing: border-box;
+}
+
+:root {
+    --vpHeather: 11vh;
+    --vpNav: 12vh;
+    --vpMain: 67vh;
+    --vpMainArticle: 33vh;
+    --vpFooter: 12vh;
+  }
+
+body{
+    margin: 0%;
+} 
+
+header {
+    width: 100vw;
+    height: var(--vpHeather);
+    box-sizing: border-box;
+}
+
+header #logo{
+    background-color: yellow;
+    width: 100vw;
+    height: 6vh;
+    font-size: 2rem;
+}
+
+header #nombreUser{
+    background-color: blue;
+    width: 100vw;
+    height: 2vh;
+}
+
+header #sangre{
+    background-color: red;
+    width: 100vw;
+    height: 2vh;
+}
+
+header #paz{
+    background-color: white;
+    width: 100vw;
+    height: 1vh;
+}
+
+nav{
+    /* height: var(--vpNav); */
+    margin: 0%;
+    width: 100vw;
+    background-color: green;
+}
+
+nav .nav{
+    margin: 0%;
+    padding: .5rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    font-size: 1rem;
+}
+
+nav .nav-item{
+    padding: .25rem;
+    list-style-type: none;
+}
+
+nav .nav-link{
+    color: white;
+}
+
+main {
+    margin: 0%;
+    width: 100vw;
+    background-color: gray;
+}
+
+main section{
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    align-items: stretch;
+}
+
+main section article{
+    margin: .5rem;
+    display: flex;
+    flex-wrap: wrap;
+    background-color: cadetblue;
+}
+
+main section article .nav{
+
+    margin: 0%;
+    padding: 0%;
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 1rem;
+}
+
+main section article .nav-item{
+    width: 100%;
+    list-style-type: none;
+}
+
+main section article .imagen{
+    text-align: center;
+}
+
+main section article .imagen img{
+    width: 100%;
+}
+
+main section article .precio{
+    opacity: 1;
+}
+
+main section article .description{
+    opacity: 1;
+}
+
+footer {
+    margin: 0%;
+    padding: 0%;
+    width: 100vw;
+    /* background-color: rebeccapurple; */
+}
+
+footer section .nav{
+    margin: 0%;
+    padding: .5rem;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: baseline;
+    font-size: 1rem;
+    background-color: white;
+
+}
+
+footer section .nav-item{
+    padding: .25rem;
+    list-style-type: none;
+}
+
+/* Tablets */
+@media (min-width: 480px){
+    header #logo{
+        font-size: 3rem;
+    }
+
+    nav .nav{
+        font-size: 2rem;
+    }
+
+    main section article .nav{
+        font-size: 2rem;
+    }
+}
+
+/* Laptop */
+@media (min-width: 769px){
+    header #logo{
+        font-size: 3rem;
+    }
+
+    nav .nav{
+        font-size: 2rem;
+    }
+
+    main section article .nav{
+        font-size: 2rem;
+    }
+}
