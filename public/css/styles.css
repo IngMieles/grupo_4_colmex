@@ -2,7 +2,7 @@
     box-sizing: border-box;
 }
 
-:root {
+ :root {
     --vpHeather: 11vh;
     --vpNav: 12vh;
     --vpMain: 67vh;
@@ -16,15 +16,34 @@ body{
 
 header {
     width: 100vw;
-    height: var(--vpHeather);
-    box-sizing: border-box;
 }
 
 header #logo{
     background-color: yellow;
     width: 100vw;
-    height: 6vh;
     font-size: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center;
+}
+
+header #logo .nombre{
+    flex-grow: 1;
+}
+
+header #logo .buscar{
+    flex-grow: 2;
+}
+
+header #logo .buscar input {
+    width: 100%;  
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    background-color: white;
+    /* background-image: url('searchicon.png'); */
+    background-position: 10px 10px; 
+    background-repeat: no-repeat;
+    padding: 12px 20px 12px 40px;
 }
 
 header #nombreUser{
@@ -46,7 +65,6 @@ header #paz{
 }
 
 nav{
-    /* height: var(--vpNav); */
     margin: 0%;
     width: 100vw;
     background-color: green;
@@ -78,25 +96,57 @@ main {
 
 main section{
     display: flex;
-    flex-direction: column;
-    padding: 1rem;
-    align-items: stretch;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+main section .comentarios{
+    width: 100%;
+    margin: 1rem;
+    background-color: blue;
+}
+
+main section .carrito{
+    margin: 0%;
+    padding: 0%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    list-style-type: none;
+}
+
+main section .carrito-item{
+    padding: 2vh;
+    align-self: flex-start;
+}
+
+main section .carrito-item-img{
+    align-self: center;
+}
+
+main section .producto{
+    flex-grow: 4;
+}
+
+main section .descripcion{
+    flex-grow: 1;
+    font-size: 1rem;
+    list-style-type: circle;
 }
 
 main section article{
     margin: .5rem;
-    display: flex;
-    flex-wrap: wrap;
+    padding: 1rem;
     background-color: cadetblue;
 }
 
 main section article .nav{
-
     margin: 0%;
     padding: 0%;
     display: flex;
     flex-wrap: wrap;
     font-size: 1rem;
+    flex-basis: auto;
 }
 
 main section article .nav-item{
@@ -104,72 +154,101 @@ main section article .nav-item{
     list-style-type: none;
 }
 
-main section article .imagen{
-    text-align: center;
+main section article .descripcion-item{
+    list-style-type: circle;
 }
 
-main section article .imagen img{
+main section article img{
     width: 100%;
 }
 
-main section article .precio{
-    opacity: 1;
-}
-
-main section article .description{
-    opacity: 1;
+main section img{
+    width: 100%;
 }
 
 footer {
     margin: 0%;
     padding: 0%;
     width: 100vw;
-    /* background-color: rebeccapurple; */
 }
 
-footer section .nav{
-    margin: 0%;
-    padding: .5rem;
+footer section{
     display: flex;
     flex-wrap: wrap;
-    flex-direction: column;
+    justify-content: space-around;
+}
+
+footer section article{
+    margin: 0%;
+    padding: 0%;
+    width: 300px;
+}
+
+footer section article .nav{
+    margin: 0%;
+    padding: .5rem;
     align-items: baseline;
     font-size: 1rem;
-    background-color: white;
-
 }
 
 footer section .nav-item{
     padding: .25rem;
+    text-align: center;
     list-style-type: none;
 }
 
 /* Tablets */
 @media (min-width: 480px){
-    header #logo{
-        font-size: 3rem;
-    }
-
     nav .nav{
-        font-size: 2rem;
+        font-size: 1.5rem;
     }
 
     main section article .nav{
+        font-size: 2rem;
+    }
+
+    main section .descripcion{
+        font-size: 2rem;
+    }
+
+    main section .comentarios{
+        font-size: 2rem;
+    }
+
+    main section .carrito-item{
+        padding: 2vh;
+    }
+
+    footer section article .nav{
         font-size: 2rem;
     }
 }
 
 /* Laptop */
 @media (min-width: 769px){
-    header #logo{
-        font-size: 3rem;
+    main section{
+        flex-direction: row;
+        justify-content: space-around;
+    }
+    
+    main section article{
+        margin: .5rem;
+        width: 300px;
+        background-color: cadetblue;
+    }
+    
+    main section article .nav-item{
+        width: 100%;
+        list-style-type: none;
     }
 
-    nav .nav{
-        font-size: 2rem;
+    main section .carrito-item{
+        padding: 0%;
     }
 
-    main section article .nav{
-        font-size: 2rem;
+    main section .carrito-item-img{
+        align-self: center;
+        width: 25%;
     }
+
 }
