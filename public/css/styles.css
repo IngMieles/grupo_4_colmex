@@ -10,6 +10,20 @@
     --vpFooter: 12vh;
   }
 
+  .button {
+    /* background-color: #4CAF50; */
+    border: none;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+  }
+
+  .button4 {border-radius: 12px;}
 body{
     margin: 0%;
 } 
@@ -102,7 +116,7 @@ main section{
 
 main section .comentarios{
     width: 100%;
-    margin: 1rem;
+    margin: 0rem;
     background-color: blue;
 }
 
@@ -219,8 +233,12 @@ footer section .nav-item{
         padding: 2vh;
     }
 
+    main section .login{
+        height: 60vh;
+    }
+
     footer section article .nav{
-        font-size: 2rem;
+        font-size: 1rem;
     }
 }
 
