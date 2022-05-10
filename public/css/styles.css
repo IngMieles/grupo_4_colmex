@@ -13,7 +13,7 @@
   .button {
     /* background-color: #4CAF50; */
     border: none;
-    color: white;
+    /* color: red; */
     padding: 20px;
     text-align: center;
     text-decoration: none;
@@ -23,7 +23,15 @@
     cursor: pointer;
   }
 
-  .button4 {border-radius: 12px;}
+.button1 {
+      border-radius: 12px;
+      background-color: #EB5353;
+}
+
+.button2 {
+      border-radius: 12px;
+      background-color: #36AE7C;
+}
 body{
     margin: 0%;
 } 
@@ -118,6 +126,7 @@ main section .comentarios{
     width: 100%;
     margin: 0rem;
     background-color: #FEFBE7;
+    list-style-type: none;
 }
 
 main section .carrito{
@@ -168,12 +177,25 @@ main section article .nav-item{
     list-style-type: none;
 }
 
+main section article .nav-item-end{
+    /* align-self: flex-end; */
+    padding: 0%;
+    margin: 0%;
+    text-align: right;
+    /* background-color: rebeccapurple; */
+}
+
 main section article .descripcion-item{
     list-style-type: circle;
 }
 
 main section article img{
     width: 100%;
+}
+
+main section article button{
+    background-color: #187498;
+    list-style-type: none;
 }
 
 main section img{
@@ -228,7 +250,7 @@ footer section .nav-item{
     }
 
     main section .comentarios{
-        font-size: 2rem;
+        font-size: 1.5rem;
     }
 
     main section .carrito-item{
@@ -236,7 +258,7 @@ footer section .nav-item{
     }
 
     main section .login{
-        height: 60vh;
+        height: 70vh;
     }
 
     footer section article .nav{
