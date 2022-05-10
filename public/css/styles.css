@@ -33,7 +33,7 @@ header {
 }
 
 header #logo{
-    background-color: yellow;
+    background-color: #F9D923;
     width: 100vw;
     font-size: 2rem;
     display: flex;
@@ -61,13 +61,13 @@ header #logo .buscar input {
 }
 
 header #nombreUser{
-    background-color: blue;
+    background-color: #187498;
     width: 100vw;
     height: 2vh;
 }
 
 header #sangre{
-    background-color: red;
+    background-color: #EB5353;
     width: 100vw;
     height: 2vh;
 }
@@ -81,7 +81,7 @@ header #paz{
 nav{
     margin: 0%;
     width: 100vw;
-    background-color: green;
+    background-color: #36AE7C;
 }
 
 nav .nav{
@@ -105,7 +105,7 @@ nav .nav-link{
 main {
     margin: 0%;
     width: 100vw;
-    background-color: gray;
+    background-color: #DAE5D0;
 }
 
 main section{
@@ -117,7 +117,7 @@ main section{
 main section .comentarios{
     width: 100%;
     margin: 0rem;
-    background-color: blue;
+    background-color: #FEFBE7;
 }
 
 main section .carrito{
@@ -151,7 +151,7 @@ main section .descripcion{
 main section article{
     margin: .5rem;
     padding: 1rem;
-    background-color: cadetblue;
+    background-color: #FEFBE7;
 }
 
 main section article .nav{
@@ -184,6 +184,7 @@ footer {
     margin: 0%;
     padding: 0%;
     width: 100vw;
+    background-color: #A0BCC2;
 }
 
 footer section{
@@ -206,6 +207,7 @@ footer section article .nav{
 }
 
 footer section .nav-item{
+    align-items: baseline;
     padding: .25rem;
     text-align: center;
     list-style-type: none;
@@ -214,7 +216,7 @@ footer section .nav-item{
 /* Tablets */
 @media (min-width: 480px){
     nav .nav{
-        font-size: 1.5rem;
+        font-size: 1rem;
     }
 
     main section article .nav{
@@ -252,7 +254,7 @@ footer section .nav-item{
     main section article{
         margin: .5rem;
         width: 300px;
-        background-color: cadetblue;
+        background-color: #FEFBE7;
     }
     
     main section article .nav-item{
