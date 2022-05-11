@@ -1,0 +1,296 @@
+*{
+    box-sizing: border-box;
+}
+
+ :root {
+    --vpHeather: 11vh;
+    --vpNav: 12vh;
+    --vpMain: 67vh;
+    --vpMainArticle: 33vh;
+    --vpFooter: 12vh;
+  }
+
+  .button {
+    /* background-color: #4CAF50; */
+    border: none;
+    /* color: red; */
+    padding: 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+  }
+
+.button1 {
+      border-radius: 12px;
+      background-color: #EB5353;
+}
+
+.button2 {
+      border-radius: 12px;
+      background-color: #36AE7C;
+}
+body{
+    margin: 0%;
+} 
+
+header {
+    width: 100vw;
+}
+
+header #logo{
+    background-color: #F9D923;
+    width: 100vw;
+    font-size: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center;
+}
+
+header #logo .nombre{
+    flex-grow: 1;
+}
+
+header #logo .buscar{
+    flex-grow: 2;
+}
+
+header #logo .buscar input {
+    width: 100%;  
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    background-color: white;
+    /* background-image: url('searchicon.png'); */
+    background-position: 10px 10px; 
+    background-repeat: no-repeat;
+    padding: 12px 20px 12px 40px;
+}
+
+header #nombreUser{
+    background-color: #187498;
+    width: 100vw;
+    height: 2vh;
+}
+
+header #sangre{
+    background-color: #EB5353;
+    width: 100vw;
+    height: 2vh;
+}
+
+header #paz{
+    background-color: white;
+    width: 100vw;
+    height: 1vh;
+}
+
+nav{
+    margin: 0%;
+    width: 100vw;
+    background-color: #36AE7C;
+}
+
+nav .nav{
+    margin: 0%;
+    padding: .5rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    font-size: 1rem;
+}
+
+nav .nav-item{
+    padding: .25rem;
+    list-style-type: none;
+}
+
+nav .nav-link{
+    color: black;
+}
+
+main {
+    margin: 0%;
+    width: 100vw;
+    background-color: #DAE5D0;
+}
+
+main section{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+main section .comentarios{
+    width: 100%;
+    margin: 0rem;
+    background-color: #FEFBE7;
+    list-style-type: none;
+}
+
+main section .carrito{
+    margin: 0%;
+    padding: 0%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    list-style-type: none;
+}
+
+main section .carrito-item{
+    padding: 2vh;
+    align-self: flex-start;
+}
+
+main section .carrito-item-img{
+    align-self: center;
+}
+
+main section .producto{
+    flex-grow: 4;
+}
+
+main section .descripcion{
+    flex-grow: 1;
+    font-size: 1rem;
+    list-style-type: circle;
+}
+
+main section article{
+    margin: .5rem;
+    padding: 1rem;
+    background-color: #FEFBE7;
+}
+
+main section article .nav{
+    margin: 0%;
+    padding: 0%;
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 1rem;
+    flex-basis: auto;
+}
+
+main section article .nav-item{
+    width: 100%;
+    list-style-type: none;
+}
+
+main section article .nav-item-end{
+    /* align-self: flex-end; */
+    padding: 0%;
+    margin: 0%;
+    text-align: right;
+    /* background-color: rebeccapurple; */
+}
+
+main section article .descripcion-item{
+    list-style-type: circle;
+}
+
+main section article img{
+    width: 100%;
+}
+
+main section article button{
+    background-color: #187498;
+    list-style-type: none;
+}
+
+main section img{
+    width: 100%;
+}
+
+footer {
+    margin: 0%;
+    padding: 0%;
+    width: 100vw;
+    background-color: #A0BCC2;
+}
+
+footer section{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+footer section article{
+    margin: 0%;
+    padding: 0%;
+    width: 300px;
+}
+
+footer section article .nav{
+    margin: 0%;
+    padding: .5rem;
+    align-items: baseline;
+    font-size: 1rem;
+}
+
+footer section .nav-item{
+    align-items: baseline;
+    padding: .25rem;
+    text-align: center;
+    list-style-type: none;
+}
+
+/* Tablets */
+@media (min-width: 480px){
+    nav .nav{
+        font-size: 1rem;
+    }
+
+    main section article .nav{
+        font-size: 2rem;
+    }
+
+    main section .descripcion{
+        font-size: 2rem;
+    }
+
+    main section .comentarios{
+        font-size: 1.5rem;
+    }
+
+    main section .carrito-item{
+        padding: 2vh;
+    }
+
+    main section .login{
+        height: 70vh;
+    }
+
+    footer section article .nav{
+        font-size: 1rem;
+    }
+}
+
+/* Laptop */
+@media (min-width: 769px){
+    main section{
+        flex-direction: row;
+        justify-content: space-around;
+    }
+    
+    main section article{
+        margin: .5rem;
+        width: 300px;
+        background-color: #FEFBE7;
+    }
+    
+    main section article .nav-item{
+        width: 100%;
+        list-style-type: none;
+    }
+
+    main section .carrito-item{
+        padding: 0%;
+    }
+
+    main section .carrito-item-img{
+        align-self: center;
+        width: 25%;
+    }
+
+}
