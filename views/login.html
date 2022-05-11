@@ -43,21 +43,64 @@
 
 
         <main>
-            <section>
-                <div class="login">
-                    <form action="/">
-                      <label for="fname"><p>Usuario <i class="fa-solid fa-user"></i></p></label>
-                      <input type="text" id="fname" name="firstname" placeholder="Nombre del usuario..">
-                  
-                      <label for="lname"><p>Contraseña <i class="fa-solid fa-key"></i></p></label>
-                      <input type="password" id="lname" name="lastname" placeholder="Password..">
-                      <div>
-                          <br>
-                        <input type="submit" value="Registrarse">
+                <div class="container">
+                    <div class="row">
+                      <div class="col-25">
+                        <label for="fname">Usuario</label>
                       </div>
-                    </form>
+                      <div class="col-75">
+                        <input
+                          type="email"
+                          id="usuario"
+                          name="usuario"
+                          placeholder="Email"
+                        />
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-25">
+                        <label for="lname">Password</label>
+                      </div>
+                      <div class="col-75">
+                        <input
+                          type="password"
+                          id="contraseña"
+                          name="contraseña"
+                          placeholder="Password"
+                        />
+                      </div>
+                    </div>
                   </div>
-            </section>
+                  <div class="row">
+                    <input type="submit" value="Submit" />
+                  </div>
+                </main>
+                <footer>
+                  <section>
+                      <article>
+                          <ul class="nav">
+                              <h4 class="nav-item">Elige cómo pagar <br>
+                                  <i class="fa-solid fa-credit-card"></i>
+                              </h4>
+                              <li class="nav-item"><a href="">¡Siempre es seguro!</a></li>
+                          </ul>
+                      </article>
+                      
+                      <article>
+                          <ul class="nav">
+                              <h4 class="nav-item">Envío gratis desde $300 <br>
+                                  <i class="fa-solid fa-box"></i></h4>
+                              <li class="nav-item"><a href="">Envíos gratis en miles de productos.</a></li>
+                          </ul>
+                      </article>
+                      <article>
+                          <ul class="nav">
+                              <h4 class="nav-item">Seguridad <br>
+                                  <i class="fa-solid fa-triangle-exclamation"></i></h4>
+                              <li class="nav-item"><a href="">¿No te gusta? ¡Devolvelo!</a></li>
+                          </ul>
+                      </article>
+                  </section>
         </main>
 
 
