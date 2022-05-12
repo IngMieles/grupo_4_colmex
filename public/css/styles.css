@@ -49,8 +49,24 @@ header #logo {
   text-align: center;
 }
 
+@keyframes creciendo {
+  0% {
+    background-color: #f9d923;
+  }
+  100% {
+    background-color: white;
+    height: 50px;
+    width: 115px;
+    opacity: 0;
+  }
+}
+
 header #logo .nombre {
   flex-grow: 1;
+  animation-name: creciendo;
+  animation-duration: 1000ms;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
 }
 
 header #logo .buscar {
@@ -158,6 +174,7 @@ main section .descripcion {
 }
 
 main section article {
+  box-shadow: 0px 0px 10px rgb(100, 100, 100);
   margin: 0.5rem;
   padding: 1rem;
   background-color: #fefbe7;
@@ -274,9 +291,11 @@ footer section .nav-item {
   }
 
   main section article {
+    box-shadow: 0px 0px 10px rgb(100, 100, 100);
     margin: 0.5rem;
     width: 300px;
     background-color: #fefbe7;
+    transition: border-radius 450ms;
   }
 
   main section article .nav-item {
