@@ -38,6 +38,7 @@ body {
 
 header {
   width: 100vw;
+  font-size: 12px;
 }
 
 header #logo {
@@ -61,13 +62,13 @@ header #logo {
   }
 }
 
-header #logo .nombre {
+/* header #logo .nombre {
   flex-grow: 1;
   animation-name: creciendo;
   animation-duration: 1000ms;
   animation-iteration-count: infinite;
   animation-direction: alternate;
-}
+} */
 
 header #logo .buscar {
   flex-grow: 2;
@@ -104,11 +105,11 @@ header #paz {
 
 nav {
   margin: 0%;
-  width: 100vw;
+  width: 100%;
   background-color: #36ae7c;
 }
 
-nav .nav {
+nav div .nav {
   margin: 0%;
   padding: 0.5rem;
   display: flex;
@@ -120,10 +121,43 @@ nav .nav {
 nav .nav-item {
   padding: 0.25rem;
   list-style-type: none;
+  text-align: center;
 }
 
-nav .nav-link {
-  color: black;
+nav .nav-link {color: black;}
+
+nav .nav-control {
+  display: inline-block;
+  text-align: center;
+  width: 100%;
+}
+nav .nav-control:hover {
+  background-color: #1f7a54;
+}
+
+nav .nav-control:hover .nav-object {display: block;}
+nav .nav-control .nav-object {display: none;}
+
+nav .nav-object ul li { 
+  display: block; 
+  width: 50%;
+}
+
+nav .nav-object ul li a {display:block !important;} 
+nav .nav-object ul li:hover {
+  background: #36ae7c;
+  color: #ccc;
+}
+
+.menu-i{
+  background-color: #0044AA;
+  border-radius: 5px;
+  color: #FFF;
+  font-size: 20px;
+  height: 40px;
+  margin: 10px 0px 20px 0px;
+  padding: 10px;
+  width: 40px;
 }
 
 main {
@@ -195,11 +229,9 @@ main section article .nav-item {
 }
 
 main section article .nav-item-end {
-  /* align-self: flex-end; */
   padding: 0%;
   margin: 0%;
   text-align: right;
-  /* background-color: rebeccapurple; */
 }
 
 main section article .descripcion-item {
@@ -256,6 +288,17 @@ footer section .nav-item {
 @media (min-width: 480px) {
   nav .nav {
     font-size: 1rem;
+  }
+
+  nav .nav-control .burger-menu{
+    display: none;
+  }
+
+  nav .nav-control .nav-object {display: block;}
+
+  nav .nav-object ul li { 
+    display: block; 
+    width: auto;
   }
 
   main section article .nav {

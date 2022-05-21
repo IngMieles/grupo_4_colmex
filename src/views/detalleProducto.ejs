@@ -1,47 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <script src="https://kit.fontawesome.com/bcbcc485fd.js" crossorigin="anonymous"></script>
-        <link rel="stylesheet" href="/css/styles.css">
-        <title>Detalle del producto</title>
-    </head>
+<%- include('./partials/head')  %>
     <body>
-
-        <header>
-            <!-- logotipo -->
-            <div id="logo">
-                <div class="nombre"><a href="/">COLMEX</a></div>
-                <div class="buscar">
-                    <form>
-                        <input type="text" name="search" placeholder="Search..">
-                    </form>
-                </div>
-            </div>
-            <!-- Barra de búsqueda -->
-            <div id="nombreUser"></div>
-            <div id="sangre"></div>
-            <div id="paz"></div>
-        </header>
-
-
-        <!-- Barra de navegación -->
-        <nav>
-            <ul class="nav">
-                <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="detalleProducto">Detalla del producto</a></li>
-                <li class="nav-item"><a class="nav-link" href="registro">Registro</a></li>
-                <li class="nav-item"><a class="nav-link" href="login">login</a></li>
-                <li class="nav-item"><a class="nav-link" href="crearLista">Crear lista</a></li>
-                <li class="nav-item"><a class="nav-link" href="categorias">Categorias</a></li>
-                <li class="nav-item"><a class="nav-link" href="carritoCompras">Carrito de compras</a>
-                    <i class="fa-solid fa-cart-shopping"></i>
-                    <i class="fa-solid fa-bell"></i></li>
-            </ul>
-        </nav>
-
-
+        <%- include('./partials/header')  %>
         <main>
             <section>
                 <article class="producto">
@@ -82,34 +41,6 @@
                 </div>
             </section>
         </main>
-
-
-        <footer>
-            <section>
-                <article>
-                    <ul class="nav">
-                        <h4 class="nav-item">Elige cómo pagar <br>
-                            <i class="fa-solid fa-credit-card"></i>
-                        </h4>
-                        <li class="nav-item"><a href="">¡Siempre es seguro!</a></li>
-                    </ul>
-                </article>
-                
-                <article>
-                    <ul class="nav">
-                        <h4 class="nav-item">Envío gratis desde $300 <br>
-                            <i class="fa-solid fa-box"></i></h4>
-                        <li class="nav-item"><a href="">Envíos gratis en miles de productos.</a></li>
-                    </ul>
-                </article>
-                <article>
-                    <ul class="nav">
-                        <h4 class="nav-item">Seguridad <br>
-                            <i class="fa-solid fa-triangle-exclamation"></i></h4>
-                        <li class="nav-item"><a href="">¿No te gusta? ¡Devolvelo!</a></li>
-                    </ul>
-                </article>
-            </section>
-        </footer>
+        <%- include('./partials/footer')  %>
     </body>
 </html>
