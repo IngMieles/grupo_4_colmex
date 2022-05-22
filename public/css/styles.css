@@ -32,8 +32,10 @@
   border-radius: 12px;
   background-color: #36ae7c;
 }
+
 body {
   margin: 0%;
+  font-family: 'Roboto', sans-serif;
 }
 
 header {
@@ -124,7 +126,10 @@ nav .nav-item {
   text-align: center;
 }
 
-nav .nav-link {color: black;}
+nav .nav-link {
+  color: black;
+  text-decoration: none;
+}
 
 nav .nav-control {
   display: inline-block;
@@ -136,14 +141,20 @@ nav .nav-control:hover {
 }
 
 nav .nav-control:hover .nav-object {display: block;}
-nav .nav-control .nav-object {display: none;}
+nav .nav-control .nav-object {
+  width: 100%;
+  display: none;
+}
 
 nav .nav-object ul li { 
   display: block; 
-  width: 50%;
 }
 
-nav .nav-object ul li a {display:block !important;} 
+nav .nav-object ul li a {
+  display:block !important;
+  color: white;
+}
+
 nav .nav-object ul li:hover {
   background: #36ae7c;
   color: #ccc;
@@ -203,24 +214,44 @@ main section .producto {
 
 main section .descripcion {
   flex-grow: 1;
-  font-size: 1rem;
   list-style-type: circle;
 }
 
 main section article {
-  box-shadow: 0px 0px 10px rgb(100, 100, 100);
   margin: 0.5rem;
   padding: 1rem;
+  /* background-color: #dae5d0; */
   background-color: #fefbe7;
+  transition: box-shadow 1000ms;
 }
+
+main section article:hover {
+  box-shadow: 0px 0px 10px rgb(100, 100, 100);
+}
+
 
 main section article .nav {
   margin: 0%;
   padding: 0%;
   display: flex;
   flex-wrap: wrap;
-  font-size: 1rem;
   flex-basis: auto;
+  transition: box-shadow 1000ms;
+}
+
+main section article .nav:hover{
+  box-shadow: 0px 0px 10px rgb(100, 100, 100);
+}
+
+main section article .nav .descripcion{
+  opacity: 0;
+  font-size: .9rem;
+  padding: 0px 0px 0px 10px;
+  transition: opacity 1000ms;
+}
+
+main section article .nav:hover .descripcion{
+  opacity: 1;
 }
 
 main section article .nav-item {
@@ -255,7 +286,8 @@ footer {
   margin: 0%;
   padding: 0%;
   width: 100vw;
-  background-color: #a0bcc2;
+  /* background-color: #a0bcc2; */
+  background-color: #a5ad9e;
 }
 
 footer section {
@@ -284,6 +316,16 @@ footer section .nav-item {
   list-style-type: none;
 }
 
+footer section .nav-item i{
+  color: #0044AA;
+  font-size: 2rem;
+  transition: color 400ms;
+}
+
+footer section .nav-item i:hover{
+  color: #1f7a54;
+}
+
 /* Tablets */
 @media (min-width: 480px) {
   nav .nav {
@@ -305,6 +347,11 @@ footer section .nav-item {
     font-size: 2rem;
   }
 
+  main section article .nav .descripcion{
+    opacity: 1;
+    font-size: 1.5rem;
+  }
+
   main section .descripcion {
     font-size: 2rem;
   }
@@ -324,6 +371,10 @@ footer section .nav-item {
   footer section article .nav {
     font-size: 1rem;
   }
+
+  footer section article {
+    width: 33.3%;
+  }
 }
 
 /* Laptop */
@@ -339,11 +390,8 @@ footer section .nav-item {
   }
 
   main section article {
-    box-shadow: 0px 0px 10px rgb(100, 100, 100);
     margin: 0.5rem;
     width: 300px;
-    background-color: #fefbe7;
-    transition: border-radius 450ms;
   }
 
   main section article .nav-item {
