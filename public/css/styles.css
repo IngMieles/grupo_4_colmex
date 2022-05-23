@@ -142,8 +142,10 @@ nav .nav-control:hover {
 
 nav .nav-control:hover .nav-object {display: block;}
 nav .nav-control .nav-object {
+  position: absolute;
   width: 100%;
   display: none;
+  background-color: #1f7a54;
 }
 
 nav .nav-object ul li { 
@@ -336,7 +338,15 @@ footer section .nav-item i:hover{
     display: none;
   }
 
-  nav .nav-control .nav-object {display: block;}
+  nav .nav-control .nav-object {
+    position: relative;
+    display: block;
+    background-color: #36ae7c;
+  }
+
+  nav .nav-control .nav-object:hover{
+    background-color: #1f7a54;
+  }
 
   nav .nav-object ul li { 
     display: block; 
