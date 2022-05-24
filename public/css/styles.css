@@ -185,6 +185,11 @@ main section {
   justify-content: space-around;
 }
 
+main h2{
+  width: 100%;
+  text-align: center;
+}
+
 main section .comentarios {
   width: 100%;
   margin: 0rem;

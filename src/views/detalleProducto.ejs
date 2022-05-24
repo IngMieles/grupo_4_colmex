@@ -4,7 +4,6 @@
         <main>
             <section>
                 <article class="producto">
-                    <!-- <img src="../img/Consola.jpg" alt="No image"> -->
                     <img src=<%= productoImg.img %> alt="No image">
                 </article>
                 <article class="descripcion">
@@ -17,8 +16,9 @@
                             <i class="fa-solid fa-star"></i>
                             <i class="fa-solid fa-star-half-stroke"></i>
                             <p>0 opiniones</p></li>
-                        <li>Current price $ 00.00</li>
-                        <li>Description:</li>
+                        <li>Current price $ <%= productoImg.precio %></li>
+                        <li>Description: <%= productoImg.description %></li>
+                        <li>Categoria: <%= productoImg.categoria %></li>
                         <li>Ofertas similares</li>
                         <li class="button"><button>¿Quieres ofertar otro precio?</button></li>
                         <li class="button"><button>Agregar al carrito</button></li>

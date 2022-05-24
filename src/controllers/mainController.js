@@ -1,49 +1,26 @@
-const imagenes =[
-    {
-        id: 1,
-        img: '../img/Consola.jpg',
-    },
-    {
-        id: 2,
-        img: '../img/fpgaBoard.jpg',
-    },
-    {
-        id: 3,
-        img: '../img/image_book.jpg',
-    },
-    {
-        id: 4,
-        img: '../img/img-macbook-pro-2019.jpg',
-    },
-    {
-        id: 5,
-        img: '../img/img-samsung-galaxy-s10.jpg',
-    },
-    {
-        id: 6,
-        img: '../img/img-tv-samsung-smart.jpg',
-    },
-];
+const productos = require('../controllers/productos'); 
+const ofertas = require('../controllers/ofertas'); 
+const destacados = require('../controllers/destacados'); 
 
 const controller = {
     index: (req,res)=>{
-        let idProduct = req.params.id;
-        const productoImg = imagenes.find(element =>element.id == idProduct);
-
-        res.render('index',{'productoImg':productoImg});
+        res.render('index',{'productos':productos,'ofertas':ofertas,'destacados':destacados});
     },
     carritoCompras: (req,res)=>{
         res.render('carritoCompras');
     },
     categorias: (req,res)=>{
-        res.render('categorias');
+        res.render('categorias',{'productos':productos});
     },
     crearLista: (req,res)=>{
         res.render('crearLista');
     },
+    edita: (req,res)=>{
+        res.render('edita');
+    },
     detalleProducto: (req,res)=>{
         let idProduct = req.params.id;
-        const productoImg = imagenes.find(element =>element.id == idProduct);
+        const productoImg = productos.find(element =>element.id == idProduct);
         res.render('detalleProducto',{'productoImg':productoImg});
     },
     login: (req,res)=>{

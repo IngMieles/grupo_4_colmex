@@ -8,7 +8,7 @@ router.get('/', mainController.index);
 router.get('/carritoCompras', mainController.carritoCompras);
 router.get('/categorias', mainController.categorias);
 router.get('/crearLista', mainController.crearLista);
-// router.get('/detalleProducto/:id', mainController.detalleProducto);
+router.get('/edita', mainController.edita);
 router.get('/login', mainController.login);
 router.get('/registro', mainController.registro);
 
