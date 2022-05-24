@@ -15,6 +15,9 @@ const controller = {
     crearLista: (req,res)=>{
         res.render('crearLista');
     },
+    edita: (req,res)=>{
+        res.render('edita');
+    },
     detalleProducto: (req,res)=>{
         let idProduct = req.params.id;
         const productoImg = productos.find(element =>element.id == idProduct);
