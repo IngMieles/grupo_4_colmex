@@ -2,62 +2,33 @@
     <body>
         <%- include('./partials/header')  %>
         <main>
+            <h2>Ofertas</h2>
             <section>
-                <article>
-                    <ul class="nav">
-                        <li class="nav-item nav-item-end"><i class="fa-regular fa-heart"></i></li>
-                        <li class="nav-item nav-item-end"><a href="detalleProducto/1"><img src="img/Consola.jpg" alt="No image"></a></li>
-                        <li class="nav-item descripcion">Current price $ 00.00</li>
-                        <li class="nav-item descripcion">Description:</li>
-                        <li class="nav-item descripcion">Otro:</li>
-                    </ul>
-                </article>
-                <article>
-                    <ul class="nav">
-                        <li class="nav-item nav-item-end"><i class="fa-solid fa-heart"></i></li>
-                        <li class="nav-item"><a href="detalleProducto/2"><img src="img/fpgaBoard.jpg" alt="No image"></a></li>
-                        <li class="nav-item descripcion">Current price $ 00.00</li>
-                        <li class="nav-item descripcion">Description:</li>
-                        <li class="nav-item descripcion">Otro:</li>
-                    </ul>
-                </article>
-                <article>
-                    <ul class="nav">
-                        <li class="nav-item nav-item-end"><i class="fa-regular fa-heart"></i></li>
-                        <li class="nav-item"><a href="detalleProducto/3"><img src="img/image_book.jpg" alt="No image"></a></li>
-                        <li class="nav-item descripcion">Current price $ 00.00</li>
-                        <li class="nav-item descripcion">Description:</li>
-                        <li class="nav-item descripcion">Otro:</li>
-                    </ul>
-                </article>
-                <article>
-                    <ul class="nav">
-                        <li class="nav-item nav-item-end"><i class="fa-solid fa-heart"></i></li>
-                        <li class="nav-item"><a href="detalleProducto/4"><img src="img/img-macbook-pro-2019.jpg" alt="No image"></a></li>
-                        <li class="nav-item descripcion">Current price $ 00.00</li>
-                        <li class="nav-item descripcion">Description:</li>
-                        <li class="nav-item descripcion">Otro:</li>
-                    </ul>
-                </article>
-                <article>
-                    <ul class="nav">
-                        <li class="nav-item nav-item-end"><i class="fa-solid fa-heart"></i></li>
-                        <li class="nav-item"><a href="detalleProducto/5"><img src="img/img-samsung-galaxy-s10.jpg" alt="No image"></a></li>
-                        <li class="nav-item descripcion"><button>Oferta</button></li>
-                        <li class="nav-item descripcion">Current price $ 00.00</li>
-                        <li class="nav-item descripcion">Description:</li>
-                        <li class="nav-item descripcion">Otro:</li>
-                    </ul>
-                </article>
-                <article>
-                    <ul class="nav">
-                        <li class="nav-item nav-item-end"><i class="fa-regular fa-heart"></i></li>
-                        <li class="nav-item"><a href="detalleProducto/6"><img src="img/img-tv-samsung-smart.jpg" alt="No image"></a></li>
-                        <li class="nav-item descripcion">Current price $ 00.00</li>
-                        <li class="nav-item descripcion">Description:</li>
-                        <li class="nav-item descripcion">Otro:</li>
-                    </ul>
-                </article>
+                <% for( let producto of ofertas ) { %>
+                    <article>
+                        <ul class="nav">
+                            <li class="nav-item nav-item-end"><i class="fa-regular fa-heart"></i></li>
+                            <li class="nav-item nav-item-end"><a href="detalleProducto/<%= producto.id %>"><img src=<%= producto.img %> alt="No image"></a></li>
+                            <li class="nav-item descripcion"><%= producto.name %></li>
+                            <li class="nav-item descripcion">Current price: <%= producto.precio %></li>
+                            <li class="nav-item descripcion">Description: <%= producto.description %></li>
+                        </ul>
+                    </article>
+                <% } %>
+            </section>
+            <h2>Productos destacados</h2>
+            <section>
+                <% for( let producto of destacados ) { %>
+                    <article>
+                        <ul class="nav">
+                            <li class="nav-item nav-item-end"><i class="fa-regular fa-heart"></i></li>
+                            <li class="nav-item nav-item-end"><a href="detalleProducto/<%= producto.id %>"><img src=<%= producto.img %> alt="No image"></a></li>
+                            <li class="nav-item descripcion"><%= producto.name %></li>
+                            <li class="nav-item descripcion">Current price: <%= producto.precio %></li>
+                            <li class="nav-item descripcion">Description: <%= producto.description %></li>
+                        </ul>
+                    </article>
+                <% } %>
             </section>
         </main>
         <%- include('./partials/footer')  %>
