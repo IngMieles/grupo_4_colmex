@@ -20,3 +20,7 @@ app.use('/', mainRouter);
 app.use('/detalleProducto', mainProducto);
 
 app.listen(3000,() => console.log('Servidor activo en el puerto 3000...'));
+
+app.use((req, res, next) => {
+    res.status(404).render('not-found');
+   })
