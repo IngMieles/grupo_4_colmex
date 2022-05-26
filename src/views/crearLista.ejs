@@ -3,106 +3,97 @@
         <%- include('./partials/header')  %>
         <main>
             <h2>Crea un nuevo producto</h2>
-            <!-- <section> -->
-                <div class="container">
-                    <div class="row">
-                      <div class="col-25">
-                        <label for="fname">Titulo</label>
-                      </div>
-                      <div class="col-75">
-                        <input
-                          type="text"
-                          id="titulo"
-                          name="titulo"
-                          placeholder="Nombre del producto"
-                        />
-                      </div>
-                    </div>
 
-                    <!-- <div class="row">
-                      <div class="col-25">
-                        <label for="lname">Descripción</label>
-                      </div>
-                      <div class="col-75">
-                        <input
-                          type="text"
-                          id="descripcion"
-                          name="descripcion"
-                          placeholder="Descripción general del producto"
-                        />
-                      </div>
-                    </div> -->
+            <form action="/crearLista?_method=POST" method="post">
 
-                    <div class="row">
-                      <div class="col-25">
-                        <label for="lname">Precio</label>
-                      </div>
-                      <div class="col-75">
-                        <input
-                          type="text"
-                          id="precio"
-                          name="precio"
-                          placeholder="Precio inicial del producto"
-                        />
-                      </div>
-                    </div>
-
-                    <div class="row">
-                      <div class="col-25">
-                        <label for="lname">URL</label>
-                      </div>
-                      <div class="col-75">
-                        <input
-                          type="text"
-                          id="url"
-                          name="url"
-                          placeholder="Ingresa una URL para la imagen"
-                        />
-                      </div>
-                    </div>
-
-                    <div class="row">
-                      <div class="col-25">
-                        <label for="lname">Categoría</label>
-                      </div>
-                      <div class="col-75">
-                        <input
-                          type="text"
-                          id="categoria"
-                          name="categoria"
-                          placeholder="Categoría del producto"
-                        />
-                      </div>
-                    </div>
-
-
-                    <div class="row">
-                        <div class="col-25">
-                          <label for="subject">Descripción</label>
-                        </div>
-                        <div class="col-75">
-                          <textarea id="descripcion" name="descripcion" placeholder="Descripción general del producto" style="height:200px"></textarea>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                      <div class="col-25">
-                        <label for="lname">Agrega una foto</label>
-                      </div>
-                      <div class="col-75">
-                        <input
-                          type="file"
-                          id="categoria"
-                          name="categoria"
-                        />
-                      </div>
-                    </div>
-
-                </div>
+              <div class="container">
+                
                 <div class="row">
-                <input type="submit" value="Crear" />
+                    <div class="col-25">
+                      <label for="titulo">Titulo</label>
+                    </div>
+                    <div class="col-75">
+                      <input
+                        type="text"
+                        id="titulo"
+                        name="titulo"
+                        placeholder="Nombre del producto"
+                      />
+                    </div>
                 </div>
-            <!-- </section> -->
+
+                <div class="row">
+                    <div class="col-25">
+                      <label for="precio">Precio</label>
+                    </div>
+                    <div class="col-75">
+                      <input
+                        type="text"
+                        id="precio"
+                        name="precio"
+                        placeholder="Precio inicial del producto"
+                      />
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-25">
+                      <label for="url">URL</label>
+                    </div>
+                    <div class="col-75">
+                      <input
+                        type="text"
+                        id="url"
+                        name="url"
+                        placeholder="Ingresa una URL para la imagen"
+                      />
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-25">
+                      <label for="categoria">Categoría</label>
+                    </div>
+                    <div class="col-75">
+                      <input
+                        type="text"
+                        id="categoria"
+                        name="categoria"
+                        placeholder="Categoría del producto"
+                      />
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-25">
+                      <label for="descripcion">Descripción</label>
+                    </div>
+                    <div class="col-75">
+                      <textarea id="descripcion" name="descripcion" placeholder="Descripción general del producto" style="height:200px"></textarea>
+                    </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-25">
+                    <label for="foto">Agrega una foto</label>
+                  </div>
+                  <div class="col-75">
+                    <input
+                      type="file"
+                      id="foto"
+                      name="foto"
+                    />
+                  </div>
+                </div>
+
+              </div>
+
+              <div class="row">
+                  <input type="submit" value="Crear" />
+              </div>
+
+            </form>
+
         </main>
         <%- include('./partials/footer')  %>
     </body>
