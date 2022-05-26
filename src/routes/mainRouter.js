@@ -12,4 +12,6 @@ router.get('/edita', mainController.edita);
 router.get('/login', mainController.login);
 router.get('/registro', mainController.registro);
 
+router.post('/crearLista', mainController.crearLista);
+
 module.exports = router;
