@@ -1,4 +1,4 @@
-const ofertas =[
+let ofertas =[
     {
         id: 2,
         name: 'fpgaBoard',

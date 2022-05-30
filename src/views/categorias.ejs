@@ -17,6 +17,21 @@
                     </article>
                 <% } %>
             </section>
+            <section>
+                <h2>Nuevas Categorias</h2>
+                <% for( let producto of newProducts ) { %>
+                    <article>
+                        <ul class="nav">
+                            <li class="nav-item nav-item-end"><i class="fa-regular fa-heart"></i></li>
+                            <li class="nav-item descripcion">Categoria: <%= producto.categoria %></li>
+                            <li class="nav-item nav-item-end"><a href="detalleProducto/<%= producto.id %>"><img src=<%= producto.img %> alt="No image"></a></li>
+                            <li class="nav-item descripcion"><%= producto.name %></li>
+                            <li class="nav-item descripcion">Current price: <%= producto.precio %></li>
+                            <li class="nav-item descripcion">Description: <%= producto.description %></li>
+                        </ul>
+                    </article>
+                <% } %>
+            </section>
         </main>
         <%- include('./partials/footer')  %>
     </body>
