@@ -3,17 +3,17 @@
         <%- include('./partials/header')  %>
         <main>
             <h2>Edita tú producto</h2>
-            <!-- <section> -->
+            <form action="" method="post">
                 <div class="container">
                     <div class="row">
                       <div class="col-25">
-                        <label for="fname">Titulo</label>
+                        <label for="fname">Nombre</label>
                       </div>
                       <div class="col-75">
                         <input
                           type="text"
-                          id="titulo"
-                          name="titulo"
+                          id="name"
+                          name="name"
                           placeholder="Nombre del producto"
                         />
                       </div>
@@ -39,7 +39,7 @@
                       </div>
                       <div class="col-75">
                         <input
-                          type="text"
+                          type="number"
                           id="precio"
                           name="precio"
                           placeholder="Precio inicial del producto"
@@ -53,7 +53,7 @@
                       </div>
                       <div class="col-75">
                         <input
-                          type="text"
+                          type="url"
                           id="url"
                           name="url"
                           placeholder="Ingresa una URL para la imagen"
@@ -79,7 +79,7 @@
                 <div class="row">
                 <input type="submit" value="Crear" />
                 </div>
-            <!-- </section> -->
+            </form>
         </main>
         <%- include('./partials/footer')  %>
     </body>

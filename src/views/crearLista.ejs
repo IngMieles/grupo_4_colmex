@@ -4,19 +4,19 @@
         <main>
             <h2>Crea un nuevo producto</h2>
 
-            <form action="/crearLista?_method=POST" method="post">
+            <form action="/crearLista" method="post">
 
               <div class="container">
                 
                 <div class="row">
                     <div class="col-25">
-                      <label for="titulo">Titulo</label>
+                      <label for="name">Nombre</label>
                     </div>
                     <div class="col-75">
                       <input
                         type="text"
-                        id="titulo"
-                        name="titulo"
+                        id="name"
+                        name="name"
                         placeholder="Nombre del producto"
                       />
                     </div>
@@ -28,7 +28,7 @@
                     </div>
                     <div class="col-75">
                       <input
-                        type="text"
+                        type="number"
                         id="precio"
                         name="precio"
                         placeholder="Precio inicial del producto"
@@ -38,16 +38,29 @@
 
                 <div class="row">
                     <div class="col-25">
-                      <label for="url">URL</label>
+                      <label for="img">URL de la imagen</label>
                     </div>
                     <div class="col-75">
                       <input
-                        type="text"
-                        id="url"
-                        name="url"
+                        type="url"
+                        id="img"
+                        name="img"
                         placeholder="Ingresa una URL para la imagen"
                       />
                     </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-25">
+                    <label for="file">Agrega una imagen</label>
+                  </div>
+                  <div class="col-75">
+                    <input
+                      type="file"
+                      id="file"
+                      name="file"
+                    />
+                  </div>
                 </div>
 
                 <div class="row">
@@ -66,24 +79,11 @@
 
                 <div class="row">
                     <div class="col-25">
-                      <label for="descripcion">Descripción</label>
+                      <label for="description">Descripción</label>
                     </div>
                     <div class="col-75">
-                      <textarea id="descripcion" name="descripcion" placeholder="Descripción general del producto" style="height:200px"></textarea>
+                      <textarea id="description" name="description" placeholder="Descripción general del producto" style="height:200px"></textarea>
                     </div>
-                </div>
-
-                <div class="row">
-                  <div class="col-25">
-                    <label for="foto">Agrega una foto</label>
-                  </div>
-                  <div class="col-75">
-                    <input
-                      type="file"
-                      id="foto"
-                      name="foto"
-                    />
-                  </div>
                 </div>
 
               </div>

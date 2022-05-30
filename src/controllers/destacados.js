@@ -1,4 +1,4 @@
-const destacados =[
+let destacados =[
     {
         id: 1,
         name: 'Consola',

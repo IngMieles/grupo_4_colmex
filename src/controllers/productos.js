@@ -1,4 +1,4 @@
-const productos =[
+let productos =[
     {
         id: 1,
         name: 'Consola',
