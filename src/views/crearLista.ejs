@@ -4,7 +4,7 @@
         <main>
             <h2>Crea un nuevo producto</h2>
 
-            <form action="/crearLista" method="post">
+            <form action="/crearLista" method="post" enctype = "multipart/form-data">
 
               <div class="container">
                 
@@ -52,13 +52,13 @@
 
                 <div class="row">
                   <div class="col-25">
-                    <label for="file">Agrega una imagen</label>
+                    <label for="fileImg">Agrega una imagen</label>
                   </div>
                   <div class="col-75">
                     <input
                       type="file"
-                      id="file"
-                      name="file"
+                      id="fileImg"
+                      name="fileImg"
                     />
                   </div>
                 </div>
