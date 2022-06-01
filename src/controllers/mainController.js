@@ -21,17 +21,28 @@ const controller = {
         res.render('crearLista');
     },
     crear: (req,res)=>{
-
-        let products = {
-            id: dataProducts.length,
-            name: req.body.name,
-            precio: req.body.precio,
-            categoria: req.body.categoria,
-            img: req.body.img,
-            file: '../img/'+ req.body.file,
-            description: req.body.description,
-        };
-
+        let products;
+        console.log(req.file);
+        if(req.file){
+            products = {
+                id: dataProducts.length,
+                name: req.body.name,
+                precio: req.body.precio,
+                categoria: req.body.categoria,
+                img: '../img/products/'+req.file.filename,
+                // img: req.file.filename,
+                description: req.body.description,
+            };
+        }else{
+            products = {
+                id: dataProducts.length,
+                name: req.body.name,
+                precio: req.body.precio,
+                categoria: req.body.categoria,
+                img: req.body.img,
+                description: req.body.description,
+            };
+        }
 
         let newProduct;
         let readProducts = fs.readFileSync('src/data/products.json',{encoding: 'utf-8'});
@@ -43,7 +54,7 @@ const controller = {
         
         newProduct.push(products);
 
-        let productJSON = JSON.stringify(newProduct);
+        let productJSON = JSON.stringify(newProduct, null, ' ');
         fs.writeFileSync('src/data/products.json',productJSON);
         
         res.redirect('/');
