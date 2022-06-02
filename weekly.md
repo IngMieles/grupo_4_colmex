@@ -6,5 +6,6 @@ Pablo: Las ceremonias de planning, weekly o daily, han servido para ser mas orde
 
 Pendientes Sprint 4:
 Administración completa de productos con:
-1. Edición
-2. Eliminación
+1. Edición.
+2. Eliminación.
+3.
