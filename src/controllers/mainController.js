@@ -1,13 +1,18 @@
+const path = require('path');
 let fs = require('fs');
-let productos = require('../controllers/productos');
 let dataProducts = require('../data/products');
-let ofertas = require('../controllers/ofertas');
-let destacados = require('../controllers/destacados');
+const productsFilePath = path.join(__dirname, '../data/products.json');
+const ofertasFilePath = path.join(__dirname, '../data/ofertas.json');
+const destacadosFilePath = path.join(__dirname, '../data/destacados.json');
+
+let fileOfertas = fs.readFileSync(ofertasFilePath, 'utf-8');
+let ofertas = JSON.parse(fileOfertas);
+let fileDestacados = fs.readFileSync(destacadosFilePath, 'utf-8');
+let destacados = JSON.parse(fileDestacados);
 
 const controller = {
     index: (req, res) => {
         res.render('index', {
-            'productos': productos,
             'ofertas': ofertas,
             'destacados': destacados
         });
@@ -16,15 +21,11 @@ const controller = {
         res.render('carritoCompras');
     },
     categorias: (req, res) => {
-        let product = fs.readFileSync('src/data/products.json', {
-            encoding: 'utf-8'
-        });
+        let product = fs.readFileSync(productsFilePath, 'utf-8');
         let newProducts = JSON.parse(product);
         res.render('categorias', {
-            productos,
             newProducts
         });
-        // res.render('categorias',{productos});
     },
     crearLista: (req, res) => {
         res.render('crearLista');
@@ -38,8 +39,7 @@ const controller = {
                 name: req.body.name,
                 precio: parseInt(req.body.precio),
                 categoria: req.body.categoria,
-                img: req.file.filename,
-                // img: req.file.filename,
+                fileImg: req.file.filename,
                 description: req.body.description,
             };
         } else if (req.body.img) {
@@ -58,13 +58,13 @@ const controller = {
                 name: req.body.name,
                 precio: parseInt(req.body.precio),
                 categoria: req.body.categoria,
-                img: '../img/logo.jpg',
+                fileImg: 'default-image.png',
                 description: req.body.description,
             }
         }
 
         let newProduct;
-        let readProducts = fs.readFileSync('src/data/products.json', {
+        let readProducts = fs.readFileSync(productsFilePath, {
             encoding: 'utf-8'
         });
         if (readProducts == "") {
@@ -76,16 +76,18 @@ const controller = {
         newProduct.push(products);
 
         let productJSON = JSON.stringify(newProduct, null, ' ');
-        fs.writeFileSync('src/data/products.json', productJSON);
+        fs.writeFileSync(productsFilePath, productJSON);
 
-        res.redirect('/');
+        res.redirect('/categorias');
     },
     edita: (req, res) => {
         res.render('edita');
     },
     detalleProducto: (req, res) => {
         let idProduct = req.params.id;
-        const productoImg = productos.find(element => element.id == idProduct);
+        let product = fs.readFileSync(productsFilePath, 'utf-8');
+        let Products = JSON.parse(product);
+        const productoImg = Products.find(element => element.id == idProduct);
         res.render('detalleProducto', {
             'productoImg': productoImg
         });

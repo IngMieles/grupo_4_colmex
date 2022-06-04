@@ -1,0 +1,18 @@
+[
+{
+    "id": 1,
+    "name": "fpgaBoard",
+    "precio": 200,
+    "categoria": "Electrónica",
+    "img": "fileImg-1654288414738.jpg",
+    "description": "descripción no disponible"
+},
+{
+    "id": 5,
+    "name": "tv-samsung-smart",
+    "precio": 600,
+    "categoria": "Entretenimiento",
+    "img": "fileImg-1654288564721.jpg",
+    "description": "descripción no disponible"
+}
+]

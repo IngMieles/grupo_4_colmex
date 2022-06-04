@@ -5,7 +5,11 @@
         <main>
             <section>
                 <article class="producto">
-                    <img src=<%= productoImg.img %> alt="No image">
+                    <% if (productoImg.fileImg) { %>
+                            <img src="/img/products/<%= productoImg.fileImg %>" alt="No image"></a>
+                    <% } else { %>
+                            <img src=<%= productoImg.img %> alt="No image"></a>
+                      <% } %> 
                 </article>
                 <article class="descripcion">
                     <ul class="descripcion-item">

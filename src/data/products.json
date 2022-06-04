@@ -1,10 +1,74 @@
 [
  {
   "id": 0,
-  "name": "Prueba",
-  "precio": "100",
-  "categoria": "SIN CATEGORIA",
-  "img": "https://ep01.epimg.net/elpais/imagenes/2019/10/30/album/1572424649_614672_1572453030_noticia_normal.jpg",
-  "description": "Sin descripcion"
+  "name": "Consola",
+  "precio": 100,
+  "categoria": "Video Juegos",
+  "fileImg": "fileImg-1654288189384.jpg",
+  "description": "descripción no disponible"
+ },
+ {
+  "id": 1,
+  "name": "fpgaBoard",
+  "precio": 200,
+  "categoria": "Electrónica",
+  "fileImg": "fileImg-1654288414738.jpg",
+  "description": "descripción no disponible"
+ },
+ {
+  "id": 2,
+  "name": "Libro",
+  "precio": 300,
+  "categoria": "Lectura",
+  "fileImg": "fileImg-1654288457454.jpg",
+  "description": "descripción no disponible"
+ },
+ {
+  "id": 3,
+  "name": "macbook",
+  "precio": 400,
+  "categoria": "Computadoras",
+  "fileImg": "fileImg-1654288491586.jpg",
+  "description": "descripción no disponible"
+ },
+ {
+  "id": 4,
+  "name": "samsung-galaxy-s10",
+  "precio": 500,
+  "categoria": "Celulares",
+  "fileImg": "fileImg-1654288526754.jpg",
+  "description": "descripción no disponible"
+ },
+ {
+  "id": 5,
+  "name": "tv-samsung-smart",
+  "precio": 600,
+  "categoria": "Entretenimiento",
+  "fileImg": "fileImg-1654288564721.jpg",
+  "description": "descripción no disponible"
+ },
+ {
+  "id": 6,
+  "name": "Bicicleta",
+  "precio": 1200,
+  "categoria": "Deportes",
+  "img": "https://ciclo-mania.com/wp-content/uploads/2019/11/Bicicleta-de-carretera-WRC-Volcano-disc-105.jpeg",
+  "description": "Sin descripción disponible"
+ },
+ {
+  "id": 7,
+  "name": "",
+  "precio": null,
+  "categoria": "",
+  "fileImg": "Logo.jpg-1654303585801.jpg",
+  "description": ""
+ },
+ {
+  "id": 8,
+  "name": "",
+  "precio": null,
+  "categoria": "",
+  "fileImg": "default-image.png",
+  "description": ""
  }
 ]

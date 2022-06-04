@@ -1,0 +1,18 @@
+[
+{
+    "id": 2,
+    "name": "Libro",
+    "precio": 300,
+    "categoria": "Lectura",
+    "img": "fileImg-1654288457454.jpg",
+    "description": "descripción no disponible"
+},
+{
+    "id": 3,
+    "name": "macbook",
+    "precio": 400,
+    "categoria": "Computadoras",
+    "img": "fileImg-1654288491586.jpg",
+    "description": "descripción no disponible"
+}
+]
