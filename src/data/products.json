@@ -4,7 +4,7 @@
   "name": "Consola",
   "precio": 100,
   "categoria": "Video Juegos",
-  "fileImg": "fileImg-1654288189384.jpg",
+  "fileImg": "fileImg-Consola.jpg",
   "description": "descripción no disponible"
  },
  {
@@ -12,7 +12,7 @@
   "name": "fpgaBoard",
   "precio": 200,
   "categoria": "Electrónica",
-  "fileImg": "fileImg-1654288414738.jpg",
+  "fileImg": "fileImg-fpgaBoard.jpg",
   "description": "descripción no disponible"
  },
  {
@@ -20,7 +20,7 @@
   "name": "Libro",
   "precio": 300,
   "categoria": "Lectura",
-  "fileImg": "fileImg-1654288457454.jpg",
+  "fileImg": "fileImg-Libro.jpg",
   "description": "descripción no disponible"
  },
  {
@@ -28,7 +28,7 @@
   "name": "macbook",
   "precio": 400,
   "categoria": "Computadoras",
-  "fileImg": "fileImg-1654288491586.jpg",
+  "fileImg": "fileImg-macbook.jpg",
   "description": "descripción no disponible"
  },
  {
@@ -36,7 +36,7 @@
   "name": "samsung-galaxy-s10",
   "precio": 500,
   "categoria": "Celulares",
-  "fileImg": "fileImg-1654288526754.jpg",
+  "fileImg": "fileImg-samsung-galaxy-s10.jpg",
   "description": "descripción no disponible"
  },
  {
@@ -44,7 +44,7 @@
   "name": "tv-samsung-smart",
   "precio": 600,
   "categoria": "Entretenimiento",
-  "fileImg": "fileImg-1654288564721.jpg",
+  "fileImg": "fileImg-tv-samsung-smart.jpg",
   "description": "descripción no disponible"
  },
  {
@@ -54,21 +54,5 @@
   "categoria": "Deportes",
   "img": "https://ciclo-mania.com/wp-content/uploads/2019/11/Bicicleta-de-carretera-WRC-Volcano-disc-105.jpeg",
   "description": "Sin descripción disponible"
- },
- {
-  "id": 7,
-  "name": "",
-  "precio": null,
-  "categoria": "",
-  "fileImg": "Logo.jpg-1654303585801.jpg",
-  "description": ""
- },
- {
-  "id": 8,
-  "name": "",
-  "precio": null,
-  "categoria": "",
-  "fileImg": "default-image.png",
-  "description": ""
  }
 ]

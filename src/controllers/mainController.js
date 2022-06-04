@@ -1,9 +1,12 @@
 const path = require('path');
 let fs = require('fs');
 let dataProducts = require('../data/products');
+let dataUsers = require('../data/users');
 const productsFilePath = path.join(__dirname, '../data/products.json');
 const ofertasFilePath = path.join(__dirname, '../data/ofertas.json');
 const destacadosFilePath = path.join(__dirname, '../data/destacados.json');
+
+const usersFilePath = path.join(__dirname, '../data/users.json');
 
 let fileOfertas = fs.readFileSync(ofertasFilePath, 'utf-8');
 let ofertas = JSON.parse(fileOfertas);
@@ -32,7 +35,6 @@ const controller = {
     },
     crear: (req, res) => {
         let products;
-        console.log(req.file);
         if (req.file) {
             products = {
                 id: dataProducts.length,
@@ -51,7 +53,6 @@ const controller = {
                 img: req.body.img,
                 description: req.body.description,
             }
-           
         } else {
             products = {
                 id: dataProducts.length,
@@ -97,6 +98,40 @@ const controller = {
     },
     registro: (req, res) => {
         res.render('registro');
+    },
+    registerUsers: (req, res) => {
+        let users;
+        if (req.file) {
+            users = {
+                id: dataUsers.length,
+                telefono: parseInt(req.body.telefono),
+                ...req.body,
+                fileImg: req.file.filename,
+            };
+        } else {
+            users = {
+                id: dataUsers.length,
+                telefono: parseInt(req.body.telefono),
+                ...req.body,
+                fileImg: 'default-user.png',
+            }
+        }
+
+        let newUser;
+        let readUsers = fs.readFileSync(usersFilePath,'utf-8');
+        if (readUsers == "") {
+            newUser = [];
+        } else {
+            newUser = JSON.parse(readUsers);
+        }
+
+        newUser.push(users);
+        fs.writeFileSync(usersFilePath, JSON.stringify(newUser, null, ' '));
+
+        res.render('index', {
+            'ofertas': ofertas,
+            'destacados': destacados
+        });
     },
 };
 
