@@ -232,6 +232,10 @@ main section .descripcion {
   list-style-type: circle;
 }
 
+main section .descripcion {
+  font-size: 1.5rem;
+}
+
 main section article {
   margin: 0.5rem;
   padding: 1rem;
@@ -372,11 +376,7 @@ footer section .nav-item i:hover{
 
   main section article .nav .descripcion{
     opacity: 1;
-    font-size: 1.5rem;
-  }
-
-  main section .descripcion {
-    font-size: 2rem;
+    font-size: 1rem;
   }
 
   main section .comentarios {
@@ -429,6 +429,11 @@ footer section .nav-item i:hover{
   main section .carrito-item-img {
     align-self: center;
     width: 25%;
+  }
+
+  main section .descripcion {
+    /* font-size: 1rem; */
+    width: 600px;
   }
 }
 

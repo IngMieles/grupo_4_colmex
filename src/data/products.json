@@ -65,11 +65,12 @@
  },
  {
   "id": 8,
-  "name": "prueba",
-  "precio": 123,
-  "img": "https://img.fotocommunity.com/atardeceres-1b2829bd-e28f-47e5-9a55-8d9988f8e184.jpg?height=1080",
-  "categoria": "SIN CATEGORIA",
+  "name": "",
   "description": "",
+  "precio": 25,
+  "categoria": "",
+  "img": "https://img.fotocommunity.com/atardeceres-1b2829bd-e28f-47e5-9a55-8d9988f8e184.jpg?height=1080",
+  "fileImg": "",
   "userId": 0
  }
 ]

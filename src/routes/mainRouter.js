@@ -28,7 +28,7 @@ router.get('/crearLista', mainController.crearLista);
 // Acción de creación (a donde se envía el formulario)
 router.post('/crearLista', upload.single('fileImg'), mainController.crear);
 
-router.get('/edita', mainController.edita);
+// router.get('/edita', mainController.edita);
 router.get('/login', mainController.login);
 
 module.exports = router;

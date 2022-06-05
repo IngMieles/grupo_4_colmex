@@ -9,7 +9,7 @@
                             <img src="/img/products/<%= productoImg.fileImg %>" alt="No image">
                     <% } else { %>
                             <img src=<%= productoImg.img %> alt="No image">
-                      <% } %> 
+                    <% } %>
                 </article>
                 <article class="descripcion">
                     <ul class="descripcion-item">
@@ -28,7 +28,7 @@
                         <li class="button"><button>Agregar al carrito</button></li>
                     </ul>
                     <div>
-                        <form action="">
+                        <form action="/detalleProducto/<%= productoImg.id %>/edita" method="get">
                             <label for="description">Mejora el producto y editalo</label>
                             <input type="hidden" id="userId" name="userId" value= <%= userID.id %> >
                             <input type="submit" value="Edita" />

@@ -47,7 +47,6 @@ const controller = {
                 fileImg: req.file.filename
             };
         } else if (req.body.img) {
-            console.log(req.body.userId);
             products = {
                 id: dataProducts.length,
                 ...req.body,
@@ -77,7 +76,73 @@ const controller = {
         res.redirect('/categorias');
     },
     edita: (req, res) => {
-        res.render('edita');
+        let idProduct = req.params.id;
+        let product = fs.readFileSync(productsFilePath, 'utf-8');
+        let Products = JSON.parse(product);
+        const productoImg = Products.find(element => element.id == idProduct);
+        res.render('edita',{productoImg});
+    },
+    editar: (req, res) => {
+        let idProduct = req.params.id;
+        let product = fs.readFileSync(productsFilePath, 'utf-8');
+        let Products = JSON.parse(product);
+        let productoImg = Products.find(element => element.id == idProduct);
+        let userID = parseInt(req.body.userId);
+        let editProduct;
+        if (req.file) {
+            editProduct = {
+                id: parseInt(idProduct),
+                ...req.body,
+                userId: parseInt(req.body.userId),
+                precio: parseInt(req.body.precio),
+                fileImg: req.file.filename
+            };
+        } else if (req.body.img) {
+            editProduct = {
+                id: parseInt(idProduct),
+                ...req.body,
+                userId: parseInt(req.body.userId),
+                precio: parseInt(req.body.precio),
+                img: req.body.img
+            }
+        } else if (productoImg.img) {
+            editProduct = {
+                id: parseInt(idProduct),
+                ...req.body,
+                userId: parseInt(req.body.userId),
+                precio: parseInt(req.body.precio),
+                img: productoImg.img
+            }
+        } else {
+            editProduct = {
+                id: parseInt(idProduct),
+                ...req.body,
+                userId: parseInt(req.body.userId),
+                precio: parseInt(req.body.precio),
+                fileImg: 'default-image.png'
+            }
+        }
+
+        let newProduct;
+        let readProducts = fs.readFileSync(productsFilePath,'utf-8');
+        if (readProducts == "") {
+            newProduct = [];
+        } else {
+            newProduct = JSON.parse(readProducts);
+        }
+
+        newProduct.forEach((element,index) => {
+            if(element.id==editProduct.id){
+                newProduct[index] = editProduct;
+            }
+        });
+
+        fs.writeFileSync(productsFilePath, JSON.stringify(newProduct, null, ' '));
+        product = fs.readFileSync(productsFilePath, 'utf-8');
+        Products = JSON.parse(product);
+        productoImg = Products.find(element => element.id == idProduct);
+        console.log(productoImg);
+        res.render('detalleProducto',{productoImg,userID});
     },
     detalleProducto: (req, res) => {
         let idProduct = req.params.id;
