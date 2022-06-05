@@ -54,5 +54,22 @@
   "categoria": "Deportes",
   "img": "https://ciclo-mania.com/wp-content/uploads/2019/11/Bicicleta-de-carretera-WRC-Volcano-disc-105.jpeg",
   "description": "Sin descripción disponible"
+ },
+ {
+  "id": 7,
+  "name": "Mouse Inalámbrico para Notebook, PC, computadora",
+  "precio": 15,
+  "categoria": "Computo",
+  "img": "https://www.quierofertas.com/media/catalog/product/m/o/mouse4_1_3_1_1_1.jpg",
+  "description": "Mouse Inalámbrico para Notebook, PC, computadora"
+ },
+ {
+  "id": 8,
+  "name": "prueba",
+  "precio": 123,
+  "img": "https://img.fotocommunity.com/atardeceres-1b2829bd-e28f-47e5-9a55-8d9988f8e184.jpg?height=1080",
+  "categoria": "SIN CATEGORIA",
+  "description": "",
+  "userId": 0
  }
 ]

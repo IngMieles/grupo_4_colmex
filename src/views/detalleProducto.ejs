@@ -6,9 +6,9 @@
             <section>
                 <article class="producto">
                     <% if (productoImg.fileImg) { %>
-                            <img src="/img/products/<%= productoImg.fileImg %>" alt="No image"></a>
+                            <img src="/img/products/<%= productoImg.fileImg %>" alt="No image">
                     <% } else { %>
-                            <img src=<%= productoImg.img %> alt="No image"></a>
+                            <img src=<%= productoImg.img %> alt="No image">
                       <% } %> 
                 </article>
                 <article class="descripcion">
@@ -25,9 +25,15 @@
                         <li>Description: <%= productoImg.description %></li>
                         <li>Categoria: <%= productoImg.categoria %></li>
                         <li>Ofertas similares</li>
-                        <li class="button"><button>¿Quieres ofertar otro precio?</button></li>
                         <li class="button"><button>Agregar al carrito</button></li>
                     </ul>
+                    <div>
+                        <form action="">
+                            <label for="description">Mejora el producto y editalo</label>
+                            <input type="hidden" id="userId" name="userId" value= <%= userID.id %> >
+                            <input type="submit" value="Edita" />
+                        </form>
+                    </div>
                 </article>
             </section>
             <section>

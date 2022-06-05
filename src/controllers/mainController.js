@@ -7,6 +7,8 @@ const ofertasFilePath = path.join(__dirname, '../data/ofertas.json');
 const destacadosFilePath = path.join(__dirname, '../data/destacados.json');
 
 const usersFilePath = path.join(__dirname, '../data/users.json');
+let usersLogin = fs.readFileSync(usersFilePath, 'utf-8');
+let userLogin = JSON.parse(usersLogin);
 
 let fileOfertas = fs.readFileSync(ofertasFilePath, 'utf-8');
 let ofertas = JSON.parse(fileOfertas);
@@ -31,54 +33,47 @@ const controller = {
         });
     },
     crearLista: (req, res) => {
-        res.render('crearLista');
+        let userID = userLogin.find(element =>element.id == 0);
+        res.render('crearLista',{userID});
     },
     crear: (req, res) => {
         let products;
         if (req.file) {
             products = {
                 id: dataProducts.length,
-                name: req.body.name,
+                ...req.body,
+                userId: parseInt(req.body.userId),
                 precio: parseInt(req.body.precio),
-                categoria: req.body.categoria,
-                fileImg: req.file.filename,
-                description: req.body.description,
+                fileImg: req.file.filename
             };
         } else if (req.body.img) {
+            console.log(req.body.userId);
             products = {
                 id: dataProducts.length,
-                name: req.body.name,
+                ...req.body,
+                userId: parseInt(req.body.userId),
                 precio: parseInt(req.body.precio),
-                categoria: req.body.categoria,
-                img: req.body.img,
-                description: req.body.description,
+                img: req.body.img
             }
         } else {
             products = {
                 id: dataProducts.length,
-                name: req.body.name,
+                ...req.body,
+                userId: parseInt(req.body.userId),
                 precio: parseInt(req.body.precio),
-                categoria: req.body.categoria,
-                fileImg: 'default-image.png',
-                description: req.body.description,
+                fileImg: 'default-image.png'
             }
         }
 
         let newProduct;
-        let readProducts = fs.readFileSync(productsFilePath, {
-            encoding: 'utf-8'
-        });
+        let readProducts = fs.readFileSync(productsFilePath,'utf-8');
         if (readProducts == "") {
             newProduct = [];
         } else {
             newProduct = JSON.parse(readProducts);
         }
-
         newProduct.push(products);
-
-        let productJSON = JSON.stringify(newProduct, null, ' ');
-        fs.writeFileSync(productsFilePath, productJSON);
-
+        fs.writeFileSync(productsFilePath, JSON.stringify(newProduct, null, ' '));
         res.redirect('/categorias');
     },
     edita: (req, res) => {
@@ -89,9 +84,8 @@ const controller = {
         let product = fs.readFileSync(productsFilePath, 'utf-8');
         let Products = JSON.parse(product);
         const productoImg = Products.find(element => element.id == idProduct);
-        res.render('detalleProducto', {
-            'productoImg': productoImg
-        });
+        let userID = userLogin.find(element =>element.id == 0);
+        res.render('detalleProducto', {productoImg,userID});
     },
     login: (req, res) => {
         res.render('login');
@@ -113,7 +107,7 @@ const controller = {
                 id: dataUsers.length,
                 telefono: parseInt(req.body.telefono),
                 ...req.body,
-                fileImg: 'default-user.png',
+                fileImg: 'default-user.jpg',
             }
         }
 
@@ -127,11 +121,7 @@ const controller = {
 
         newUser.push(users);
         fs.writeFileSync(usersFilePath, JSON.stringify(newUser, null, ' '));
-
-        res.render('index', {
-            'ofertas': ofertas,
-            'destacados': destacados
-        });
+        res.render('login');
     },
 };
 
