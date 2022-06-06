@@ -64,6 +64,10 @@ header #logo {
   }
 }
 
+.nombre{
+  text-decoration: none;
+}
+
 /* header #logo .nombre {
   flex-grow: 1;
   animation-name: creciendo;
@@ -85,6 +89,10 @@ header #logo .buscar input {
   background-position: 10px 10px;
   background-repeat: no-repeat;
   padding: 12px 20px 12px 40px;
+}
+
+.img-nav{
+  width: 25px;
 }
 
 header #nombreUser {
@@ -222,6 +230,10 @@ main section .producto {
 main section .descripcion {
   flex-grow: 1;
   list-style-type: circle;
+}
+
+main section .descripcion {
+  font-size: 1.5rem;
 }
 
 main section article {
@@ -364,11 +376,7 @@ footer section .nav-item i:hover{
 
   main section article .nav .descripcion{
     opacity: 1;
-    font-size: 1.5rem;
-  }
-
-  main section .descripcion {
-    font-size: 2rem;
+    font-size: 1rem;
   }
 
   main section .comentarios {
@@ -421,6 +429,11 @@ footer section .nav-item i:hover{
   main section .carrito-item-img {
     align-self: center;
     width: 25%;
+  }
+
+  main section .descripcion {
+    /* font-size: 1rem; */
+    width: 600px;
   }
 }
 

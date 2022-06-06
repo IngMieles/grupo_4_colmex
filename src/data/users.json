@@ -1,0 +1,16 @@
+[
+ {
+  "id": 0,
+  "telefono": "4422503259",
+  "birth_date": "2022-06-11",
+  "addres": "PIRINEOS 302",
+  "profile": "sell",
+  "firstname": "LUIS ALBERTO",
+  "lastname": "HURTADO",
+  "country": "mexico",
+  "password": "1234",
+  "confirmPassword": "1234",
+  "subject": "sin comentarios",
+  "fileImg": "default-user.jpg"
+ }
+]
