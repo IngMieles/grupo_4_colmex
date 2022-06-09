@@ -21,11 +21,12 @@
  },
  {
   "id": 2,
-  "name": "Libro",
-  "precio": 300,
+  "name": "Libro fisico usado",
+  "precio": 1200,
   "categoria": "Lectura",
+  "img": "",
   "fileImg": "fileImg-Libro.jpg",
-  "description": "descripción no disponible",
+  "description": "Libro para aprender a programar una fpga",
   "userId": 0
  },
  {
@@ -76,11 +77,12 @@
  },
  {
   "id": 8,
-  "name": "Cuadro de un paisaje",
-  "precio": 1230,
+  "name": "Foto de un paisaje",
+  "precio": 120,
+  "categoria": "varios",
   "img": "https://img.fotocommunity.com/atardeceres-1b2829bd-e28f-47e5-9a55-8d9988f8e184.jpg?height=1080",
-  "categoria": "Cuadros",
-  "description": "Es un cuadro de 30 x 30 centímetros",
+  "fileImg": "",
+  "description": "Imagen para cuadro de 20 x 20 centímetros",
   "userId": 0
  }
 ]
