@@ -12,11 +12,11 @@
  {
   "id": 1,
   "name": "FPGA-Board",
-  "precio": 4500,
+  "precio": 4499,
   "categoria": "Electrónica",
   "img": "",
   "fileImg": "fileImg-fpgaBoard.jpg",
-  "description": "Tarjeta de desarrollo FPGA disponible para ser programada en VHDL y Verilog",
+  "description": "Descripción: Tarjeta de desarrollo FPGA disponible para ser programada en VHDL y Verilog",
   "userId": 0
  },
  {
@@ -76,10 +76,11 @@
  },
  {
   "id": 8,
-  "name": "Cuadro de un paisaje",
-  "precio": 1230,
+  "name": "paisaje",
+  "precio": 1234,
+  "categoria": "SIN CATEGORIA",
   "img": "https://img.fotocommunity.com/atardeceres-1b2829bd-e28f-47e5-9a55-8d9988f8e184.jpg?height=1080",
-  "categoria": "Cuadros",
+  "fileImg": "",
   "description": "Es un cuadro de 30 x 30 centímetros",
   "userId": 0
  }

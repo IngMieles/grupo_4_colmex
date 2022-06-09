@@ -148,6 +148,7 @@ const controller = {
         product = fs.readFileSync(productsFilePath, 'utf-8');
         Products = JSON.parse(product);
         productoImg = Products.find(element => element.id == idProduct);
+        userID = userLogin.find(element =>element.id == 0);
         res.render('detalleProducto',{productoImg,userID});
     },
     delete: (req, res) => {
