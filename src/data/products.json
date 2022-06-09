@@ -1,19 +1,23 @@
 [
  {
   "id": 0,
-  "name": "Consola",
-  "precio": 100,
-  "categoria": "Video Juegos",
+  "name": "Consola de video juego",
+  "description": "Consola semi-nueva ",
+  "precio": 3000,
+  "categoria": "Video juegos",
+  "img": "",
   "fileImg": "fileImg-Consola.jpg",
-  "description": "descripción no disponible"
+  "userId": 0
  },
  {
   "id": 1,
-  "name": "fpgaBoard",
-  "precio": 200,
+  "name": "FPGA-Board",
+  "precio": 4500,
   "categoria": "Electrónica",
+  "img": "",
   "fileImg": "fileImg-fpgaBoard.jpg",
-  "description": "descripción no disponible"
+  "description": "Tarjeta de desarrollo FPGA disponible para ser programada en VHDL y Verilog",
+  "userId": 0
  },
  {
   "id": 2,
@@ -21,7 +25,8 @@
   "precio": 300,
   "categoria": "Lectura",
   "fileImg": "fileImg-Libro.jpg",
-  "description": "descripción no disponible"
+  "description": "descripción no disponible",
+  "userId": 0
  },
  {
   "id": 3,
@@ -29,7 +34,8 @@
   "precio": 400,
   "categoria": "Computadoras",
   "fileImg": "fileImg-macbook.jpg",
-  "description": "descripción no disponible"
+  "description": "descripción no disponible",
+  "userId": 0
  },
  {
   "id": 4,
@@ -37,7 +43,8 @@
   "precio": 500,
   "categoria": "Celulares",
   "fileImg": "fileImg-samsung-galaxy-s10.jpg",
-  "description": "descripción no disponible"
+  "description": "descripción no disponible",
+  "userId": 0
  },
  {
   "id": 5,
@@ -45,15 +52,18 @@
   "precio": 600,
   "categoria": "Entretenimiento",
   "fileImg": "fileImg-tv-samsung-smart.jpg",
-  "description": "descripción no disponible"
+  "description": "descripción no disponible",
+  "userId": 0
  },
  {
   "id": 6,
-  "name": "Bicicleta",
-  "precio": 1200,
+  "name": "Bicicleta roja",
+  "description": "Bicicleta de alto rendimiento",
+  "precio": 1250,
   "categoria": "Deportes",
   "img": "https://ciclo-mania.com/wp-content/uploads/2019/11/Bicicleta-de-carretera-WRC-Volcano-disc-105.jpeg",
-  "description": "Sin descripción disponible"
+  "fileImg": "",
+  "userId": 0
  },
  {
   "id": 7,
@@ -61,16 +71,16 @@
   "precio": 15,
   "categoria": "Computo",
   "img": "https://www.quierofertas.com/media/catalog/product/m/o/mouse4_1_3_1_1_1.jpg",
-  "description": "Mouse Inalámbrico para Notebook, PC, computadora"
+  "description": "Mouse Inalámbrico para Notebook, PC, computadora",
+  "userId": 0
  },
  {
   "id": 8,
-  "name": "",
-  "description": "",
-  "precio": 250,
-  "categoria": "",
+  "name": "Cuadro de un paisaje",
+  "precio": 1230,
   "img": "https://img.fotocommunity.com/atardeceres-1b2829bd-e28f-47e5-9a55-8d9988f8e184.jpg?height=1080",
-  "fileImg": "",
+  "categoria": "Cuadros",
+  "description": "Es un cuadro de 30 x 30 centímetros",
   "userId": 0
  }
 ]

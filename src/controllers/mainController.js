@@ -17,20 +17,18 @@ let destacados = JSON.parse(fileDestacados);
 
 const controller = {
     index: (req, res) => {
-        res.render('index', {
-            'ofertas': ofertas,
-            'destacados': destacados
-        });
+        let userID = userLogin.find(element =>element.id == 0);
+        res.render('index', {ofertas,destacados,userID});
     },
     carritoCompras: (req, res) => {
-        res.render('carritoCompras');
+        let userID = userLogin.find(element =>element.id == 0);
+        res.render('carritoCompras',{userID});
     },
     categorias: (req, res) => {
         let product = fs.readFileSync(productsFilePath, 'utf-8');
         let newProducts = JSON.parse(product);
-        res.render('categorias', {
-            newProducts
-        });
+        let userID = userLogin.find(element =>element.id == 0);
+        res.render('categorias', {newProducts,userID});
     },
     crearLista: (req, res) => {
         let userID = userLogin.find(element =>element.id == 0);
@@ -80,7 +78,8 @@ const controller = {
         let product = fs.readFileSync(productsFilePath, 'utf-8');
         let Products = JSON.parse(product);
         const productoImg = Products.find(element => element.id == idProduct);
-        res.render('edita',{productoImg});
+        let userID = userLogin.find(element =>element.id == 0);
+        res.render('edita',{productoImg,userID});
     },
     editar: (req, res) => {
         let idProduct = req.params.id;
@@ -104,6 +103,14 @@ const controller = {
                 userId: parseInt(req.body.userId),
                 precio: parseInt(req.body.precio),
                 img: req.body.img
+            }
+        } else if (productoImg.fileImg) {
+            editProduct = {
+                id: parseInt(idProduct),
+                ...req.body,
+                userId: parseInt(req.body.userId),
+                precio: parseInt(req.body.precio),
+                fileImg: productoImg.fileImg
             }
         } else if (productoImg.img) {
             editProduct = {
@@ -141,8 +148,17 @@ const controller = {
         product = fs.readFileSync(productsFilePath, 'utf-8');
         Products = JSON.parse(product);
         productoImg = Products.find(element => element.id == idProduct);
-        console.log(productoImg);
         res.render('detalleProducto',{productoImg,userID});
+    },
+    delete: (req, res) => {
+        let idProduct = req.params.id;
+        let product = fs.readFileSync(productsFilePath, 'utf-8');
+        let Products = JSON.parse(product);
+
+        Products.splice(idProduct, 1);
+
+        fs.writeFileSync(productsFilePath, JSON.stringify(Products, null, ' '));
+        res.redirect('/categorias');
     },
     detalleProducto: (req, res) => {
         let idProduct = req.params.id;
@@ -153,10 +169,12 @@ const controller = {
         res.render('detalleProducto', {productoImg,userID});
     },
     login: (req, res) => {
-        res.render('login');
+        let userID = userLogin.find(element =>element.id == 0);
+        res.render('login',{userID});
     },
     registro: (req, res) => {
-        res.render('registro');
+        let userID = userLogin.find(element =>element.id == 0);
+        res.render('registro',{userID});
     },
     registerUsers: (req, res) => {
         let users;

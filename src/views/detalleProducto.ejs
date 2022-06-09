@@ -20,20 +20,27 @@
                             <i class="fa-solid fa-star"></i>
                             <i class="fa-solid fa-star"></i>
                             <i class="fa-solid fa-star-half-stroke"></i>
-                            <p>0 opiniones</p></li>
+                        <li><p>0 opiniones</p></li></li>
+                        <li>
+                            <form action="/detalleProducto/<%= productoImg.id %>/edita" method="get">
+                                <label for="edita"></label>
+                                <input type="hidden" id="userId" name="userId" value= <%= userID.id %> >
+                                <input type="submit" value="Mejora el producto y editalo" />
+                            </form>
+                        </li>
                         <li>Current price $ <%= productoImg.precio %></li>
                         <li>Description: <%= productoImg.description %></li>
                         <li>Categoria: <%= productoImg.categoria %></li>
                         <li>Ofertas similares</li>
                         <li class="button"><button>Agregar al carrito</button></li>
+                        <li>
+                            <form action="/detalleProducto/<%= productoImg.id %>/delete?_method=delete" method="post">
+                                <label for="eliminar"></label>
+                                <input type="hidden" id="userId" name="userId" value= <%= userID.id %> >
+                                <input type="submit" value="Elimina el producto" />
+                            </form>
+                        </li>
                     </ul>
-                    <div>
-                        <form action="/detalleProducto/<%= productoImg.id %>/edita" method="get">
-                            <label for="description">Mejora el producto y editalo</label>
-                            <input type="hidden" id="userId" name="userId" value= <%= userID.id %> >
-                            <input type="submit" value="Edita" />
-                        </form>
-                    </div>
                 </article>
             </section>
             <section>

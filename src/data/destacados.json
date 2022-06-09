@@ -5,7 +5,8 @@
     "precio": 200,
     "categoria": "Electrónica",
     "fileImg": "fileImg-fpgaBoard.jpg",
-    "description": "descripción no disponible"
+    "description": "descripción no disponible",
+    "userId": 0
     },
     {
     "id": 5,
@@ -13,6 +14,7 @@
     "precio": 600,
     "categoria": "Entretenimiento",
     "fileImg": "fileImg-tv-samsung-smart.jpg",
-    "description": "descripción no disponible"
+    "description": "descripción no disponible",
+    "userId": 0
 }
 ]

@@ -285,7 +285,9 @@ main section article .nav-item-end {
 }
 
 main section article .descripcion-item {
-  list-style-type: circle;
+  padding: 0%;
+  margin: 0%;
+  list-style-type: none;
 }
 
 main section article img {

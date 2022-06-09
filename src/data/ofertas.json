@@ -5,7 +5,8 @@
         "precio": 300,
         "categoria": "Lectura",
         "fileImg": "fileImg-Libro.jpg",
-        "description": "descripción no disponible"
+        "description": "descripción no disponible",
+        "userId": 0
        },
        {
         "id": 3,
@@ -13,6 +14,7 @@
         "precio": 400,
         "categoria": "Computadoras",
         "fileImg": "fileImg-macbook.jpg",
-        "description": "descripción no disponible"
+        "description": "descripción no disponible",
+        "userId": 0
        }
 ]
