@@ -5,10 +5,7 @@ let dataUsers = require('../data/users');
 const productsFilePath = path.join(__dirname, '../data/products.json');
 const ofertasFilePath = path.join(__dirname, '../data/ofertas.json');
 const destacadosFilePath = path.join(__dirname, '../data/destacados.json');
-
 const usersFilePath = path.join(__dirname, '../data/users.json');
-let usersLogin = fs.readFileSync(usersFilePath, 'utf-8');
-let userLogin = JSON.parse(usersLogin);
 
 let fileOfertas = fs.readFileSync(ofertasFilePath, 'utf-8');
 let ofertas = JSON.parse(fileOfertas);
@@ -17,21 +14,21 @@ let destacados = JSON.parse(fileDestacados);
 
 const controller = {
     index: (req, res) => {
-        let userID = userLogin.find(element =>element.id == 0);
+        let userID = req.userID;
         res.render('index', {ofertas,destacados,userID});
     },
     carritoCompras: (req, res) => {
-        let userID = userLogin.find(element =>element.id == 0);
+        let userID = req.userID;
         res.render('carritoCompras',{userID});
     },
     categorias: (req, res) => {
         let product = fs.readFileSync(productsFilePath, 'utf-8');
         let newProducts = JSON.parse(product);
-        let userID = userLogin.find(element =>element.id == 0);
+        let userID = req.userID;
         res.render('categorias', {newProducts,userID});
     },
     crearLista: (req, res) => {
-        let userID = userLogin.find(element =>element.id == 0);
+        let userID = req.userID;
         res.render('crearLista',{userID});
     },
     crear: (req, res) => {
@@ -78,7 +75,7 @@ const controller = {
         let product = fs.readFileSync(productsFilePath, 'utf-8');
         let Products = JSON.parse(product);
         const productoImg = Products.find(element => element.id == idProduct);
-        let userID = userLogin.find(element =>element.id == 0);
+        let userID = req.userID;
         res.render('edita',{productoImg,userID});
     },
     editar: (req, res) => {
@@ -148,7 +145,7 @@ const controller = {
         product = fs.readFileSync(productsFilePath, 'utf-8');
         Products = JSON.parse(product);
         productoImg = Products.find(element => element.id == idProduct);
-        userID = userLogin.find(element =>element.id == 0);
+        userID = req.userID;
         res.render('detalleProducto',{productoImg,userID});
     },
     delete: (req, res) => {
@@ -159,22 +156,23 @@ const controller = {
         Products.splice(idProduct, 1);
 
         fs.writeFileSync(productsFilePath, JSON.stringify(Products, null, ' '));
-        res.redirect('/categorias');
+        // res.redirect('/categorias');
+        res.redirect('/detalleProducto/' + idProduct );
     },
     detalleProducto: (req, res) => {
         let idProduct = req.params.id;
         let product = fs.readFileSync(productsFilePath, 'utf-8');
         let Products = JSON.parse(product);
         const productoImg = Products.find(element => element.id == idProduct);
-        let userID = userLogin.find(element =>element.id == 0);
+        let userID = req.userID;
         res.render('detalleProducto', {productoImg,userID});
     },
     login: (req, res) => {
-        let userID = userLogin.find(element =>element.id == 0);
+        let userID = req.userID;
         res.render('login',{userID});
     },
     registro: (req, res) => {
-        let userID = userLogin.find(element =>element.id == 0);
+        let userID = req.userID;
         res.render('registro',{userID});
     },
     registerUsers: (req, res) => {
@@ -205,7 +203,8 @@ const controller = {
 
         newUser.push(users);
         fs.writeFileSync(usersFilePath, JSON.stringify(newUser, null, ' '));
-        res.render('login');
+        let userID = req.userID;
+        res.render('login',{userID});
     },
 };
 
