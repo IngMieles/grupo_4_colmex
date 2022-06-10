@@ -205,7 +205,8 @@ const controller = {
 
         newUser.push(users);
         fs.writeFileSync(usersFilePath, JSON.stringify(newUser, null, ' '));
-        res.render('login');
+        let userID = userLogin.find(element =>element.id == 0);
+        res.render('login',{userID});
     },
 };
 
