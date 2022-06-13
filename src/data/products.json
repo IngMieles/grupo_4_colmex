@@ -74,5 +74,14 @@
   "img": "https://www.quierofertas.com/media/catalog/product/m/o/mouse4_1_3_1_1_1.jpg",
   "description": "Mouse Inalámbrico para Notebook, PC, computadora",
   "userId": 0
+ },
+ {
+  "id": 8,
+  "name": "paisaje",
+  "precio": 1200,
+  "img": "https://img.fotocommunity.com/atardeceres-1b2829bd-e28f-47e5-9a55-8d9988f8e184.jpg?height=1080",
+  "categoria": "paisajes",
+  "description": "sin descripción disponible",
+  "userId": 0
  }
 ]

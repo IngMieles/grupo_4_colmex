@@ -12,6 +12,8 @@ let ofertas = JSON.parse(fileOfertas);
 let fileDestacados = fs.readFileSync(destacadosFilePath, 'utf-8');
 let destacados = JSON.parse(fileDestacados);
 
+const {validationResult} = require('express-validator');
+
 const controller = {
     index: (req, res) => {
         let userID = req.userID;
@@ -177,34 +179,41 @@ const controller = {
     },
     registerUsers: (req, res) => {
         let users;
-        if (req.file) {
-            users = {
-                id: dataUsers.length,
-                telefono: parseInt(req.body.telefono),
-                ...req.body,
-                fileImg: req.file.filename,
-            };
-        } else {
-            users = {
-                id: dataUsers.length,
-                telefono: parseInt(req.body.telefono),
-                ...req.body,
-                fileImg: 'default-user.jpg',
+        let errors = validationResult(req);
+        if(errors.isEmpty()){
+            if (req.file) {
+                users = {
+                    id: dataUsers.length,
+                    telefono: parseInt(req.body.telefono),
+                    ...req.body,
+                    fileImg: req.file.filename,
+                };
+            } else {
+                users = {
+                    id: dataUsers.length,
+                    telefono: parseInt(req.body.telefono),
+                    ...req.body,
+                    fileImg: 'default-user.jpg',
+                }
             }
+    
+            let newUser;
+            let readUsers = fs.readFileSync(usersFilePath,'utf-8');
+            if (readUsers == "") {
+                newUser = [];
+            } else {
+                newUser = JSON.parse(readUsers);
+            }
+    
+            newUser.push(users);
+            fs.writeFileSync(usersFilePath, JSON.stringify(newUser, null, ' '));
+            let userID = req.userID;
+            res.render('login',{userID});
+        }else{
+            let userID = req.userID;
+            res.render('registro',{userID,errors:errors.array()});
         }
-
-        let newUser;
-        let readUsers = fs.readFileSync(usersFilePath,'utf-8');
-        if (readUsers == "") {
-            newUser = [];
-        } else {
-            newUser = JSON.parse(readUsers);
-        }
-
-        newUser.push(users);
-        fs.writeFileSync(usersFilePath, JSON.stringify(newUser, null, ' '));
-        let userID = req.userID;
-        res.render('login',{userID});
+        
     },
 };
 

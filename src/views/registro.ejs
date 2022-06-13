@@ -3,6 +3,7 @@
   <%- include('./partials/header')  %>
     <main>
       <section>
+        <h2>Registro de nuevo usuario</h2>
         <form action="/registro" method="post" enctype="multipart/form-data">
           <div class="container">
             <label for="birth_date"><b>Fecha de nacimiento</b></label>
@@ -34,13 +35,21 @@
             </div>
           </div>
 
+          <% if (locals.errors) { %>
+            <% errors.forEach(error => { %>
+              <div class="container" style="background-color: #eb5353;">
+                <b><%= error.msg  %></b>
+            </div>
+            <% }) %>
+          <% } %>
+
           <div class="container">
             <div class="row">
               <div class="col-25">
                 <label for="fname">Nombre</label>
               </div>
               <div class="col-75">
-                <input type="text" id="fname" name="fname" placeholder="Tu nombre">
+                <input type="text" id="fname" name="fname" placeholder="Tú nombre">
               </div>
             </div>
 
@@ -49,7 +58,7 @@
                 <label for="lname">Apellido</label>
               </div>
               <div class="col-75">
-                <input type="text" id="lname" name="lname" placeholder="tú apellido">
+                <input type="text" id="lname" name="lname" placeholder="Tú apellido">
               </div>
             </div>
 

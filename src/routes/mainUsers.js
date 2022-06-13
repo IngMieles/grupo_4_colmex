@@ -4,7 +4,7 @@ const multer = require('multer');
 const path = require('path');
 const mainController = require('../controllers/mainController'); 
 
-const {check} = require('express-validator');
+const {body} = require('express-validator');
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -21,9 +21,9 @@ const upload = multer({storage});
 
 // Validaciones
 const validaRegistro = [
-    check('fname').notEmpty().withMessage('Es necesario llenar el campo').bail(),
-    check('lname').notEmpty().withMessage('Es necesario llenar el campo').bail(),
-    check('email').isEmail().withMessage('Ingresa un email valido').bail()
+    body('fname').notEmpty().withMessage('Es necesario llenar el campo: Nombre ').bail(),
+    body('lname').notEmpty().withMessage('Es necesario llenar el campo: Apellido').bail(),
+    body('email').isEmail().withMessage('Ingresa un email valido').bail()
 ];
 
 router.get('/', mainController.registro);
