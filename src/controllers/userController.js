@@ -10,6 +10,15 @@ const controller = {
         let userID = req.userID;
         res.render('login',{userID});
     },
+    userLogin: (req, res) => {
+        let userID = req.userID;
+        let errors = validationResult(req);
+        if(errors.isEmpty()){
+
+        }else{
+            res.render('login',{userID,errors:errors.array()});
+        }
+    },
     registro: (req, res) => {
         let userID = req.userID;
         res.render('registro',{userID});

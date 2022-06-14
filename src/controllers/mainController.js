@@ -33,42 +33,50 @@ const controller = {
     },
     crear: (req, res) => {
         let products;
-        if (req.file) {
-            products = {
-                id: dataProducts.length,
-                ...req.body,
-                userId: parseInt(req.body.userId),
-                precio: parseInt(req.body.precio),
-                fileImg: req.file.filename
-            };
-        } else if (req.body.img) {
-            products = {
-                id: dataProducts.length,
-                ...req.body,
-                userId: parseInt(req.body.userId),
-                precio: parseInt(req.body.precio),
-                img: req.body.img
-            }
-        } else {
-            products = {
-                id: dataProducts.length,
-                ...req.body,
-                userId: parseInt(req.body.userId),
-                precio: parseInt(req.body.precio),
-                fileImg: 'default-image.png'
-            }
-        }
+        let errors = validationResult(req);
 
-        let newProduct;
-        let readProducts = fs.readFileSync(productsFilePath,'utf-8');
-        if (readProducts == "") {
-            newProduct = [];
-        } else {
-            newProduct = JSON.parse(readProducts);
+        if (errors.isEmpty()){
+            if (req.file) {
+                products = {
+                    id: dataProducts.length,
+                    ...req.body,
+                    userId: parseInt(req.body.userId),
+                    precio: parseInt(req.body.precio),
+                    fileImg: req.file.filename
+                };
+            } else if (req.body.img) {
+                products = {
+                    id: dataProducts.length,
+                    ...req.body,
+                    userId: parseInt(req.body.userId),
+                    precio: parseInt(req.body.precio),
+                    img: req.body.img
+                }
+            } else {
+                products = {
+                    id: dataProducts.length,
+                    ...req.body,
+                    userId: parseInt(req.body.userId),
+                    precio: parseInt(req.body.precio),
+                    fileImg: 'default-image.png'
+                }
+            }
+    
+            let newProduct;
+            let readProducts = fs.readFileSync(productsFilePath,'utf-8');
+            if (readProducts == "") {
+                newProduct = [];
+            } else {
+                newProduct = JSON.parse(readProducts);
+            }
+            newProduct.push(products);
+            fs.writeFileSync(productsFilePath, JSON.stringify(newProduct, null, ' '));
+            res.redirect('/categorias');
+            
+        }else{
+            let userID = req.userID;
+            res.render('crearLista',{userID,errors:errors.array()});
         }
-        newProduct.push(products);
-        fs.writeFileSync(productsFilePath, JSON.stringify(newProduct, null, ' '));
-        res.redirect('/categorias');
     },
     edita: (req, res) => {
         let idProduct = req.params.id;

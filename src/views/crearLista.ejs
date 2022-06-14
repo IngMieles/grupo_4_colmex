@@ -5,6 +5,14 @@
         <main>
             <h2>Crea un nuevo producto</h2>
 
+            <% if (locals.errors) { %>
+              <% errors.forEach(error => { %>
+                <div class="container" style="background-color: #eb5353;">
+                  <b><%= error.msg  %></b>
+              </div>
+              <% }) %>
+            <% } %>
+
             <form action="/crearLista" method="post" enctype = "multipart/form-data">
 
               <div class="container">
