@@ -6,6 +6,9 @@ const mainProducto = require('./routes/mainProducto');
 const mainUsers = require('./routes/mainUsers');
 const methodOverride = require('method-override');
 
+var primerMiddleware = require('../middlewares/middleware');
+app.use(primerMiddleware);
+
 app.use(methodOverride('_method')); 
 
 app.set('view engine','ejs');
@@ -24,5 +27,6 @@ app.use('/registro', mainUsers);
 app.listen(3000,() => console.log('Servidor activo en el puerto 3000...'));
 
 app.use((req, res, next) => {
-    res.status(404).render('not-found');
-   })
+    let userID = req.userID;
+    res.status(404).render('not-found',{userID});
+})
