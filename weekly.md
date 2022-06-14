@@ -4,8 +4,7 @@ Luis: Las prioridades que hemos organizado en cada una de estas ceremonias
 
 Pablo: Las ceremonias de planning, weekly o daily, han servido para ser mas ordenados con el plan de trabajo para el Sprint.
 
-Pendientes Sprint 4:
-Administración completa de productos con:
-1. Edición.
-2. Eliminación.
-3. Branch Git.
+Validaciones:
+1. Completar el validator donde el password sea obligatorio
+2. isLength minimo sean 8 caracteres.
+3. Cuando salga error debe enviar el body 

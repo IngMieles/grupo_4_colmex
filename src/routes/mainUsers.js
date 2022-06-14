@@ -21,12 +21,12 @@ const upload = multer({storage});
 
 // Validaciones
 const validaRegistro = [
-    body('fname').notEmpty().withMessage('Es necesario llenar el campo: Nombre ').bail(),
-    body('lname').notEmpty().withMessage('Es necesario llenar el campo: Apellido').bail(),
-    body('email').isEmail().withMessage('Ingresa un email valido').bail()
+    body('fname').notEmpty().withMessage('Es necesario llenar el campo: Nombre '),
+    body('lname').notEmpty().withMessage('Es necesario llenar el campo: Apellido'),
+    body('email').isEmail().withMessage('Ingresa un email valido')
 ];
 
 router.get('/', mainController.registro);
-router.post('/', validaRegistro, upload.single('fileImg'), mainController.registerUsers);
+router.post('/', upload.single('fileImg'), validaRegistro, mainController.registerUsers);
 
 module.exports = router;
