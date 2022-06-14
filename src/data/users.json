@@ -12,5 +12,19 @@
   "confirmPassword": "1234",
   "subject": "sin comentarios",
   "fileImg": "default-user.jpg"
- }
+ },
+ {
+    "id": 1,
+    "telefono": "573118739670",
+    "birth_date": "1992-08-14",
+    "addres": "Bogotá, Bogotá",
+    "profile": "sell",
+    "firstname": "David",
+    "lastname": "Pieters",
+    "country": "colombia",
+    "password": "1234",
+    "confirmPassword": "1234",
+    "subject": "sin comentarios",
+    "fileImg": "default-user.jpg"
+   }
 ]
