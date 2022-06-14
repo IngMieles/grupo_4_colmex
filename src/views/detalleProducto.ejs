@@ -3,6 +3,7 @@
     <body>
         <%- include('./partials/header')  %>
         <main>
+            <% if (locals.productoImg) { %>
             <section>
                 <article class="producto">
                     <% if (productoImg.fileImg) { %>
@@ -60,6 +61,7 @@
                     </ul>
                 </div>
             </section>
+            <% } %>
         </main>
         <%- include('./partials/footer')  %>
     </body>
