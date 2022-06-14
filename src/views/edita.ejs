@@ -13,11 +13,20 @@
                 <% } %>
               </article>
               <article class="descripcion">
+
+                  <% if (locals.errors) { %>
+                    <% errors.forEach(error => { %>
+                      <div class="container" style="background-color: #eb5353;">
+                        <b><%= error.msg  %></b>
+                    </div>
+                    <% }) %>
+                  <% } %>
+
                 <form action="/detalleProducto/<%= productoImg.id %>/edita?_method=PUT" method="post">
                   <div class="container">
                       <div class="row">
                         <div class="col-25">
-                          <label for="fname">Nombre: <%= productoImg.name %></label>
+                          <label for="name">Nombre: <%= productoImg.name %></label>
                         </div>
                         <div class="col-75">
                           <input
@@ -31,7 +40,7 @@
 
                       <div class="row">
                         <div class="col-25">
-                          <label for="lname">Precio: <%= productoImg.precio %></label>
+                          <label for="precio">Precio: <%= productoImg.precio %></label>
                         </div>
                         <div class="col-75">
                           <input
@@ -45,7 +54,7 @@
 
                       <div class="row">
                         <div class="col-25">
-                          <label for="lname">Categoría: <%= productoImg.categoria %></label>
+                          <label for="categoria">Categoría: <%= productoImg.categoria %></label>
                         </div>
                         <div class="col-75">
                           <input

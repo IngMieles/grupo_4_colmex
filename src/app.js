@@ -2,8 +2,8 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const mainRouter = require('./routes/mainRouter');
-const mainProducto = require('./routes/mainProducto');
-const mainUsers = require('./routes/mainUsers');
+const mainProducto = require('./routes/productRouter');
+const mainUsers = require('./routes/UserRouter');
 const methodOverride = require('method-override');
 
 var primerMiddleware = require('../middlewares/middleware');

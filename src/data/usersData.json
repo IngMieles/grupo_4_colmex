@@ -12,19 +12,5 @@
   "confirmPassword": "1234",
   "subject": "sin comentarios",
   "fileImg": "default-user.jpg"
- },
- {
-  "id": 1,
-  "telefono": "",
-  "birth_date": "",
-  "addres": "",
-  "fname": "Pablo",
-  "lname": "Mieles",
-  "email": "pablo.mieles@dh.com",
-  "country": "colombia",
-  "password": "",
-  "confirmPassword": "",
-  "subject": "",
-  "fileImg": "default-user.jpg"
  }
 ]
