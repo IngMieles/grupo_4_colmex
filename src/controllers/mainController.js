@@ -158,8 +158,8 @@ const controller = {
         Products.splice(idProduct, 1);
 
         fs.writeFileSync(productsFilePath, JSON.stringify(Products, null, ' '));
-        // res.redirect('/categorias');
-        res.redirect('/detalleProducto/' + idProduct );
+        res.redirect('/categorias');
+        // res.redirect('/detalleProducto/' + idProduct );
     },
     detalleProducto: (req, res) => {
         let idProduct = req.params.id;
