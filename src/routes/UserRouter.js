@@ -1,8 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const multer = require('multer');
-const path = require('path');
-const mainController = require('../controllers/mainController'); 
+const userController = require('../controllers/userController'); 
 
 const {body} = require('express-validator');
 
@@ -26,7 +25,7 @@ const validaRegistro = [
     body('email').isEmail().withMessage('Ingresa un email valido')
 ];
 
-router.get('/', mainController.registro);
-router.post('/', upload.single('fileImg'), validaRegistro, mainController.registerUsers);
+router.get('/', userController.registro);
+router.post('/', upload.single('fileImg'), validaRegistro, userController.registerUsers);
 
 module.exports = router;

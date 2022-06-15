@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const multer = require('multer');
-const path = require('path');
 const mainController = require('../controllers/mainController'); 
+const userController = require('../controllers/userController'); 
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -17,6 +17,22 @@ filename: (req, file, cb) => {
 
 const upload = multer({storage});
 
+const {body} = require('express-validator');
+
+// Validaciones
+const validaProducto = [
+    body('name').notEmpty().withMessage('Agrega un nombre al producto'),
+    body('precio').notEmpty().withMessage('Olvidaste poner el precio del producto'),
+    body('categoria').notEmpty().withMessage('Clasificalo en una categoría'),
+    body('description').notEmpty().withMessage('Describe tú producto')
+];
+
+// Validaciones login
+const validaLogin = [
+    body('email').isEmail().withMessage('Ingresa el email con el que te registraste'),
+    body('password').notEmpty().withMessage('Contraseña invalida')
+];
+
 router.get('/', mainController.index);
 router.get('/carritoCompras', mainController.carritoCompras);
 
@@ -26,9 +42,9 @@ router.get('/categorias', mainController.categorias);
 // Formulario de creación de productos
 router.get('/crearLista', mainController.crearLista);
 // Acción de creación (a donde se envía el formulario)
-router.post('/crearLista', upload.single('fileImg'), mainController.crear);
+router.post('/crearLista', upload.single('fileImg'), validaProducto, mainController.crear);
 
-// router.get('/edita', mainController.edita);
-router.get('/login', mainController.login);
+router.get('/login', userController.login);
+router.post('/login', validaLogin, userController.userLogin);
 
 module.exports = router;
