@@ -77,12 +77,12 @@
  },
  {
   "id": 8,
-  "name": "paisaje",
-  "precio": 11,
-  "categoria": "sin categoría",
+  "name": "Imagen de un paisaje",
+  "precio": 3333,
+  "categoria": "SIN CATEGORIA",
   "img": "https://img.fotocommunity.com/atardeceres-1b2829bd-e28f-47e5-9a55-8d9988f8e184.jpg?height=1080",
   "fileImg": "",
-  "description": "",
+  "description": "Es un cuadro de un paisaje de 30x30 cm.",
   "userId": 0
  }
 ]
