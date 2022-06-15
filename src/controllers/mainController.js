@@ -75,7 +75,7 @@ const controller = {
             
         }else{
             let userID = req.userID;
-            res.render('crearLista',{userID,errors:errors.array()});
+            res.render('crearLista',{userID,errors:errors.array(),old: req.body});
         }
     },
     edita: (req, res) => {
@@ -160,7 +160,7 @@ const controller = {
             res.render('detalleProducto',{productoImg,userID});
         }else{
             let userID = req.userID;
-            res.render('edita',{productoImg,userID,errors:errors.array()});
+            res.render('edita',{productoImg,userID,errors:errors.array(),old: req.body});
         }
     },
     delete: (req, res) => {

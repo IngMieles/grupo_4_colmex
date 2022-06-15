@@ -57,7 +57,7 @@ const controller = {
             res.render('login',{userID});
         }else{
             let userID = req.userID;
-            res.render('registro',{userID,errors:errors.array()});
+            res.render('registro',{userID,errors:errors.array(),old: req.body});
         }
         
     },
