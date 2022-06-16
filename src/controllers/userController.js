@@ -61,6 +61,10 @@ const controller = {
         }
         
     },
+    userPerfil: (req, res) => {
+        let userID = req.userID;
+        res.render('userPerfil',{userID});
+    },
 };
 
 module.exports = controller;

@@ -28,4 +28,6 @@ const validaRegistro = [
 router.get('/', userController.registro);
 router.post('/', upload.single('fileImg'), validaRegistro, userController.registerUsers);
 
+router.get('/userPerfil', userController.userPerfil);
+
 module.exports = router;
