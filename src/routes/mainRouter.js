@@ -29,8 +29,8 @@ const validaProducto = [
 
 // Validaciones login
 const validaLogin = [
-    check('email').isEmail().withMessage('Ingresa el email con el que te registraste'),
-    check('password').isLength({min:8}).withMessage('La contraseña debe tener al menos 8 caracteres')
+    body('email').isEmail().withMessage('Ingresa el email con el que te registraste'),
+    body('password').isLength({min:8}).withMessage('La contraseña debe tener al menos 8 caracteres')
 ];
 
 router.get('/', mainController.index);
@@ -44,8 +44,8 @@ router.get('/crearLista', mainController.crearLista);
 // Acción de creación (a donde se envía el formulario)
 router.post('/crearLista', upload.single('fileImg'), validaProducto, mainController.crear);
 
+// Formulario para login
 router.get('/login', userController.login);
-
 router.post('/login', validaLogin, userController.usuarioLogin);
 
 module.exports = router;

@@ -21,12 +21,12 @@ const controller = {
             }
             req.session.visitas++;
 
-            res.send('Prueba con session = ' + req.session.visitas);
-            // let usersLogin = fs.readFileSync(usersFilePath, 'utf-8');
-            // let userLogin = JSON.parse(usersLogin);
+            // res.send('Prueba con session = ' + req.session.visitas);
+            let usersLogin = fs.readFileSync(usersFilePath, 'utf-8');
+            let userLogin = JSON.parse(usersLogin);
 
-            // let userID = userLogin.find(element =>element.email == req.body.email && element.password ==  req.body.password);
-            // res.render('userPerfil',{userID});
+            let userID = userLogin.find(element =>element.email == req.body.email && element.password ==  req.body.password);
+            res.render('userPerfil',{userID});
 
         }else{
             res.render('login',{userID,errors:errors.array(),old: req.body});
