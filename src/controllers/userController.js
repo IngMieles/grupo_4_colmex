@@ -10,13 +10,26 @@ const controller = {
         let userID = req.userID;
         res.render('login',{userID});
     },
-    userLogin: (req, res) => {
+    usuarioLogin: (req, res) => {
         let userID = req.userID;
         let errors = validationResult(req);
+        
         if(errors.isEmpty()){
+            
+            if( req.session.visitas == undefined){
+                req.session.visitas = 0;
+            }
+            req.session.visitas++;
+
+            res.send('Prueba con session = ' + req.session.visitas);
+            // let usersLogin = fs.readFileSync(usersFilePath, 'utf-8');
+            // let userLogin = JSON.parse(usersLogin);
+
+            // let userID = userLogin.find(element =>element.email == req.body.email && element.password ==  req.body.password);
+            // res.render('userPerfil',{userID});
 
         }else{
-            res.render('login',{userID,errors:errors.array()});
+            res.render('login',{userID,errors:errors.array(),old: req.body});
         }
     },
     registro: (req, res) => {
