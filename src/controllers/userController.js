@@ -21,13 +21,6 @@ const controller = {
         let errors = validationResult(req);
         
         if(errors.isEmpty()){
-            
-            if( req.session.visitas == undefined){
-                req.session.visitas = 0;
-            }
-            req.session.visitas++;
-
-            // res.send('Prueba con session = ' + req.session.visitas);
             let usersLogin = fs.readFileSync(usersFilePath, 'utf-8');
             let userLogin = JSON.parse(usersLogin);
 
