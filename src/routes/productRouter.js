@@ -1,7 +1,7 @@
 // const res = require('express/lib/response');
 const express = require('express');
 const router = express.Router();
-const multer = require('multer');
+// const multer = require('multer');
 const mainController = require('../controllers/mainController'); 
 
 const {body} = require('express-validator');

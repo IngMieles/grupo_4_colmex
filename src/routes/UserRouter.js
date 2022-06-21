@@ -22,10 +22,13 @@ const upload = multer({storage});
 const validaRegistro = [
     body('fname').notEmpty().withMessage('Es necesario llenar el campo: Nombre '),
     body('lname').notEmpty().withMessage('Es necesario llenar el campo: Apellido'),
+    body('password').notEmpty().withMessage('Contraseña'),
     body('email').isEmail().withMessage('Ingresa un email valido')
 ];
 
 router.get('/', userController.registro);
 router.post('/', upload.single('fileImg'), validaRegistro, userController.registerUsers);
+
+router.get('/userPerfil', userController.userPerfil);
 
 module.exports = router;

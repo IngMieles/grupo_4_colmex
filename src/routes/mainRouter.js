@@ -17,7 +17,7 @@ filename: (req, file, cb) => {
 
 const upload = multer({storage});
 
-const {body} = require('express-validator');
+const {body,check} = require('express-validator');
 
 // Validaciones
 const validaProducto = [
@@ -29,8 +29,8 @@ const validaProducto = [
 
 // Validaciones login
 const validaLogin = [
-    body('email').isEmail().withMessage('Ingresa el email con el que te registraste'),
-    body('password').notEmpty().withMessage('Contraseña invalida')
+    check('email').isEmail().withMessage('Ingresa el email con el que te registraste'),
+    check('password').isLength({min:8}).withMessage('La contraseña debe tener al menos 8 caracteres')
 ];
 
 router.get('/', mainController.index);
@@ -45,6 +45,7 @@ router.get('/crearLista', mainController.crearLista);
 router.post('/crearLista', upload.single('fileImg'), validaProducto, mainController.crear);
 
 router.get('/login', userController.login);
-router.post('/login', validaLogin, userController.userLogin);
+
+router.post('/login', validaLogin, userController.usuarioLogin);
 
 module.exports = router;

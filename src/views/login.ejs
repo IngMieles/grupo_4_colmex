@@ -15,18 +15,20 @@
                 <div class="col-25">
                   <% if (locals.errors) { %>
                     <div class="container" style="background-color: #eb5353;">
-                      <b><%= errors[0].msg  %></b>
-                  </div>
+                      <!-- <b>%= errors[0].msg  %></b> -->
+                      <b><%= errors[errors.findIndex(error => error.param == "email")].msg  %></b>
+                    </div>
                   <% } else {%>
                     <label for="email">Usuario <i class="fa-duotone fa-asterisk asterisk"></i></label>
                   <% } %>
                 </div>
                 <div class="col-75">
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    placeholder="Email"
+                  <input type="email" id="email" name="email"
+                    <% if (locals.old && old.email) { %>
+                      value= "<%= old.email %>"
+                    <% } else { %>
+                      placeholder="Email"
+                    <% } %>
                   />
                 </div>
               </div>
@@ -34,26 +36,26 @@
                 <div class="col-25">
                   <% if (locals.errors) { %>
                     <div class="container" style="background-color: #eb5353;">
-                      <b><%= errors[1].msg  %></b>
+                      <!-- <b>%= errors[1].msg  %></b> -->
+                      <b><%= errors[errors.findIndex(error => error.param == "password")].msg  %></b>
                   </div>
                   <% } else {%>
                     <label for="password">Contraseña <i class="fa-duotone fa-asterisk asterisk"></i></label>
                   <% } %>
                 </div>
                 <div class="col-75">
-                  <input
-                    type="password"
-                    id="password"
-                    name="password"
-                    placeholder="password"
-                  />
+                  <input type="password" id="password" name="password" placeholder="password"/>
                 </div>
               </div>
               <div class="row">
-                <input type="submit" value="Enviar" />
+                <br>
+                <input type="submit" value="Login" />
               </div>
             </div>
           </form>
+          <div class="container">
+            <p>¿No tienes una cuenta? <a class="nav-link" href="/registro">Registro</a></p>
+          </div>
         </main>
         <%- include('./partials/footer')  %>
     </body>

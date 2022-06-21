@@ -144,7 +144,17 @@
 
             <div class="row">
               <div class="col-25">
-                <label for="password">Contraseña <i class="fa-duotone fa-asterisk asterisk"></i></label>
+                <% if (locals.errors) { %>
+                  <% if (locals.old && old.password) { %>
+                    <label for="password">Contraseña <i class="fa-duotone fa-asterisk asterisk"></i></label>
+                  <% } else { %>
+                    <div class="container" style="background-color: #eb5353;">
+                      <b><%= errors[errors.findIndex(error => error.param == "password")].msg  %></b>
+                    </div>
+                  <% } %>
+                <% } else {%>
+                  <label for="password">Contraseña <i class="fa-duotone fa-asterisk asterisk"></i></label>
+                <% } %>
               </div>
               <div class="col-75">
                 <input
@@ -164,7 +174,6 @@
                 <input
                   type="password"
                   id="confirmPassword"
-                  name="confirmPassword"
                   placeholder="Confirm Password"
                 />
               </div>
@@ -186,6 +195,9 @@
             </div>
             <div class="row">
               <input type="submit" value="Enviar">
+              <br>
+              <br>
+              <p>¿Tienes una cuenta? <a class="nav-link" href="/login">Login</a></p>
             </div>
           </div>
         </form>
