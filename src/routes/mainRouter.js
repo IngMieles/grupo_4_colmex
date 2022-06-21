@@ -48,4 +48,6 @@ router.post('/crearLista', upload.single('fileImg'), validaProducto, mainControl
 router.get('/login', userController.login);
 router.post('/login', validaLogin, userController.usuarioLogin);
 
+router.get('/logOut', userController.logOut);
+
 module.exports = router;

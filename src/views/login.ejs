@@ -8,6 +8,11 @@
               <b>Faltan campos por llenar!!!</b>
             </div>
           <% } %>
+          <% if (locals.errorLog) { %>
+            <div class="container" style="background-color: #eb5353;">
+              <b><%= errorLog[0].msg  %></b>
+            </div>
+          <% } %>
 
           <form action="/login" method="post">
             <div class="container">
@@ -39,7 +44,9 @@
                 <div class="col-25">
                   <% if (locals.errors) { %>
                     <% if (locals.old && old.password) { %>
-                      <label for="password">Contraseña <i class="fa-duotone fa-asterisk asterisk"></i></label>
+                      <div class="container" style="background-color: #eb5353;">
+                        <b><%= errors[errors.findIndex(error => error.param == "password")].msg  %></b>
+                      </div>
                     <% } else { %>
                       <div class="container" style="background-color: #eb5353;">
                         <b><%= errors[errors.findIndex(error => error.param == "password")].msg  %></b>
