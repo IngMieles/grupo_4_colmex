@@ -33,6 +33,10 @@
   background-color: #36ae7c;
 }
 
+.asterisk {
+  color: #eb5353;
+}
+
 body {
   margin: 0%;
   font-family: 'Roboto', sans-serif;

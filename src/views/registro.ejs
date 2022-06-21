@@ -2,18 +2,35 @@
 <body>
   <%- include('./partials/header')  %>
     <main>
+      <% if (locals.errors) { %>
+        <div class="container" style="background-color: #eb5353;">
+          <b>Faltan campos por llenar!!!</b>
+        </div>
+      <% } %>
       <section>
         <h2>Registro de nuevo usuario</h2>
-        <form action="/registro" method="post" enctype="multipart/form-data">
+        <form  action="/registro" method="post" enctype="multipart/form-data">
           <div class="container">
             <label for="birth_date"><b>Fecha de nacimiento</b></label>
             <input type="date" name="birth_date" id="birth_date">
             <br>
             <label for="adress"><b>Direccion</b></label>
-            <input type="text" name="addres" placeholder="Domicilio">
+            <input type="text" name="addres" 
+              <% if (locals.old && old.addres) { %>
+                value= "<%= old.addres %>"
+              <% } else { %>
+                placeholder="Domicilio"
+              <% } %>
+            >
             <br>
             <label for="tlf"><b>Número telefonico</b></label>
-            <input type="tlf" name="telefono" placeholder="(código de área) - Telefono">
+            <input type="tlf" name="telefono" 
+              <% if (locals.old && old.telefono) { %>
+                value= "<%= old.telefono %>"
+              <% } else { %>
+                placeholder="(código de área) - Telefono"
+              <% } %>
+            >
             <h4>Perfil del usuario</h4>
             <div class="profile">
                 <input type="radio" name="profile" value="buy" id="buy">
@@ -35,39 +52,79 @@
             </div>
           </div>
 
-          <% if (locals.errors) { %>
-            <% errors.forEach(error => { %>
-              <div class="container" style="background-color: #eb5353;">
-                <b><%= error.msg  %></b>
-            </div>
-            <% }) %>
-          <% } %>
-
           <div class="container">
             <div class="row">
               <div class="col-25">
-                <label for="fname">Nombre</label>
+                <% if (locals.errors) { %>
+                  <% if (locals.old && old.fname) { %>
+                    <label for="fname">Nombre <i class="fa-duotone fa-asterisk asterisk"></i></label>
+                  <% } else { %>
+                    <div class="container" style="background-color: #eb5353;">
+                      <b><%= errors[errors.findIndex(error => error.param == "fname")].msg  %></b>
+                    </div>
+                  <% } %>
+                <% } else {%>
+                  <label for="fname">Nombre <i class="fa-duotone fa-asterisk asterisk"></i></label>
+                <% } %>
               </div>
               <div class="col-75">
-                <input type="text" id="fname" name="fname" placeholder="Tú nombre">
+                <input type="text" id="fname" name="fname" 
+                  <% if (locals.old && old.fname) { %>
+                    value= "<%= old.fname %>"
+                  <% } else { %>
+                    placeholder="Tú nombre"
+                  <% } %>
+                >
               </div>
             </div>
 
             <div class="row">
               <div class="col-25">
-                <label for="lname">Apellido</label>
+                <% if (locals.errors) { %>
+                  <% if (locals.old && old.lname) { %>
+                    <label for="lname">Apellido <i class="fa-duotone fa-asterisk asterisk"></i></label>
+                  <% } else { %>
+                    <div class="container" style="background-color: #eb5353;">
+                      <b><%= errors[errors.findIndex(error => error.param == "lname")].msg  %></b>
+                    </div>
+                  <% } %>
+                <% } else {%>
+                  <label for="lname">Apellido <i class="fa-duotone fa-asterisk asterisk"></i></label>
+                <% } %>
               </div>
               <div class="col-75">
-                <input type="text" id="lname" name="lname" placeholder="Tú apellido">
+                <input type="text" id="lname" name="lname" 
+                  <% if (locals.old && old.lname) { %>
+                    value= "<%= old.lname %>"
+                  <% } else { %>
+                    placeholder="Tú apellido"
+                  <% } %>
+                >
               </div>
             </div>
 
             <div class="row">
               <div class="col-25">
-                <label for="email">Correo electronico</label>
+                <% if (locals.errors) { %>
+                  <% if (locals.old && old.email) { %>
+                    <label for="email">Correo electronico <i class="fa-duotone fa-asterisk asterisk"></i></label>
+                  <% } else { %>
+                    <div class="container" style="background-color: #eb5353;">
+                      <b><%= errors[errors.findIndex(error => error.param == "email")].msg  %></b>
+                    </div>
+                  <% } %>
+                <% } else {%>
+                  <label for="email">Correo electronico <i class="fa-duotone fa-asterisk asterisk"></i></label>
+                <% } %>
               </div>
               <div class="col-75">
-                <input type="email" id="email" name="email" placeholder="miCorreo@email.com">
+                <input type="email" id="email" name="email" 
+                  <% if (locals.old && old.email) { %>
+                    value= "<%= old.email %>"
+                  <% } else { %>
+                    placeholder="miCorreo@email.com"
+                  <% } %>
+                >
               </div>
             </div>
 
@@ -87,7 +144,17 @@
 
             <div class="row">
               <div class="col-25">
-                <label for="password">Contraseña</label>
+                <% if (locals.errors) { %>
+                  <% if (locals.old && old.password) { %>
+                    <label for="password">Contraseña <i class="fa-duotone fa-asterisk asterisk"></i></label>
+                  <% } else { %>
+                    <div class="container" style="background-color: #eb5353;">
+                      <b><%= errors[errors.findIndex(error => error.param == "password")].msg  %></b>
+                    </div>
+                  <% } %>
+                <% } else {%>
+                  <label for="password">Contraseña <i class="fa-duotone fa-asterisk asterisk"></i></label>
+                <% } %>
               </div>
               <div class="col-75">
                 <input
@@ -101,13 +168,12 @@
 
             <div class="row">
               <div class="col-25">
-                <label for="confirmPassword">Confirma contraseña</label>
+                <label for="confirmPassword">Confirma contraseña <i class="fa-duotone fa-asterisk asterisk"></i></label>
               </div>
               <div class="col-75">
                 <input
                   type="password"
                   id="confirmPassword"
-                  name="confirmPassword"
                   placeholder="Confirm Password"
                 />
               </div>
@@ -118,11 +184,20 @@
                 <label for="subject">Comentario</label>
               </div>
               <div class="col-75">
-                <textarea id="subject" name="subject" placeholder="Cuentanos algo de ti" style="height:200px"></textarea>
+                <textarea id="subject" name="subject" 
+                <% if (locals.old && old.subject) { %>
+                  value= "<%= old.subject %>"
+                <% } else { %>
+                  placeholder="Cuentanos algo de ti" 
+                <% } %>
+                style="height:200px"></textarea>
               </div>
             </div>
             <div class="row">
-              <input type="submit" value="Submit">
+              <input type="submit" value="Enviar">
+              <br>
+              <br>
+              <p>¿Tienes una cuenta? <a class="nav-link" href="/login">Login</a></p>
             </div>
           </div>
         </form>
