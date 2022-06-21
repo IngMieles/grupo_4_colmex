@@ -2,9 +2,12 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const mainRouter = require('./routes/mainRouter');
-const mainProducto = require('./routes/mainProducto');
-const mainUsers = require('./routes/mainUsers');
+const mainProducto = require('./routes/productRouter');
+const mainUsers = require('./routes/UserRouter');
 const methodOverride = require('method-override');
+
+const session = require('express-session');
+app.use(session( {secret: "colmex"}));
 
 var primerMiddleware = require('../middlewares/middleware');
 app.use(primerMiddleware);

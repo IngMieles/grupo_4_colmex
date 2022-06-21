@@ -3,36 +3,76 @@
     <body>
         <%- include('./partials/header')  %>
         <main>
+            <% if (locals.errors) { %>
+              <div class="container" style="background-color: #eb5353;">
+                <b>Faltan campos por llenar!!!</b>
+              </div>
+            <% } %>
             <h2>Crea un nuevo producto</h2>
 
             <form action="/crearLista" method="post" enctype = "multipart/form-data">
 
               <div class="container">
-                
                 <div class="row">
-                    <div class="col-25">
-                      <label for="name">Nombre</label>
-                    </div>
+                  <div class="col-25">
+                    <% if (locals.errors) { %>
+                          <% if (errors.find(error=>error.param == "name")) { %>
+                            <% errors.forEach(error => { %>
+                              <% if (error.param == "name" ) { %>
+                                <div class="container" style="background-color: #eb5353;">
+                                  <b><%= error.msg  %></b>
+                                </div>
+                              <% } %>
+                            <% }) %>
+                            <% } else {%>
+                              <label for="name">Nombre <i class="fa-duotone fa-asterisk asterisk"></i></label>
+                            <% } %>
+                    <% } else {%>
+                      <label for="name">Nombre <i class="fa-duotone fa-asterisk asterisk"></i></label>
+                    <% } %>
+                  </div>
                     <div class="col-75">
                       <input
                         type="text"
                         id="name"
                         name="name"
-                        placeholder="Nombre del producto"
+                        <% if (locals.old && old.name) { %>
+                          value= "<%= old.name %>"
+                        <% } else { %>
+                          placeholder="Nuevo nombre del producto"
+                        <% } %>
                       />
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col-25">
-                      <label for="precio">Precio</label>
+                      <% if (locals.errors) { %>
+                            <% if (errors.find(error=>error.param == "precio")) { %>
+                              <% errors.forEach(error => { %>
+                                <% if (error.param == "precio" ) { %>
+                                  <div class="container" style="background-color: #eb5353;">
+                                    <b><%= error.msg  %></b>
+                                  </div>
+                                <% } %>
+                              <% }) %>
+                              <% } else {%>
+                                <label for="precio">Precio <i class="fa-duotone fa-asterisk asterisk"></i></label>
+                              <% } %>
+                      <% } else {%>
+                        <label for="precio">Precio <i class="fa-duotone fa-asterisk asterisk"></i></label>
+                      <% } %>
                     </div>
                     <div class="col-75">
                       <input
                         type="number"
                         id="precio"
                         name="precio"
-                        placeholder="Precio inicial del producto"
+                        <% if (locals.old && old.precio) { %>
+                          value= "<%= old.precio %>"
+                        <% } else { %>
+                          placeholder="Precio inicial del producto"
+                        <% } %>
                       />
                     </div>
                 </div>
@@ -65,25 +105,63 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-25">
-                      <label for="categoria">Categoría</label>
-                    </div>
+                  <div class="col-25">
+                    <% if (locals.errors) { %>
+                          <% if (errors.find(error=>error.param == "categoria")) { %>
+                            <% errors.forEach(error => { %>
+                              <% if (error.param == "categoria" ) { %>
+                                <div class="container" style="background-color: #eb5353;">
+                                  <b><%= error.msg  %></b>
+                                </div>
+                              <% } %>
+                            <% }) %>
+                            <% } else {%>
+                              <label for="categoria">Categoría <i class="fa-duotone fa-asterisk asterisk"></i></label>
+                            <% } %>
+                    <% } else {%>
+                      <label for="categoria">Categoría <i class="fa-duotone fa-asterisk asterisk"></i></label>
+                    <% } %>
+                  </div>
                     <div class="col-75">
                       <input
                         type="text"
                         id="categoria"
                         name="categoria"
-                        placeholder="Categoría del producto"
+                        <% if (locals.old && old.categoria) { %>
+                          value= "<%= old.categoria %>"
+                        <% } else { %>
+                          placeholder="Categoría del producto"
+                        <% } %>
                       />
                     </div>
                 </div>
 
                 <div class="row">
-                    <div class="col-25">
-                      <label for="description">Descripción</label>
-                    </div>
+                  <div class="col-25">
+                    <% if (locals.errors) { %>
+                          <% if (errors.find(error=>error.param == "description")) { %>
+                            <% errors.forEach(error => { %>
+                              <% if (error.param == "description" ) { %>
+                                <div class="container" style="background-color: #eb5353;">
+                                  <b><%= error.msg  %></b>
+                                </div>
+                              <% } %>
+                            <% }) %>
+                            <% } else {%>
+                              <label for="description">Descripción <i class="fa-duotone fa-asterisk asterisk"></i></label>
+                            <% } %>
+                    <% } else {%>
+                      <label for="description">Descripción <i class="fa-duotone fa-asterisk asterisk"></i></label>
+                    <% } %>
+                  </div>
                     <div class="col-75">
-                      <textarea id="description" name="description" placeholder="Descripción general del producto" style="height:200px"></textarea>
+                      <textarea id="description" name="description" 
+                      <% if (locals.old && old.description) { %>
+                        value= "<%= old.description %>"
+                      <% } else { %>
+                          placeholder="Descripción general del producto" 
+                      <% } %> 
+                      style="height:200px"></textarea>
                     </div>
                 </div>
 
