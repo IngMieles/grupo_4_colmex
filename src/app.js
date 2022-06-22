@@ -10,6 +10,8 @@ const session = require('express-session');
 app.use(session( {secret: "colmex"}));
 
 var primerMiddleware = require('../middlewares/middleware');
+var recuerdameMiddleware = require('../middlewares/recuerdameMiddleware');
+var cookieParser = require('cookie-parser');
 app.use(primerMiddleware);
 
 app.use(methodOverride('_method')); 
@@ -20,6 +22,9 @@ app.use(express.static('public'));
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+
+app.use(cookieParser());
+app.use(recuerdameMiddleware);
 
 app.set('views',path.resolve(__dirname,'./views'));
 

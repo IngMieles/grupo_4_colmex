@@ -29,9 +29,13 @@ const controller = {
             if(userID == undefined){
                 res.render('login',{userID,errorLog:[{msg:"Los datos son incorrectos. Verificalos y vuelve a intentar"}]});
             }else{
+                if(req.body.recuerdame != undefined){
+                    res.cookie('recuerdame',userID.id);
+                }else{
+                    res.cookie('recuerdame',userID.id,{ maxAge: 60000 });
+                }
                 res.redirect('/');
             }
-
         }else{
             res.render('login',{userID,errors:errors.array(),old: req.body});
         }
