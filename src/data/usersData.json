@@ -9,8 +9,22 @@
   "lname": "ANGELES",
   "email": "langeles11@alumnos.uaq.mx",
   "country": "mexico",
-  "password": "123456",
+  "password": "12345678",
   "subject": "SIN COMENTARIOS",
   "fileImg": "default-user.jpg"
+ },
+ {
+  "id": 1,
+  "telefono": "",
+  "birth_date": "2022-06-21",
+  "addres": "Av. siempre vida",
+  "profile": "buy",
+  "fname": "Pablo",
+  "lname": "M",
+  "email": "pablo@digitalHouse.com",
+  "country": "colombia",
+  "password": "12345678",
+  "subject": "saludos",
+  "fileImg": "1655866290764-pablo.JPG"
  }
 ]
