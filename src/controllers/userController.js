@@ -2,6 +2,7 @@ const path = require('path');
 let fs = require('fs');
 let dataUsers = require('../data/usersData');
 const usersFilePath = path.join(__dirname, '../data/usersData.json');
+let bcrypt = require('bcryptjs');
 
 const {validationResult} = require('express-validator');
 
@@ -24,7 +25,8 @@ const controller = {
             let usersLogin = fs.readFileSync(usersFilePath, 'utf-8');
             let userLogin = JSON.parse(usersLogin);
 
-            req.session.userID = userLogin.find(element =>element.email == req.body.email && element.password ==  req.body.password);
+            req.session.userID = userLogin.find(element =>element.email == req.body.email && bcrypt.compareSync(req.body.password, element.password) );
+            // req.session.userID = userLogin.find(element =>element.email == req.body.email && element.password ==  req.body.password );
             let userID = req.session.userID;
             if(userID == undefined){
                 res.render('login',{userID,errorLog:[{msg:"Los datos son incorrectos. Verificalos y vuelve a intentar"}]});
@@ -53,6 +55,7 @@ const controller = {
                     id: dataUsers.length,
                     telefono: parseInt(req.body.telefono),
                     ...req.body,
+                    password: bcrypt.hashSync(req.body.password,10),
                     fileImg: req.file.filename,
                 };
             } else {
@@ -60,6 +63,7 @@ const controller = {
                     id: dataUsers.length,
                     telefono: parseInt(req.body.telefono),
                     ...req.body,
+                    password: bcrypt.hashSync(req.body.password,10),
                     fileImg: 'default-user.jpg',
                 }
             }
