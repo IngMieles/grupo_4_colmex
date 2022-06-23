@@ -9,7 +9,7 @@
   "lname": "ANGELES",
   "email": "langeles11@alumnos.uaq.mx",
   "country": "mexico",
-  "password": "12345678",
+  "password": "$2a$10$bUDQnGBwSXb80w8Ep49K1O.x/v1C4/c9OLU9J49APLuJyQLB0Kcgq",
   "subject": "SIN COMENTARIOS",
   "fileImg": "default-user.jpg"
  },
@@ -23,8 +23,22 @@
   "lname": "M",
   "email": "pablo@digitalHouse.com",
   "country": "colombia",
-  "password": "12345678",
+  "password": "$2a$10$bUDQnGBwSXb80w8Ep49K1O.x/v1C4/c9OLU9J49APLuJyQLB0Kcgq",
   "subject": "saludos",
   "fileImg": "1655866290764-pablo.JPG"
+ },
+ {
+  "id": 2,
+  "telefono": "",
+  "birth_date": "2022-06-22",
+  "addres": "Bogota",
+  "profile": "buy",
+  "fname": "David",
+  "lname": "P",
+  "email": "david@digitalhouse.com",
+  "country": "colombia",
+  "password": "$2a$10$bUDQnGBwSXb80w8Ep49K1O.x/v1C4/c9OLU9J49APLuJyQLB0Kcgq",
+  "subject": "",
+  "fileImg": "default-user.jpg"
  }
 ]

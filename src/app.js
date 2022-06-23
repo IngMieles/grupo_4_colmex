@@ -7,12 +7,11 @@ const mainUsers = require('./routes/UserRouter');
 const methodOverride = require('method-override');
 
 const session = require('express-session');
-app.use(session( {secret: "colmex"}));
+app.use(session( {secret: "colmex", resave: false, saveUninitialized: false}));
 
 var primerMiddleware = require('../middlewares/middleware');
 var recuerdameMiddleware = require('../middlewares/recuerdameMiddleware');
 var cookieParser = require('cookie-parser');
-app.use(primerMiddleware);
 
 app.use(methodOverride('_method')); 
 
@@ -24,6 +23,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 app.use(cookieParser());
+app.use(primerMiddleware);
 app.use(recuerdameMiddleware);
 
 app.set('views',path.resolve(__dirname,'./views'));
