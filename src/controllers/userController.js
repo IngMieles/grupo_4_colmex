@@ -26,15 +26,15 @@ const controller = {
             let userLogin = JSON.parse(usersLogin);
 
             req.session.userID = userLogin.find(element =>element.email == req.body.email && bcrypt.compareSync(req.body.password, element.password) );
-            // req.session.userID = userLogin.find(element =>element.email == req.body.email && element.password ==  req.body.password );
             let userID = req.session.userID;
             if(userID == undefined){
                 res.render('login',{userID,errorLog:[{msg:"Los datos son incorrectos. Verificalos y vuelve a intentar"}]});
             }else{
                 if(req.body.recuerdame != undefined){
                     res.cookie('recuerdame',userID.id);
-                }else{
-                    res.cookie('recuerdame',userID.id,{ maxAge: 60000 });
+                }
+                else{
+                    res.cookie('recuerdame',userID.id,{ maxAge: (1000 * 4) });
                 }
                 res.redirect('/');
             }

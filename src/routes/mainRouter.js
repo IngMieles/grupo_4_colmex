@@ -3,6 +3,7 @@ const router = express.Router();
 const multer = require('multer');
 const mainController = require('../controllers/mainController'); 
 const userController = require('../controllers/userController'); 
+const loginMiddleware = require('../../middlewares/loginMiddleware');
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -34,13 +35,13 @@ const validaLogin = [
 ];
 
 router.get('/', mainController.index);
-router.get('/carritoCompras', mainController.carritoCompras);
+router.get('/carritoCompras', loginMiddleware, mainController.carritoCompras);
 
 // Listado de productos
 router.get('/categorias', mainController.categorias);
 
 // Formulario de creación de productos
-router.get('/crearLista', mainController.crearLista);
+router.get('/crearLista', loginMiddleware, mainController.crearLista);
 // Acción de creación (a donde se envía el formulario)
 router.post('/crearLista', upload.single('fileImg'), validaProducto, mainController.crear);
 

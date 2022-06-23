@@ -2,7 +2,8 @@
 const express = require('express');
 const router = express.Router();
 // const multer = require('multer');
-const mainController = require('../controllers/mainController'); 
+const mainController = require('../controllers/mainController');
+const loginMiddleware = require('../../middlewares/loginMiddleware'); 
 
 const {body} = require('express-validator');
 
@@ -17,7 +18,7 @@ const validaEdita = [
 // Detalle de un producto particular
 router.get('/:id', mainController.detalleProducto);
 // Formulario de edición a la vista 
-router.get('/:id/edita', mainController.edita);
+router.get('/:id/edita', loginMiddleware, mainController.edita);
 // Formulario de edición de productos  → PUT
 router.put('/:id/edita', validaEdita, mainController.editar);
 // Formulario de edición de productos  → DELETE
