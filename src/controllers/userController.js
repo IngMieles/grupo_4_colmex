@@ -34,7 +34,8 @@ const controller = {
                     res.cookie('recuerdame',userID.id);
                 }
                 else{
-                    res.cookie('recuerdame',userID.id,{ maxAge: (1000 * 4) });
+                    // duración de la cookie de 1 minuto = (1000 * 60)
+                    res.cookie('recuerdame',userID.id,{ maxAge: (1000 * 60) });
                 }
                 res.redirect('/');
             }
