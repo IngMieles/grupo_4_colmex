@@ -3,6 +3,7 @@ const router = express.Router();
 const multer = require('multer');
 const mainController = require('../controllers/mainController'); 
 const userController = require('../controllers/userController'); 
+const loginMiddleware = require('../../middlewares/loginMiddleware');
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -29,23 +30,25 @@ const validaProducto = [
 
 // Validaciones login
 const validaLogin = [
-    check('email').isEmail().withMessage('Ingresa el email con el que te registraste'),
-    check('password').isLength({min:8}).withMessage('La contraseña debe tener al menos 8 caracteres')
+    body('email').isEmail().withMessage('Ingresa el email con el que te registraste'),
+    body('password').isLength({min:8}).withMessage('La contraseña debe tener al menos 8 caracteres')
 ];
 
 router.get('/', mainController.index);
-router.get('/carritoCompras', mainController.carritoCompras);
+router.get('/carritoCompras', loginMiddleware, mainController.carritoCompras);
 
 // Listado de productos
 router.get('/categorias', mainController.categorias);
 
 // Formulario de creación de productos
-router.get('/crearLista', mainController.crearLista);
+router.get('/crearLista', loginMiddleware, mainController.crearLista);
 // Acción de creación (a donde se envía el formulario)
 router.post('/crearLista', upload.single('fileImg'), validaProducto, mainController.crear);
 
+// Formulario para login
 router.get('/login', userController.login);
-
 router.post('/login', validaLogin, userController.usuarioLogin);
+
+router.get('/logOut', userController.logOut);
 
 module.exports = router;

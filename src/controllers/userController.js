@@ -2,6 +2,7 @@ const path = require('path');
 let fs = require('fs');
 let dataUsers = require('../data/usersData');
 const usersFilePath = path.join(__dirname, '../data/usersData.json');
+let bcrypt = require('bcryptjs');
 
 const {validationResult} = require('express-validator');
 
@@ -10,24 +11,34 @@ const controller = {
         let userID = req.userID;
         res.render('login',{userID});
     },
+    logOut: (req, res) => {
+        req.session.userID = undefined;
+        req.userID = req.session.userID;
+        let userID = req.userID;
+        res.render('login',{userID});
+    },
     usuarioLogin: (req, res) => {
         let userID = req.userID;
         let errors = validationResult(req);
         
         if(errors.isEmpty()){
-            
-            if( req.session.visitas == undefined){
-                req.session.visitas = 0;
+            let usersLogin = fs.readFileSync(usersFilePath, 'utf-8');
+            let userLogin = JSON.parse(usersLogin);
+
+            req.session.userID = userLogin.find(element =>element.email == req.body.email && bcrypt.compareSync(req.body.password, element.password) );
+            let userID = req.session.userID;
+            if(userID == undefined){
+                res.render('login',{userID,errorLog:[{msg:"Los datos son incorrectos. Verificalos y vuelve a intentar"}]});
+            }else{
+                if(req.body.recuerdame != undefined){
+                    res.cookie('recuerdame',userID.id);
+                }
+                else{
+                    // duración de la cookie de 1 minuto = (1000 * 60)
+                    res.cookie('recuerdame',userID.id,{ maxAge: (1000 * 60) });
+                }
+                res.redirect('/');
             }
-            req.session.visitas++;
-
-            res.send('Prueba con session = ' + req.session.visitas);
-            // let usersLogin = fs.readFileSync(usersFilePath, 'utf-8');
-            // let userLogin = JSON.parse(usersLogin);
-
-            // let userID = userLogin.find(element =>element.email == req.body.email && element.password ==  req.body.password);
-            // res.render('userPerfil',{userID});
-
         }else{
             res.render('login',{userID,errors:errors.array(),old: req.body});
         }
@@ -45,6 +56,7 @@ const controller = {
                     id: dataUsers.length,
                     telefono: parseInt(req.body.telefono),
                     ...req.body,
+                    password: bcrypt.hashSync(req.body.password,10),
                     fileImg: req.file.filename,
                 };
             } else {
@@ -52,6 +64,7 @@ const controller = {
                     id: dataUsers.length,
                     telefono: parseInt(req.body.telefono),
                     ...req.body,
+                    password: bcrypt.hashSync(req.body.password,10),
                     fileImg: 'default-user.jpg',
                 }
             }
