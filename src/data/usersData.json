@@ -28,17 +28,17 @@
   "fileImg": "1655866290764-pablo.JPG"
  },
  {
-  "id": 2,
-  "telefono": "",
-  "birth_date": "2022-06-22",
-  "addres": "Bogota",
-  "profile": "buy",
-  "fname": "David",
-  "lname": "P",
-  "email": "david@digitalhouse.com",
-  "country": "colombia",
-  "password": "$2a$10$bUDQnGBwSXb80w8Ep49K1O.x/v1C4/c9OLU9J49APLuJyQLB0Kcgq",
-  "subject": "",
-  "fileImg": "default-user.jpg"
- }
+    "id": 2,
+    "telefono": "311244511444",
+    "birth_date": "1992-08-14",
+    "addres": "Bogota",
+    "profile": "sell",
+    "fname": "David",
+    "lname": "Pieters",
+    "email": "davidpieters12@gmail.com",
+    "country": "colombia",
+    "password": "$2a$10$LdK8oF0HoL38i4XoOi9VxO4VHs5PMmMF3n/eG1Zto6kyWyIDzG52e",
+    "subject": "Hola",
+    "fileImg": "1656633069900-th-1649551002.jpg"
+   }
 ]
