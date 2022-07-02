@@ -26,5 +26,19 @@
   "confirmPassword": "",
   "subject": "",
   "fileImg": "default-user.jpg"
+ },
+ {
+  "id": 2,
+  "telefono": "",
+  "birth_date": "",
+  "addres": "",
+  "fname": "David",
+  "lname": "Ferrer",
+  "email": "dferrer@dh.com",
+  "country": "colombia",
+  "password": "",
+  "confirmPassword": "",
+  "subject": "",
+  "fileImg": "default-user.jpg"
  }
 ]

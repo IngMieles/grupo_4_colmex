@@ -6,6 +6,7 @@ const mainProducto = require('./routes/mainProducto');
 const mainUsers = require('./routes/mainUsers');
 const methodOverride = require('method-override');
 
+
 var primerMiddleware = require('../middlewares/middleware');
 app.use(primerMiddleware);
 
@@ -30,3 +31,8 @@ app.use((req, res, next) => {
     let userID = req.userID;
     res.status(404).render('not-found',{userID});
 })
+
+
+
+
+
