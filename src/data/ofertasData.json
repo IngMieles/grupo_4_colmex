@@ -1,20 +1,21 @@
 [
-    {
-        "id": 2,
-        "name": "Libro",
-        "precio": 300,
-        "categoria": "Lectura",
-        "fileImg": "fileImg-Libro.jpg",
-        "description": "descripción no disponible",
-        "userId": 0
-       },
-       {
-        "id": 3,
-        "name": "macbook",
-        "precio": 400,
-        "categoria": "Computadoras",
-        "fileImg": "fileImg-macbook.jpg",
-        "description": "descripción no disponible",
-        "userId": 0
-       }
+{
+ "id": 2,
+ "name": "Libro fisico usado",
+ "precio": 1200,
+ "categoria": "Lectura",
+ "img": "",
+ "fileImg": "fileImg-Libro.jpg",
+ "description": "Libro para aprender a programar una fpga",
+ "userId": 0
+},
+{
+ "id": 3,
+ "name": "macbook",
+ "precio": 400,
+ "categoria": "Computadoras",
+ "fileImg": "fileImg-macbook.jpg",
+ "description": "descripción no disponible",
+ "userId": 0
+}
 ]

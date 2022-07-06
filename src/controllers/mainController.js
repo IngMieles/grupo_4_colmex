@@ -12,10 +12,18 @@ let destacados = JSON.parse(fileDestacados);
 
 const {validationResult} = require('express-validator');
 
+const db = require('../database/models');
+
 const controller = {
-    index: (req, res) => {
-        let userID = req.userID;
-        res.render('index', {ofertas,destacados,userID});
+    index: async (req, res) => {
+        try {
+            let userID = req.userID;
+            const ofertas = await db.OfferModel.findAll()
+            const destacados = await db.StarModel.findAll()
+            res.render('index', {ofertas,destacados,userID});
+        } catch (error) {
+            res.send(error);
+        }
     },
     carritoCompras: (req, res) => {
         let userID = req.userID;
