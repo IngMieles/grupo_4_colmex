@@ -4,27 +4,16 @@
         <%- include('./partials/header')  %>
         <main>
             <section>
-                <h2>Nuevas Categorias</h2>
+                <h2>Categorias</h2>
+
                 <% for( let producto of newProducts ) { %>
                     <article>
                         <ul class="nav">
-                            <li class="nav-item nav-item-end"><i class="fa-regular fa-heart"></i></li>
-                            <li class="nav-item descripcion">Categoria: <%= producto.categoria %></li>
-                            <% if (producto.fileImg) { %>
-                                <li class="nav-item nav-item-end"><a href="detalleProducto/<%= producto.id %>">
-                                    <img src="/img/products/<%= producto.fileImg %>" alt="No image"></a>
-                                </li>
-                            <% } else { %>
-                                <li class="nav-item nav-item-end"><a href="detalleProducto/<%= producto.id %>">
-                                    <img src=<%= producto.img %> alt="No image"></a>
-                                </li>
-                              <% } %>
-                            <li class="nav-item descripcion"><%= producto.name %></li>
-                            <li class="nav-item descripcion">Current price: <%= producto.precio %></li>
-                            <li class="nav-item descripcion">Description: <%= producto.description %></li>
+                            <li class="nav-item"> <a class="nombre" href="/category/<%= producto.categoria %>"> <%= producto.categoria %></a> </li>
                         </ul>
                     </article>
                 <% } %>
+
             </section>
         </main>
         <%- include('./partials/footer')  %>

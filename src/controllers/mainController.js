@@ -38,6 +38,17 @@ const controller = {
             res.send(error);
         }
     },
+    category: async (req, res) => {
+        try {
+            const newProducts = await db.ProductModel.findAll({
+                where:{categoria:{[db.Sequelize.Op.like]:'%'+req.params.categoria+'%'}}
+            })
+            let userID = req.userID;
+            res.render('category', {newProducts,userID});
+        } catch (error) {
+            res.send(error);
+        }
+    },
     crearLista: (req, res) => {
         let userID = req.userID;
         res.render('crearLista',{userID});
