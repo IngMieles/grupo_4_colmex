@@ -19,7 +19,7 @@ const controller = {
         try {
             let userID = req.userID;
             const ofertas = await db.OfferModel.findAll()
-            const destacados = await db.StarModel.findAll()
+            const destacados = await db.StarProdModel.findAll()
             res.render('index', {ofertas,destacados,userID});
         } catch (error) {
             res.send(error);
