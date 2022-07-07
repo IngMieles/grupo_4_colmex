@@ -29,11 +29,14 @@ const controller = {
         let userID = req.userID;
         res.render('carritoCompras',{userID});
     },
-    categorias: (req, res) => {
-        let product = fs.readFileSync(productsFilePath, 'utf-8');
-        let newProducts = JSON.parse(product);
-        let userID = req.userID;
-        res.render('categorias', {newProducts,userID});
+    categorias: async (req, res) => {
+        try {
+            const newProducts = await db.ProductModel.findAll()
+            let userID = req.userID;
+            res.render('categorias', {newProducts,userID});
+        } catch (error) {
+            res.send(error);
+        }
     },
     crearLista: (req, res) => {
         let userID = req.userID;
@@ -182,13 +185,16 @@ const controller = {
         res.redirect('/categorias');
         // res.redirect('/detalleProducto/' + idProduct );
     },
-    detalleProducto: (req, res) => {
-        let idProduct = req.params.id;
-        let product = fs.readFileSync(productsFilePath, 'utf-8');
-        let Products = JSON.parse(product);
-        const productoImg = Products.find(element => element.id == idProduct);
-        let userID = req.userID;
-        res.render('detalleProducto', {productoImg,userID});
+    detalleProducto: async (req, res) => {
+        try {
+            let idProduct = req.params.id;
+            const Products = await db.ProductModel.findAll()
+            const productoImg = Products.find(element => element.id == idProduct);
+            let userID = req.userID;
+            res.render('detalleProducto', {productoImg,userID});
+        } catch (error) {
+            res.send(error);
+        }
     },
 };
 

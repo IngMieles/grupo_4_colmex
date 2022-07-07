@@ -12,7 +12,8 @@ module.exports = (sequelize, dataTypes) => {
         img: dataTypes.TEXT,
         fileImg: dataTypes.TEXT,
         description: dataTypes.STRING,
-        userId: dataTypes.INTEGER
+        userId: dataTypes.INTEGER,
+        product_id: dataTypes.INTEGER
     };
 
     const config = {
