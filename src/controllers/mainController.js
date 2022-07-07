@@ -31,7 +31,9 @@ const controller = {
     },
     categorias: async (req, res) => {
         try {
-            const newProducts = await db.ProductModel.findAll()
+            const newProducts = await db.ProductModel.findAll({
+                order:[['categoria','ASC']]
+            })
             let userID = req.userID;
             res.render('categorias', {newProducts,userID});
         } catch (error) {
@@ -41,7 +43,9 @@ const controller = {
     category: async (req, res) => {
         try {
             const newProducts = await db.ProductModel.findAll({
-                where:{categoria:{[db.Sequelize.Op.like]:'%'+req.params.categoria+'%'}}
+                where:{categoria:{[db.Sequelize.Op.like]:'%'+req.params.categoria+'%'}},
+                order:[['name','ASC']],
+                limit: 100
             })
             let userID = req.userID;
             res.render('category', {newProducts,userID});
