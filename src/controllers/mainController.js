@@ -187,9 +187,7 @@ const controller = {
     },
     detalleProducto: async (req, res) => {
         try {
-            let idProduct = req.params.id;
-            const Products = await db.ProductModel.findAll()
-            const productoImg = Products.find(element => element.id == idProduct);
+            const productoImg = await db.ProductModel.findByPk(req.params.id)
             let userID = req.userID;
             res.render('detalleProducto', {productoImg,userID});
         } catch (error) {
