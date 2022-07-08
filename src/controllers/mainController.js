@@ -24,9 +24,22 @@ const controller = {
     },
     categorias: async (req, res) => {
         try {
-            const newProducts = await db.ProductModel.findAll({
+            const categorias = await db.ProductModel.findAll({
                 order:[['categoria','ASC']]
             })
+            let newProducts =[];
+            let i=0;
+            categorias.forEach(element => {
+                console.log(element.dataValues.categoria);
+                if(i==0){
+                    newProducts.push(element.dataValues)
+                    i++;
+                }else if(element.dataValues.categoria != newProducts[i-1].categoria && i != 0){
+                        newProducts.push(element.dataValues)
+                        console.log(newProducts[i].categoria);
+                        i++;
+                }
+            });
             let userID = req.userID;
             res.render('categorias', {newProducts,userID});
         } catch (error) {
