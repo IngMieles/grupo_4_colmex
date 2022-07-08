@@ -1,10 +1,4 @@
-const path = require('path');
-let fs = require('fs');
-let dataProducts = require('../data/productsData');
-const productsFilePath = path.join(__dirname, '../data/productsData.json');
-
 const {validationResult} = require('express-validator');
-
 const db = require('../database/models');
 
 const controller = {
@@ -30,13 +24,11 @@ const controller = {
             let newProducts =[];
             let i=0;
             categorias.forEach(element => {
-                console.log(element.dataValues.categoria);
                 if(i==0){
                     newProducts.push(element.dataValues)
                     i++;
                 }else if(element.dataValues.categoria != newProducts[i-1].categoria && i != 0){
                         newProducts.push(element.dataValues)
-                        console.log(newProducts[i].categoria);
                         i++;
                 }
             });
@@ -160,15 +152,16 @@ const controller = {
             }
         }
     },
-    delete: (req, res) => {
-        let idProduct = req.params.id;
-        let product = fs.readFileSync(productsFilePath, 'utf-8');
-        let Products = JSON.parse(product);
-
-        Products.splice(idProduct, 1);
-
-        fs.writeFileSync(productsFilePath, JSON.stringify(Products, null, ' '));
-        res.redirect('/categorias');
+    delete: async (req, res) => {
+        try {
+            const productDelete = await db.ProductModel.findByPk(req.params.id)
+            db.ProductModel.destroy({
+                where:{id:req.params.id}
+            })
+            res.redirect('/category/'+productDelete.categoria);
+        } catch (error) {
+            res.send(error);
+        }
     },
     detalleProducto: async (req, res) => {
         try {
