@@ -37,8 +37,10 @@ const validaLogin = [
 router.get('/', mainController.index);
 router.get('/carritoCompras', loginMiddleware, mainController.carritoCompras);
 
-// Listado de productos
+// Listado de las categorias
 router.get('/categorias', mainController.categorias);
+// Listado de los productos en una categoria
+router.get('/category/:categoria', mainController.category);
 
 // Formulario de creación de productos
 router.get('/crearLista', loginMiddleware, mainController.crearLista);
@@ -50,5 +52,6 @@ router.get('/login', userController.login);
 router.post('/login', validaLogin, userController.usuarioLogin);
 
 router.get('/logOut', userController.logOut);
+
 
 module.exports = router;

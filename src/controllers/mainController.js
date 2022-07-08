@@ -12,20 +12,46 @@ let destacados = JSON.parse(fileDestacados);
 
 const {validationResult} = require('express-validator');
 
+const db = require('../database/models');
+
 const controller = {
-    index: (req, res) => {
-        let userID = req.userID;
-        res.render('index', {ofertas,destacados,userID});
+    index: async (req, res) => {
+        try {
+            let userID = req.userID;
+            const ofertas = await db.OfferModel.findAll()
+            const destacados = await db.StarProdModel.findAll()
+            res.render('index', {ofertas,destacados,userID});
+        } catch (error) {
+            res.send(error);
+        }
     },
     carritoCompras: (req, res) => {
         let userID = req.userID;
         res.render('carritoCompras',{userID});
     },
-    categorias: (req, res) => {
-        let product = fs.readFileSync(productsFilePath, 'utf-8');
-        let newProducts = JSON.parse(product);
-        let userID = req.userID;
-        res.render('categorias', {newProducts,userID});
+    categorias: async (req, res) => {
+        try {
+            const newProducts = await db.ProductModel.findAll({
+                order:[['categoria','ASC']]
+            })
+            let userID = req.userID;
+            res.render('categorias', {newProducts,userID});
+        } catch (error) {
+            res.send(error);
+        }
+    },
+    category: async (req, res) => {
+        try {
+            const newProducts = await db.ProductModel.findAll({
+                where:{categoria:{[db.Sequelize.Op.like]:'%'+req.params.categoria+'%'}},
+                order:[['name','ASC']],
+                limit: 100
+            })
+            let userID = req.userID;
+            res.render('category', {newProducts,userID});
+        } catch (error) {
+            res.send(error);
+        }
     },
     crearLista: (req, res) => {
         let userID = req.userID;
@@ -174,13 +200,14 @@ const controller = {
         res.redirect('/categorias');
         // res.redirect('/detalleProducto/' + idProduct );
     },
-    detalleProducto: (req, res) => {
-        let idProduct = req.params.id;
-        let product = fs.readFileSync(productsFilePath, 'utf-8');
-        let Products = JSON.parse(product);
-        const productoImg = Products.find(element => element.id == idProduct);
-        let userID = req.userID;
-        res.render('detalleProducto', {productoImg,userID});
+    detalleProducto: async (req, res) => {
+        try {
+            const productoImg = await db.ProductModel.findByPk(req.params.id)
+            let userID = req.userID;
+            res.render('detalleProducto', {productoImg,userID});
+        } catch (error) {
+            res.send(error);
+        }
     },
 };
 
