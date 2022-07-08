@@ -82,89 +82,69 @@ const controller = {
             res.render('crearLista',{userID,errors:errors.array(),old: req.body});
         }
     },
-    edita: (req, res) => {
-        let idProduct = req.params.id;
-        let product = fs.readFileSync(productsFilePath, 'utf-8');
-        let Products = JSON.parse(product);
-        const productoImg = Products.find(element => element.id == idProduct);
+    edita: async (req, res) => {
         let userID = req.userID;
-        res.render('edita',{productoImg,userID});
+        try {
+            const productoImg = await db.ProductModel.findByPk(req.params.id)
+            res.render('edita',{productoImg,userID});
+        } catch (error) {
+            res.send(error);
+        }
     },
-    editar: (req, res) => {
-        let idProduct = req.params.id;
-        let product = fs.readFileSync(productsFilePath, 'utf-8');
-        let Products = JSON.parse(product);
-        let productoImg = Products.find(element => element.id == idProduct);
-        let userID = parseInt(req.body.userId);
-        let editProduct;
-
+    editar: async (req, res) => {
         let errors = validationResult(req);
+
         if (errors.isEmpty()){
-            if (req.file) {
-                editProduct = {
-                    id: parseInt(idProduct),
-                    ...req.body,
-                    userId: parseInt(req.body.userId),
-                    precio: parseInt(req.body.precio),
-                    fileImg: req.file.filename
-                };
-            } else if (req.body.img) {
-                editProduct = {
-                    id: parseInt(idProduct),
-                    ...req.body,
-                    userId: parseInt(req.body.userId),
-                    precio: parseInt(req.body.precio),
-                    img: req.body.img
+            try {
+                let productoImg = await db.ProductModel.findByPk(req.params.id)
+                if (req.file) {
+                    db.ProductModel.update({
+                        ...req.body,
+                        userId: parseInt(req.body.userId),
+                        precio: parseInt(req.body.precio),
+                        fileImg: req.file.filename
+                    },{where:{id:req.params.id}});
+                } else if (req.body.img) {
+                    db.ProductModel.update({
+                        ...req.body,
+                        userId: parseInt(req.body.userId),
+                        precio: parseInt(req.body.precio),
+                        img: req.body.img
+                    },{where:{id:req.params.id}});
+                } else if (productoImg.fileImg) {
+                    db.ProductModel.update({
+                        ...req.body,
+                        userId: parseInt(req.body.userId),
+                        precio: parseInt(req.body.precio),
+                        fileImg: productoImg.fileImg
+                    },{where:{id:req.params.id}});
+                } else if (productoImg.img) {
+                    db.ProductModel.update({
+                        ...req.body,
+                        userId: parseInt(req.body.userId),
+                        precio: parseInt(req.body.precio),
+                        img: productoImg.img
+                    },{where:{id:req.params.id}});
+                } else {
+                    db.ProductModel.update({
+                        ...req.body,
+                        userId: parseInt(req.body.userId),
+                        precio: parseInt(req.body.precio),
+                        fileImg: 'default-image.png'
+                    },{where:{id:req.params.id}});
                 }
-            } else if (productoImg.fileImg) {
-                editProduct = {
-                    id: parseInt(idProduct),
-                    ...req.body,
-                    userId: parseInt(req.body.userId),
-                    precio: parseInt(req.body.precio),
-                    fileImg: productoImg.fileImg
-                }
-            } else if (productoImg.img) {
-                editProduct = {
-                    id: parseInt(idProduct),
-                    ...req.body,
-                    userId: parseInt(req.body.userId),
-                    precio: parseInt(req.body.precio),
-                    img: productoImg.img
-                }
-            } else {
-                editProduct = {
-                    id: parseInt(idProduct),
-                    ...req.body,
-                    userId: parseInt(req.body.userId),
-                    precio: parseInt(req.body.precio),
-                    fileImg: 'default-image.png'
-                }
+            } catch (error) {
+                res.send(error);
             }
-    
-            let newProduct;
-            let readProducts = fs.readFileSync(productsFilePath,'utf-8');
-            if (readProducts == "") {
-                newProduct = [];
-            } else {
-                newProduct = JSON.parse(readProducts);
-            }
-    
-            newProduct.forEach((element,index) => {
-                if(element.id==editProduct.id){
-                    newProduct[index] = editProduct;
-                }
-            });
-    
-            fs.writeFileSync(productsFilePath, JSON.stringify(newProduct, null, ' '));
-            product = fs.readFileSync(productsFilePath, 'utf-8');
-            Products = JSON.parse(product);
-            productoImg = Products.find(element => element.id == idProduct);
-            userID = req.userID;
-            res.render('detalleProducto',{productoImg,userID});
+            res.redirect('editado');
         }else{
-            let userID = req.userID;
-            res.render('edita',{productoImg,userID,errors:errors.array(),old: req.body});
+            try {
+                const productoImg = await db.ProductModel.findByPk(req.params.id)
+                let userID = req.userID;
+                res.render('edita',{productoImg,userID,errors:errors.array(),old: req.body});
+            } catch (error) {
+                res.send(error);
+            }
         }
     },
     delete: (req, res) => {
