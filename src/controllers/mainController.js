@@ -2,13 +2,6 @@ const path = require('path');
 let fs = require('fs');
 let dataProducts = require('../data/productsData');
 const productsFilePath = path.join(__dirname, '../data/productsData.json');
-const ofertasFilePath = path.join(__dirname, '../data/ofertasData.json');
-const destacadosFilePath = path.join(__dirname, '../data/destacadosData.json');
-
-let fileOfertas = fs.readFileSync(ofertasFilePath, 'utf-8');
-let ofertas = JSON.parse(fileOfertas);
-let fileDestacados = fs.readFileSync(destacadosFilePath, 'utf-8');
-let destacados = JSON.parse(fileDestacados);
 
 const {validationResult} = require('express-validator');
 
@@ -58,47 +51,32 @@ const controller = {
         res.render('crearLista',{userID});
     },
     crear: (req, res) => {
-        let products;
         let errors = validationResult(req);
 
         if (errors.isEmpty()){
             if (req.file) {
-                products = {
-                    id: dataProducts.length,
+                db.ProductModel.create({
                     ...req.body,
                     userId: parseInt(req.body.userId),
                     precio: parseInt(req.body.precio),
                     fileImg: req.file.filename
-                };
+                });
             } else if (req.body.img) {
-                products = {
-                    id: dataProducts.length,
+                db.ProductModel.create({
                     ...req.body,
                     userId: parseInt(req.body.userId),
                     precio: parseInt(req.body.precio),
                     img: req.body.img
-                }
+                });
             } else {
-                products = {
-                    id: dataProducts.length,
+                db.ProductModel.create({
                     ...req.body,
                     userId: parseInt(req.body.userId),
                     precio: parseInt(req.body.precio),
                     fileImg: 'default-image.png'
-                }
+                });
             }
-    
-            let newProduct;
-            let readProducts = fs.readFileSync(productsFilePath,'utf-8');
-            if (readProducts == "") {
-                newProduct = [];
-            } else {
-                newProduct = JSON.parse(readProducts);
-            }
-            newProduct.push(products);
-            fs.writeFileSync(productsFilePath, JSON.stringify(newProduct, null, ' '));
             res.redirect('/categorias');
-            
         }else{
             let userID = req.userID;
             res.render('crearLista',{userID,errors:errors.array(),old: req.body});
@@ -198,7 +176,6 @@ const controller = {
 
         fs.writeFileSync(productsFilePath, JSON.stringify(Products, null, ' '));
         res.redirect('/categorias');
-        // res.redirect('/detalleProducto/' + idProduct );
     },
     detalleProducto: async (req, res) => {
         try {

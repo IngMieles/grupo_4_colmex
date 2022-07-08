@@ -1,15 +1,11 @@
-const path = require('path');
-let fs = require('fs');
-let dataUsers = require('../data/usersData');
-const usersFilePath = path.join(__dirname, '../data/usersData.json');
 let bcrypt = require('bcryptjs');
 
 const {validationResult} = require('express-validator');
+const db = require('../database/models');
 
 const controller = {
     login: (req, res) => {
-        let userID = req.userID;
-        res.render('login',{userID});
+        res.render('login');
     },
     logOut: (req, res) => {
         req.session.userID = undefined;
@@ -17,72 +13,63 @@ const controller = {
         let userID = req.userID;
         res.render('login',{userID});
     },
-    usuarioLogin: (req, res) => {
+    usuarioLogin: async (req, res) => {
         let userID = req.userID;
         let errors = validationResult(req);
-        
-        if(errors.isEmpty()){
-            let usersLogin = fs.readFileSync(usersFilePath, 'utf-8');
-            let userLogin = JSON.parse(usersLogin);
 
-            req.session.userID = userLogin.find(element =>element.email == req.body.email && bcrypt.compareSync(req.body.password, element.password) );
-            let userID = req.session.userID;
-            if(userID == undefined){
-                res.render('login',{userID,errorLog:[{msg:"Los datos son incorrectos. Verificalos y vuelve a intentar"}]});
-            }else{
-                if(req.body.recuerdame != undefined){
-                    res.cookie('recuerdame',userID.id);
+        if(errors.isEmpty()){
+            try {
+                const userLogin = await db.UserModel.findOne({
+                    where:{email:{[db.Sequelize.Op.like]:'%'+req.body.email+'%'}}
+                })
+                if(userLogin!=null){
+                    if(bcrypt.compareSync(req.body.password, userLogin.password)){
+                        req.session.userID = userLogin;
+                        userID = req.session.userID;
+                    }
+                }else{userID = undefined;}
+                if(userID == undefined){
+                    res.render('login',{userID,errorLog:[{msg:"Los datos son incorrectos. Verificalos y vuelve a intentar"}]});
+                }else{
+                    if(req.body.recuerdame != undefined){
+                        res.cookie('recuerdame',userID.id);
+                    }
+                    else{
+                        res.cookie('recuerdame',userID.id,{ maxAge: (1000 * 60) * 1 });
+                    }
+                    res.redirect('/');
                 }
-                else{
-                    res.cookie('recuerdame',userID.id,{ maxAge: (1000 * 60) * 1 });
-                }
-                res.redirect('/');
+            } catch (error) {
+                res.send(error);
             }
         }else{
             res.render('login',{userID,errors:errors.array(),old: req.body});
         }
     },
     registro: (req, res) => {
-        let userID = req.userID;
-        res.render('registro',{userID});
+        res.render('registro');
     },
     registerUsers: (req, res) => {
-        let users;
         let errors = validationResult(req);
         if(errors.isEmpty()){
             if (req.file) {
-                users = {
-                    id: dataUsers.length,
+                db.UserModel.create({
                     telefono: parseInt(req.body.telefono),
                     ...req.body,
                     password: bcrypt.hashSync(req.body.password,10),
-                    fileImg: req.file.filename,
-                };
+                    fileImg: req.file.filename
+                });
             } else {
-                users = {
-                    id: dataUsers.length,
+                db.UserModel.create({
                     telefono: parseInt(req.body.telefono),
                     ...req.body,
                     password: bcrypt.hashSync(req.body.password,10),
                     fileImg: 'default-user.jpg',
-                }
+                });
             }
-    
-            let newUser;
-            let readUsers = fs.readFileSync(usersFilePath,'utf-8');
-            if (readUsers == "") {
-                newUser = [];
-            } else {
-                newUser = JSON.parse(readUsers);
-            }
-    
-            newUser.push(users);
-            fs.writeFileSync(usersFilePath, JSON.stringify(newUser, null, ' '));
-            let userID = req.userID;
-            res.render('login',{userID});
+            res.render('login');
         }else{
-            let userID = req.userID;
-            res.render('registro',{userID,errors:errors.array(),old: req.body});
+            res.render('registro',{errors:errors.array(),old: req.body});
         }
         
     },
