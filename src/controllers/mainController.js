@@ -89,7 +89,7 @@ const controller = {
                     fileImg: 'default-image.png'
                 });
             }
-            res.redirect('/categorias');
+            res.redirect('editado');
         }else{
             let userID = req.userID;
             res.render('crearLista',{userID,errors:errors.array(),old: req.body});
