@@ -35,7 +35,8 @@ router.get('/userPerfil', loginMiddleware, userController.userPerfil);
 // Validaciones
 const validaEdita = [
     body('fname').notEmpty().withMessage('Nombre del usuario'),
-    body('lname').notEmpty().withMessage('Apellido del usuario')
+    body('lname').notEmpty().withMessage('Apellido del usuario'),
+    body('subject').notEmpty().withMessage('Agrega un comentario')
 ];
 
 // Formulario de edición a la vista 

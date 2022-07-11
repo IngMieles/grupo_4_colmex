@@ -93,15 +93,7 @@ const controller = {
                     precio: parseInt(req.body.precio),
                     fileImg: req.file.filename
                 },{where:{id:req.params.id}})
-                .then(res.render('login'));
-            } else if (req.body.img) {
-                db.UserModel.update({
-                    ...req.body,
-                    userId: parseInt(req.body.userId),
-                    precio: parseInt(req.body.precio),
-                    img: req.body.img
-                },{where:{id:req.params.id}})
-                .then(res.render('login'));
+                .then(res.render('login',{errorLog:[{msg:"Se actualizo tú información. Vuelve a ingresar."}]}));
             } else if (userID.fileImg) {
                 db.UserModel.update({
                     ...req.body,
@@ -109,15 +101,7 @@ const controller = {
                     precio: parseInt(req.body.precio),
                     fileImg: userID.fileImg
                 },{where:{id:req.params.id}})
-                .then(res.render('login'));
-            } else if (userID.img) {
-                db.UserModel.update({
-                    ...req.body,
-                    userId: parseInt(req.body.userId),
-                    precio: parseInt(req.body.precio),
-                    img: userID.img
-                },{where:{id:req.params.id}})
-                .then(res.render('login'));
+                .then(res.render('login',{errorLog:[{msg:"Se actualizo tú información. Vuelve a ingresar."}]}));
             } else {
                 db.UserModel.update({
                     ...req.body,
@@ -125,7 +109,7 @@ const controller = {
                     precio: parseInt(req.body.precio),
                     fileImg: 'default-image.png'
                 },{where:{id:req.params.id}})
-                .then(res.render('login'));
+                .then(res.render('login',{errorLog:[{msg:"Se actualizo tú información. Vuelve a ingresar."}]}));
             }
         }else{
             try {
