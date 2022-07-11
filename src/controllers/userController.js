@@ -93,7 +93,6 @@ const controller = {
                     precio: parseInt(req.body.precio),
                     fileImg: req.file.filename
                 },{where:{id:req.params.id}})
-                .then(res.render('login',{errorLog:[{msg:"Se actualizo tú información. Vuelve a ingresar."}]}));
             } else if (userID.fileImg) {
                 db.UserModel.update({
                     ...req.body,
@@ -101,7 +100,6 @@ const controller = {
                     precio: parseInt(req.body.precio),
                     fileImg: userID.fileImg
                 },{where:{id:req.params.id}})
-                .then(res.render('login',{errorLog:[{msg:"Se actualizo tú información. Vuelve a ingresar."}]}));
             } else {
                 db.UserModel.update({
                     ...req.body,
@@ -109,8 +107,11 @@ const controller = {
                     precio: parseInt(req.body.precio),
                     fileImg: 'default-image.png'
                 },{where:{id:req.params.id}})
-                .then(res.render('login',{errorLog:[{msg:"Se actualizo tú información. Vuelve a ingresar."}]}));
             }
+            req.session.userID = undefined;
+            req.userID = req.session.userID;
+            userID = req.userID;
+            res.render('login',{userID,errorLog:[{msg:"Se actualizo tú información. Vuelve a ingresar."}]})
         }else{
             try {
                 req.userID = await db.UserModel.findByPk(req.params.id)
