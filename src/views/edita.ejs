@@ -26,7 +26,7 @@
                   <div class="container">
                       <div class="row">
                         <div class="col-25">
-                          <label for="name"> <%= productoImg.name %> </label>
+                          <label for="name"><%= productoImg.name %></label>
                         </div>
                         <div class="col-75">
                           <input
@@ -44,7 +44,7 @@
 
                       <div class="row">
                         <div class="col-25">
-                          <label for="precio">$ <%= productoImg.precio %></label>
+                          <label for="precio">Precio</label>
                         </div>
                         <div class="col-75">
                           <input
@@ -54,7 +54,7 @@
                             <% if (locals.old && old.precio) { %>
                               value= "<%= old.precio %>"
                             <% } else { %>
-                              placeholder="Cambia el precio del producto"
+                              value=<%= productoImg.precio %>
                             <% } %>
                           />
                         </div>
@@ -62,7 +62,7 @@
 
                       <div class="row">
                         <div class="col-25">
-                          <label for="categoria"> <%= productoImg.categoria %></label>
+                          <label for="categoria">Categoría</label>
                         </div>
                         <div class="col-75">
                           <input
@@ -72,7 +72,7 @@
                             <% if (locals.old && old.categoria) { %>
                               value= "<%= old.categoria %>"
                             <% } else { %>
-                              placeholder="Categoría del producto"
+                              value=<%= productoImg.categoria %>
                             <% } %>
                           />
                         </div>
@@ -114,7 +114,7 @@
                           <% if (locals.old && old.description) { %>
                             value= "<%= old.description %>"
                           <% } else { %>
-                              placeholder="Descripción general del producto" 
+                              placeholder="Descripción general del producto"
                           <% } %>
                           style="height:100px"></textarea>
                         </div>

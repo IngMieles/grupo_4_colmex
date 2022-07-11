@@ -32,4 +32,15 @@ router.post('/', upload.single('fileImg'), validaRegistro, userController.regist
 
 router.get('/userPerfil', loginMiddleware, userController.userPerfil);
 
+// Validaciones
+const validaEdita = [
+    body('fname').notEmpty().withMessage('Nombre del usuario'),
+    body('lname').notEmpty().withMessage('Apellido del usuario')
+];
+
+// Formulario de edición a la vista 
+router.get('/userPerfil/:id/edita', loginMiddleware, userController.edita);
+// Formulario de edición de usuarios  → PUT
+router.put('/userPerfil/:id/edita', validaEdita, userController.editar);
+
 module.exports = router;

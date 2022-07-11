@@ -1,0 +1,149 @@
+<!-- Edita al usuario  -->
+<%- include('./partials/head')  %>
+<body>
+    <%- include('./partials/header')  %>
+    <main>
+        <h2>Edita tú información</h2>
+        <section>
+            <article class="producto">
+                <% if (userID.fileImg) { %>
+                        <img src="/img/users/<%= userID.fileImg %>" alt="No image">
+                <% } else { %>
+                        <img src=<%= userID.fileImg %> alt="No image">
+                <% } %>
+            </article>
+
+            <article class="descripcion">
+                <form action="/registro/userPerfil/<%= userID.id %>/edita?_method=PUT" method="post">
+                    <div class="container">
+                        <label for="birth_date"><b>Fecha de nacimiento</b></label>
+                        <input type="date" name="birth_date" id="birth_date">
+                        <br>
+                        <label for="adress"><b>Direccion</b></label>
+                        <input type="text" name="addres" 
+                          <% if (locals.old && old.addres) { %>
+                            value= "<%= old.addres %>"
+                          <% } else { %>
+                            value=<%= userID.addres %>
+                          <% } %>
+                        >
+                        <br>
+                        <label for="tlf"><b>Número telefonico</b></label>
+                        <input type="tlf" name="telefono" 
+                          <% if (locals.old && old.telefono) { %>
+                            value= "<%= old.telefono %>"
+                          <% } else { %>
+                            value=<%= userID.telefono %>
+                          <% } %>
+                        >
+                        <h4>Perfil del usuario</h4>
+                        <div class="profile">
+                            <input type="radio" name="profile" value="buy" id="buy">
+                            <label for="buy">Comprador</label>
+                            <input type="radio" name="profile" value="sell" id="sell">
+                            <label for="sell">Vendedor</label>
+                        </div>
+                        <div class="row">
+                          <div class="col-25">
+                            <label for="fileImg">Agrega una imagen de perfil</label>
+                          </div>
+                          <div class="col-75">
+                            <input
+                              type="file"
+                              id="fileImg"
+                              name="fileImg"
+                            />
+                          </div>
+                        </div>
+                      </div>
+            
+                      <div class="container">
+                        <div class="row">
+                          <div class="col-25">
+                            <% if (locals.errors) { %>
+                              <% if (locals.old && old.fname) { %>
+                                <label for="fname">Nombre <i class="fa-duotone fa-asterisk asterisk"></i></label>
+                              <% } else { %>
+                                <div class="container" style="background-color: #eb5353;">
+                                  <b><%= errors[errors.findIndex(error => error.param == "fname")].msg  %></b>
+                                </div>
+                              <% } %>
+                            <% } else {%>
+                              <label for="fname">Nombre <i class="fa-duotone fa-asterisk asterisk"></i></label>
+                            <% } %>
+                          </div>
+                          <div class="col-75">
+                            <input type="text" id="fname" name="fname" 
+                              <% if (locals.old && old.fname) { %>
+                                value= "<%= old.fname %>"
+                              <% } else { %>
+                                value=<%= userID.fname %>
+                              <% } %>
+                            >
+                          </div>
+                        </div>
+            
+                        <div class="row">
+                          <div class="col-25">
+                            <% if (locals.errors) { %>
+                              <% if (locals.old && old.lname) { %>
+                                <label for="lname">Apellido <i class="fa-duotone fa-asterisk asterisk"></i></label>
+                              <% } else { %>
+                                <div class="container" style="background-color: #eb5353;">
+                                  <b><%= errors[errors.findIndex(error => error.param == "lname")].msg  %></b>
+                                </div>
+                              <% } %>
+                            <% } else {%>
+                              <label for="lname">Apellido <i class="fa-duotone fa-asterisk asterisk"></i></label>
+                            <% } %>
+                          </div>
+                          <div class="col-75">
+                            <input type="text" id="lname" name="lname" 
+                              <% if (locals.old && old.lname) { %>
+                                value= "<%= old.lname %>"
+                              <% } else { %>
+                                value=<%= userID.lname %>
+                              <% } %>
+                            >
+                          </div>
+                        </div>
+            
+                        <div class="row">
+                          <div class="col-25">
+                            <label for="country">Pais</label>
+                          </div>
+                          <div class="col-75">
+                            <select id="country" name="country">
+                              <option value="colombia">Colombia</option>
+                              <option value="venezuela">Venezuela</option>
+                              <option value="mexico">Mexico</option>
+                              <option value="argentina">Argentina</option>
+                            </select>
+                          </div>
+                        </div>
+            
+                        <div class="row">
+                          <div class="col-25">
+                            <label for="subject">Comentario</label>
+                          </div>
+                          <div class="col-75">
+                            <textarea id="subject" name="subject" 
+                            <% if (locals.old && old.subject) { %>
+                              value= "<%= old.subject %>"
+                            <% } else { %>
+                              placeholder=<%= userID.subject %>
+                            <% } %>
+                            style="height:200px"></textarea>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <input type="submit" value="Enviar cambios">
+                        </div>
+                      </div>
+                </form>
+            </article>
+        </section>
+    </main>
+    <%- include('./partials/footer')  %>
+</body>
+</html>

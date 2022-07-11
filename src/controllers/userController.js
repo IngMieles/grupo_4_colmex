@@ -77,6 +77,66 @@ const controller = {
         let userID = req.userID;
         res.render('userPerfil',{userID});
     },
+    edita: (req, res) => {
+        let userID = req.userID;
+        res.render('userEdit',{userID});
+    },
+    editar: async(req, res) => {
+        let userID = req.userID;
+        let errors = validationResult(req);
+
+        if (errors.isEmpty()){
+            if (req.file) {
+                db.UserModel.update({
+                    ...req.body,
+                    userId: parseInt(req.body.userId),
+                    precio: parseInt(req.body.precio),
+                    fileImg: req.file.filename
+                },{where:{id:req.params.id}})
+                .then(res.render('login'));
+            } else if (req.body.img) {
+                db.UserModel.update({
+                    ...req.body,
+                    userId: parseInt(req.body.userId),
+                    precio: parseInt(req.body.precio),
+                    img: req.body.img
+                },{where:{id:req.params.id}})
+                .then(res.render('login'));
+            } else if (userID.fileImg) {
+                db.UserModel.update({
+                    ...req.body,
+                    userId: parseInt(req.body.userId),
+                    precio: parseInt(req.body.precio),
+                    fileImg: userID.fileImg
+                },{where:{id:req.params.id}})
+                .then(res.render('login'));
+            } else if (userID.img) {
+                db.UserModel.update({
+                    ...req.body,
+                    userId: parseInt(req.body.userId),
+                    precio: parseInt(req.body.precio),
+                    img: userID.img
+                },{where:{id:req.params.id}})
+                .then(res.render('login'));
+            } else {
+                db.UserModel.update({
+                    ...req.body,
+                    userId: parseInt(req.body.userId),
+                    precio: parseInt(req.body.precio),
+                    fileImg: 'default-image.png'
+                },{where:{id:req.params.id}})
+                .then(res.render('login'));
+            }
+        }else{
+            try {
+                req.userID = await db.UserModel.findByPk(req.params.id)
+                let userID = req.userID;
+                res.render('userEdit',{userID,errors:errors.array(),old: req.body});
+            } catch (error) {
+                res.send(error);
+            }
+        }
+    },
 };
 
 module.exports = controller;

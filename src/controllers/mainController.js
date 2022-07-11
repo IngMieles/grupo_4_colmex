@@ -65,23 +65,27 @@ const controller = {
                     userId: parseInt(req.body.userId),
                     precio: parseInt(req.body.precio),
                     fileImg: req.file.filename
-                });
+                })
+                .then(res.redirect('/category/'+req.body.categoria));
             } else if (req.body.img) {
                 db.ProductModel.create({
                     ...req.body,
                     userId: parseInt(req.body.userId),
                     precio: parseInt(req.body.precio),
                     img: req.body.img
-                });
+                })
+                .then(res.redirect('/category/'+req.body.categoria));
             } else {
                 db.ProductModel.create({
                     ...req.body,
                     userId: parseInt(req.body.userId),
                     precio: parseInt(req.body.precio),
                     fileImg: 'default-image.png'
-                });
+                })
+                .then(res.redirect('/category/'+req.body.categoria));
             }
-            res.redirect('editado');
+            // res.redirect('editado');
+            // res.redirect('/category/'+req.body.categoria);
         }else{
             let userID = req.userID;
             res.render('crearLista',{userID,errors:errors.array(),old: req.body});
@@ -100,48 +104,43 @@ const controller = {
         let errors = validationResult(req);
 
         if (errors.isEmpty()){
-            try {
-                let productoImg = await db.ProductModel.findByPk(req.params.id)
-                if (req.file) {
-                    db.ProductModel.update({
-                        ...req.body,
-                        userId: parseInt(req.body.userId),
-                        precio: parseInt(req.body.precio),
-                        fileImg: req.file.filename
-                    },{where:{id:req.params.id}});
-                } else if (req.body.img) {
-                    db.ProductModel.update({
-                        ...req.body,
-                        userId: parseInt(req.body.userId),
-                        precio: parseInt(req.body.precio),
-                        img: req.body.img
-                    },{where:{id:req.params.id}});
-                } else if (productoImg.fileImg) {
-                    db.ProductModel.update({
-                        ...req.body,
-                        userId: parseInt(req.body.userId),
-                        precio: parseInt(req.body.precio),
-                        fileImg: productoImg.fileImg
-                    },{where:{id:req.params.id}});
-                } else if (productoImg.img) {
-                    db.ProductModel.update({
-                        ...req.body,
-                        userId: parseInt(req.body.userId),
-                        precio: parseInt(req.body.precio),
-                        img: productoImg.img
-                    },{where:{id:req.params.id}});
-                } else {
-                    db.ProductModel.update({
-                        ...req.body,
-                        userId: parseInt(req.body.userId),
-                        precio: parseInt(req.body.precio),
-                        fileImg: 'default-image.png'
-                    },{where:{id:req.params.id}});
-                }
-            } catch (error) {
-                res.send(error);
+            let productoImg = await db.ProductModel.findByPk(req.params.id)
+            if (req.file) {
+                db.ProductModel.update({
+                    ...req.body,
+                    userId: parseInt(req.body.userId),
+                    precio: parseInt(req.body.precio),
+                    fileImg: req.file.filename
+                },{where:{id:req.params.id}}).then(res.redirect('editado'));
+            } else if (req.body.img) {
+                db.ProductModel.update({
+                    ...req.body,
+                    userId: parseInt(req.body.userId),
+                    precio: parseInt(req.body.precio),
+                    img: req.body.img
+                },{where:{id:req.params.id}}).then(res.redirect('editado'));
+            } else if (productoImg.fileImg) {
+                db.ProductModel.update({
+                    ...req.body,
+                    userId: parseInt(req.body.userId),
+                    precio: parseInt(req.body.precio),
+                    fileImg: productoImg.fileImg
+                },{where:{id:req.params.id}}).then(res.redirect('editado'));
+            } else if (productoImg.img) {
+                db.ProductModel.update({
+                    ...req.body,
+                    userId: parseInt(req.body.userId),
+                    precio: parseInt(req.body.precio),
+                    img: productoImg.img
+                },{where:{id:req.params.id}}).then(res.redirect('editado'));
+            } else {
+                db.ProductModel.update({
+                    ...req.body,
+                    userId: parseInt(req.body.userId),
+                    precio: parseInt(req.body.precio),
+                    fileImg: 'default-image.png'
+                },{where:{id:req.params.id}}).then(res.redirect('editado'));
             }
-            res.redirect('editado');
         }else{
             try {
                 const productoImg = await db.ProductModel.findByPk(req.params.id)
