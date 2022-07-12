@@ -84,8 +84,6 @@ const controller = {
                 })
                 .then(res.redirect('/category/'+req.body.categoria));
             }
-            // res.redirect('editado');
-            // res.redirect('/category/'+req.body.categoria);
         }else{
             let userID = req.userID;
             res.render('crearLista',{userID,errors:errors.array(),old: req.body});
@@ -164,12 +162,33 @@ const controller = {
     },
     detalleProducto: async (req, res) => {
         try {
-            const productoImg = await db.ProductModel.findByPk(req.params.id)
-            let userID = req.userID;
-            res.render('detalleProducto', {productoImg,userID});
+            const productoImg = await db.ProductModel.findByPk(req.params.id,{
+                include: [{association:'commentProduct'}],
+                raw:true,
+                nest:true
+            })
+            db.CommentModel.findAll({
+                where:{product_id:req.params.id}
+            })
+            .then((comments)=>{
+                let userID = req.userID;
+                res.render('detalleProducto', {productoImg,userID,comments});
+            });
+                
+            // const productoImg = await db.ProductModel.findByPk(req.params.id)
+            // let userID = req.userID;
+            // res.render('detalleProducto', {productoImg,userID,comentProduct});
         } catch (error) {
             res.send(error);
         }
+    },
+    comment: (req, res) => {
+        db.CommentModel.create({
+            ...req.body,
+            userId: parseInt(req.body.userId),
+            product_id: parseInt(req.body.product_id)
+        })
+        .then(res.redirect('/detalleProducto/'+req.params.id));
     },
 };
 

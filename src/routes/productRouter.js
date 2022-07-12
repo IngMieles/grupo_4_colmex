@@ -26,6 +26,8 @@ router.delete('/:id/delete', mainController.delete);
 
 // vista del producto editado 
 router.get('/:id/editado', loginMiddleware, mainController.detalleProducto);
+// Formulario de comentarios del productos  → PUT
+router.put('/:id/comment', mainController.comment);
 
 
 module.exports = router;
