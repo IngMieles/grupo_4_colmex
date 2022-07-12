@@ -9,7 +9,7 @@ DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
    `id` INT NOT NULL AUTO_INCREMENT,
    `telefono` INT,
-   `birth_date` DATE,
+   `birth_date` VARCHAR(255),
    `addres` VARCHAR(255),
    `profile` VARCHAR(255) NOT NULL,
    `fname` VARCHAR(255) NOT NULL,
@@ -26,13 +26,13 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 insert into users (telefono, birth_date, addres, profile, fname, lname, email, country, password, subject, fileImg)
-values (4422503259, '06-11-2022', 'Pirineos', '', 'LUIS ALBERTO', 'ANGELES', 'langeles11@alumnos.uaq.mx', 'mexico', '12345678', null, 'beto.jpg');
+values (4422503259, '06-11-2022', 'Pirineos', '', 'LUIS ALBERTO', 'ANGELES', 'langeles11@alumnos.uaq.mx', 'mexico', '$2a$10$bUDQnGBwSXb80w8Ep49K1O.x/v1C4/c9OLU9J49APLuJyQLB0Kcgq', null, 'beto.jpg');
 
 insert into users (telefono, birth_date, addres, profile, fname, lname, email, country, password, subject, fileImg)
-values (3118739670, '14-08-1992', 'Bogotá', '', 'David', 'Pieters', 'davidpieters12@gmail.com', 'Colombia', '12345678', null, '1656633069900-th-1649551002.jpg');
+values (3118739670, '14-08-1992', 'Bogotá', '', 'David', 'Pieters', 'davidpieters12@gmail.com', 'Colombia', '$2a$10$bUDQnGBwSXb80w8Ep49K1O.x/v1C4/c9OLU9J49APLuJyQLB0Kcgq', null, '1656633069900-th-1649551002.jpg');
 
 insert into users (telefono, birth_date, addres, profile, fname, lname, email, country, password, subject, fileImg)
-values (11251458, '2022-06-21', 'Av. siempre vida', '', 'Pablo', 'M', 'pablo@digitalHouse.com', 'Colombia', '12345678', 'saludos', '"1655866290764-pablo.JPG');
+values (11251458, '2022-06-21', 'Av. siempre vida', '', 'Pablo', 'M', 'pablo@digitalHouse.com', 'Colombia', '$2a$10$LdK8oF0HoL38i4XoOi9VxO4VHs5PMmMF3n/eG1Zto6kyWyIDzG52e', 'saludos', '"1655866290764-pablo.JPG');
 UNLOCK TABLES;
 
 --
@@ -140,7 +140,7 @@ ALTER TABLE `famous` ADD CONSTRAINT `FK_338c27d0-e966-4ae6-935e-6a572c461af6` FO
 ALTER TABLE `offers` ADD CONSTRAINT `FK_bbe03078-351e-444b-a220-4d724504a4db` FOREIGN KEY (`userId`) REFERENCES `users`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 ALTER TABLE `products` ADD CONSTRAINT `FK_01a94b0a-acf3-478d-870f-1bc029a71749` FOREIGN KEY (`userId`) REFERENCES `users`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
--- select * from users;
+select * from users;
 -- select * from offers;
 -- select * from famous;
--- select * from products;
+-- select categoria from products;

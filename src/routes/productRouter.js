@@ -24,6 +24,8 @@ router.put('/:id/edita', validaEdita, mainController.editar);
 // Formulario de edición de productos  → DELETE
 router.delete('/:id/delete', mainController.delete);
 
+// vista del producto editado 
+router.get('/:id/editado', loginMiddleware, mainController.detalleProducto);
 
 
 module.exports = router;
