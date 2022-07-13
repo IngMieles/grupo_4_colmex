@@ -38,6 +38,14 @@ module.exports = (sequelize, dataTypes) => {
             otherKey: "product_id",
             timestamps: false
         })
+        
+        UserModel.belongsToMany(models.ProductModel,{
+            as:'userCart',
+            through: "shoppingCarts",
+            foreignKey:'userId',
+            otherKey: "product_id",
+            timestamps: false
+        })
     }
 
     return UserModel;

@@ -26,13 +26,13 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 insert into users (telefono, birth_date, addres, profile, fname, lname, email, country, password, subject, fileImg)
-values (4422503259, '06-11-2022', 'Pirineos', '', 'LUIS ALBERTO', 'ANGELES', 'langeles11@alumnos.uaq.mx', 'mexico', '$2a$10$bUDQnGBwSXb80w8Ep49K1O.x/v1C4/c9OLU9J49APLuJyQLB0Kcgq', null, 'beto.jpg');
+values (4422503259, '06-11-2022', 'Pirineos', 'sell', 'LUIS ALBERTO', 'ANGELES', 'langeles11@alumnos.uaq.mx', 'mexico', '$2a$10$bUDQnGBwSXb80w8Ep49K1O.x/v1C4/c9OLU9J49APLuJyQLB0Kcgq', null, 'beto.jpg');
 
 insert into users (telefono, birth_date, addres, profile, fname, lname, email, country, password, subject, fileImg)
-values (3118739670, '14-08-1992', 'Bogotá', '', 'David', 'Pieters', 'davidpieters12@gmail.com', 'Colombia', '$2a$10$bUDQnGBwSXb80w8Ep49K1O.x/v1C4/c9OLU9J49APLuJyQLB0Kcgq', null, '1656633069900-th-1649551002.jpg');
+values (3118739670, '14-08-1992', 'Bogotá', 'buy', 'David', 'Pieters', 'davidpieters12@gmail.com', 'Colombia', '$2a$10$bUDQnGBwSXb80w8Ep49K1O.x/v1C4/c9OLU9J49APLuJyQLB0Kcgq', null, '1656633069900-th-1649551002.jpg');
 
 insert into users (telefono, birth_date, addres, profile, fname, lname, email, country, password, subject, fileImg)
-values (11251458, '2022-06-21', 'Av. siempre vida', '', 'Pablo', 'M', 'pablo@digitalHouse.com', 'Colombia', '$2a$10$LdK8oF0HoL38i4XoOi9VxO4VHs5PMmMF3n/eG1Zto6kyWyIDzG52e', 'saludos', '"1655866290764-pablo.JPG');
+values (11251458, '2022-06-21', 'Av. siempre vida', 'sell', 'Pablo', 'M', 'pablo@digitalHouse.com', 'Colombia', '$2a$10$LdK8oF0HoL38i4XoOi9VxO4VHs5PMmMF3n/eG1Zto6kyWyIDzG52e', 'saludos', '1655866290764-pablo.JPG');
 UNLOCK TABLES;
 
 --
@@ -136,11 +136,45 @@ insert into products (name, precio, categoria, img, fileImg, description, userId
 values ('Imagen de un paisaje', 3333, 'SIN CATEGORIA', 'https://img.fotocommunity.com/atardeceres-1b2829bd-e28f-47e5-9a55-8d9988f8e184.jpg?height=1080', null,'Es un cuadro de un paisaje de 30x30 cm.',1);
 UNLOCK TABLES;
 
+--
+-- Table structure for table `comments`
+--
+DROP TABLE IF EXISTS `comments`;
+CREATE TABLE `comments` (
+   `id` INT NOT NULL AUTO_INCREMENT,
+   `comment` TEXT NOT NULL,
+   `userId` INT NOT NULL,
+   `product_id` INT NOT NULL,
+   `fileImg` TEXT,
+   PRIMARY KEY (`id`)
+);
+--
+-- Dumping data for table `comments`
+--
+insert into comments (comment, userId, product_id,fileImg)
+values ('esta muy caro', 1, 2,'beto.jpg');
+
+insert into comments (comment, userId, product_id,fileImg)
+values ('Pregunta lo que quieras del producto', 1, 3,'beto.jpg');
+
+insert into comments (comment, userId, product_id,fileImg)
+values ('Pregunta lo que quieras del producto', 1, 4,'beto.jpg');
+
+insert into comments (comment, userId, product_id,fileImg)
+values ('Pregunta lo que quieras del producto', 1, 5,'beto.jpg');
+UNLOCK TABLES;
+
+
+
 ALTER TABLE `famous` ADD CONSTRAINT `FK_338c27d0-e966-4ae6-935e-6a572c461af6` FOREIGN KEY (`userId`) REFERENCES `users`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 ALTER TABLE `offers` ADD CONSTRAINT `FK_bbe03078-351e-444b-a220-4d724504a4db` FOREIGN KEY (`userId`) REFERENCES `users`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 ALTER TABLE `products` ADD CONSTRAINT `FK_01a94b0a-acf3-478d-870f-1bc029a71749` FOREIGN KEY (`userId`) REFERENCES `users`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `comments` ADD CONSTRAINT `FK_0ecbb43d-1b9e-4216-b37a-7ae7258e39f4` FOREIGN KEY (`userId`) REFERENCES `users`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `comments` ADD CONSTRAINT `FK_a16b179a-adb3-4d0f-ab1c-51ef684f7b55` FOREIGN KEY (`product_id`) REFERENCES `products`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
-select * from users;
+
+-- select * from users;
 -- select * from offers;
 -- select * from famous;
--- select categoria from products;
+-- select * from products;
+select * from comments;

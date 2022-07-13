@@ -12,10 +12,6 @@ const controller = {
             res.send(error);
         }
     },
-    carritoCompras: (req, res) => {
-        let userID = req.userID;
-        res.render('carritoCompras',{userID});
-    },
     categorias: async (req, res) => {
         try {
             const categorias = await db.ProductModel.findAll({
@@ -174,7 +170,6 @@ const controller = {
                 let userID = req.userID;
                 res.render('detalleProducto', {productoImg,userID,comments});
             });
-                
             // const productoImg = await db.ProductModel.findByPk(req.params.id)
             // let userID = req.userID;
             // res.render('detalleProducto', {productoImg,userID,comentProduct});
@@ -189,6 +184,30 @@ const controller = {
             product_id: parseInt(req.body.product_id)
         })
         .then(res.redirect('/detalleProducto/'+req.params.id));
+    },
+    carritoCompras: async (req, res) => {
+        try{
+            let userID = req.userID;
+            const carritos = await db.UserModel.findAll({
+                include: [{association:'userCart'}],
+                raw:true,
+                nest:true
+            })
+            // const articulos = carritos.filter((element)=>{
+            //     return element.id ==userID.id;
+            // })
+            res.render('carritoCompras',{carritos,userID});
+        }catch (error) {
+            res.send(error);
+        }
+    },
+    shoppingCart: (req, res) => {
+        db.ShoppingCarModel.create({
+            ...req.body,
+            userId: parseInt(req.body.userId),
+            product_id: parseInt(req.body.product_id)
+        })
+        .then(res.redirect('/carritoCompras'));
     },
 };
 
