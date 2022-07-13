@@ -25,5 +25,28 @@ module.exports = (sequelize, dataTypes) => {
     };
 
     const UserModel = sequelize.define(alias, cols, config);
+
+    UserModel.associate = function(models){
+        // UserModel.belongsTo(models.CommentModel,{
+        //     as:'userComent',
+        //     foreignKey:'id'
+        // })
+        UserModel.belongsToMany(models.ProductModel,{
+            as:'commentProduct',
+            through: "comments",
+            foreignKey:'userId',
+            otherKey: "product_id",
+            timestamps: false
+        })
+        
+        UserModel.belongsToMany(models.ProductModel,{
+            as:'userCart',
+            through: "shoppingCarts",
+            foreignKey:'userId',
+            otherKey: "product_id",
+            timestamps: false
+        })
+    }
+
     return UserModel;
 }

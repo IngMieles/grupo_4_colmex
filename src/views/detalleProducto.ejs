@@ -22,8 +22,9 @@
                             <i class="fa-solid fa-star"></i>
                             <i class="fa-solid fa-star"></i>
                             <i class="fa-solid fa-star-half-stroke"></i>
-                        <li><p>0 opiniones</p></li></li>
-                        <% if (locals.userID) { %>
+                        <li><p><%= comments.length %>  opiniones</p></li></li>
+
+                        <% if (locals.userID && locals.userID.id == productoImg.userId) { %>
                             <li>
                                 <form action="/detalleProducto/<%= productoImg.id %>/edita" method="get">
                                     <label for="edita"></label>
@@ -32,12 +33,14 @@
                                 </form>
                             </li>
                         <% } %>
+
                         <li>Current price $ <%= productoImg.precio %></li>
                         <li>Description: <%= productoImg.description %></li>
                         <li>Categoria: <%= productoImg.categoria %></li>
                         <li>Ofertas similares</li>
-                        <% if (locals.userID) { %>
-                            <li class="button"><button>Agregar al carrito</button></li>
+
+                        <% if (locals.userID && locals.userID.id == productoImg.userId) { %>
+                            <!-- <li class="button"><button>Agregar al carrito</button></li> -->
                             <li>
                                 <form action="/detalleProducto/<%= productoImg.id %>/delete?_method=delete" method="post">
                                     <label for="eliminar"></label>
@@ -46,24 +49,49 @@
                                 </form>
                             </li>
                         <% } %>
+
+                        <% if (locals.userID && locals.userID.id != productoImg.userId) { %>
+                            <li>
+                                <form action="/shoppingCart/<%= productoImg.id %>?_method=PUT" method="post">
+                                    <label for="carrito"></label>
+                                    <input type="hidden" id="userId" name="userId" value= <%= userID.id %> >
+                                    <input type="hidden" id="product_id" name="product_id" value= <%= productoImg.id %> >
+                                    <input type="submit" value="Agregar al carrito de compras" />
+                                </form>
+                            </li>
+                        <% } %>
                     </ul>
                 </article>
             </section>
             <section>
-                <div class="comentarios">
-                    <ul>
+                <article class="comentarios">
+                    <ul class="descripcion-item">
                         <li class="comentarios"><h4>Comentarios</h4></li>
-                        <li class="comentarios">
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star-half-stroke"></i>
-                        </li>
-                        <li>NombreUsuario</li>
-                        <li class="comentarios">Comentario</li>
+                        <% if (locals.userID) { %>
+                            <li class="comentarios">
+                                <form action="/detalleProducto/<%= productoImg.id %>/comment?_method=PUT" method="post">
+                                    <label for="comment"></label>
+                                    <input type="hidden" id="userId" name="userId" value= <%= userID.id %> >
+                                    <input type="hidden" id="fileImg" name="fileImg" value= <%= userID.fileImg %> >
+                                    <input type="hidden" id="product_id" name="product_id" value= <%= productoImg.id %> >
+                                    <input type="text" id="comment" name="comment" placeholder="Agrega un comentario..." />
+                                    <br>
+                                    <br>
+                                    <input type="submit" value="Comentar" />
+                                </form>
+                            </li>
+                        <% } %>
+                        <br>
+                        <!-- <li class="comentarios">%= productoImg.commentProduct.fname %></li> -->
+                        <% for( let Comment of comments ) { %>
+                            <br>
+                            <br>
+                            <li class="comentarios">
+                                <img class="img-nav" src="/img/users/<%= Comment.fileImg %>" alt="No image">: <%=Comment.comment%> 
+                            </li>
+                        <% } %>
                     </ul>
-                </div>
+                </article>
             </section>
             <% } %>
         </main>

@@ -21,5 +21,30 @@ module.exports = (sequelize, dataTypes) => {
     };
 
     const ProductModel = sequelize.define(alias, cols, config);
+
+    // ProductModel.associate = function(models){
+    //     ProductModel.hasMany(models.CommentModel,{
+    //         as:'comment',
+    //         foreignKey:'id'
+    //     })
+    // }
+
+    ProductModel.associate = function(models){
+        ProductModel.belongsToMany(models.UserModel,{
+            as:'commentProduct',
+            through: "comments",
+            foreignKey:'product_id',
+            otherKey: "userId",
+            timestamps: false
+        })
+
+        ProductModel.belongsToMany(models.UserModel,{
+            as:'userCart',
+            through: "shoppingCarts",
+            foreignKey:'product_id',
+            otherKey: "userId",
+            timestamps: false
+        })
+    }
     return ProductModel;
 }

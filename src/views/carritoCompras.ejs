@@ -5,38 +5,24 @@
             <section>
                 <div class="comentarios">
                     <ul class="carrito">
-                        <li class="carrito-item-img"><img src="img/products/default-image.png" alt="No image"></li>
-                        <li class="carrito-item">
-                            <p>Eliminar de tu carrito de compras</p> 
-                            <button class="button1">Eliminar</button>
-
-                            <form action="/">
-                                <label for="quantity">Agrega más productos:</label>
-                                <input type="number" id="quantity" name="quantity" min="1" max="100">
-                                <!-- <input type="submit"> -->
-                            </form>
-
-                            <p>Envios rapidos. <i class="fa-solid fa-truck-fast"></i></p> 
-                            <button class="button2">Pagar</button>
-                        </li>
-                    </ul>
-                </div>
-                <div class="comentarios">
-                    <ul class="carrito">
-                        <li class="carrito-item-img"><img src="img/products/default-image.png" alt="No image"></li>
-                        <li class="carrito-item">
-                            <p>Eliminar de tu carrito de compras</p> 
-                            <button class="button1">Eliminar</button>
-
-                            <form action="/">
-                                <label for="quantity">Agrega más productos:</label>
-                                <input type="number" id="quantity" name="quantity" min="1" max="100">
-                                <!-- <input type="submit"> -->
-                            </form>
-
-                            <p>Envios rapidos. <i class="fa-solid fa-truck-fast"></i></p> 
-                            <button class="button2">Pagar</button>
-                        </li>
+                        <% for( let carrito of carritos ) { %>
+                             <% if (userID.id == carrito.id) { %>
+                                <li class="carrito-item-img"><img src="img/products/<%= carrito.userCart.fileImg %>" alt="No image"></li>
+                                <li class="carrito-item">
+                                    <p>Eliminar de tu carrito de compras</p> 
+                                    <button class="button1">Eliminar</button>
+        
+                                    <form action="/">
+                                        <label for="quantity">Agrega más productos:</label>
+                                        <input type="number" id="quantity" name="quantity" min="1" max="100">
+                                        <!-- <input type="submit"> -->
+                                    </form>
+        
+                                    <p>Envios rapidos. <i class="fa-solid fa-truck-fast"></i></p> 
+                                    <button class="button2">Pagar</button>
+                                </li>
+                             <% } %>
+                        <% } %>
                     </ul>
                 </div>
             </section>
