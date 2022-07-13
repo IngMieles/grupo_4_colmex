@@ -164,17 +164,42 @@ insert into comments (comment, userId, product_id,fileImg)
 values ('Pregunta lo que quieras del producto', 1, 5,'beto.jpg');
 UNLOCK TABLES;
 
+--
+-- Table structure for table ``shoppingCarts``
+--
+DROP TABLE IF EXISTS `shoppingCarts`;
+CREATE TABLE `shoppingCarts` (
+   `id` INT NOT NULL AUTO_INCREMENT,
+   `userId` INT NOT NULL,
+   `product_id` INT NOT NULL,
+   PRIMARY KEY (`id`)
+);
+--
+-- Dumping data for table `comments`
+--
+insert into shoppingCarts (userId, product_id)
+values (1, 2);
 
+insert into shoppingCarts (userId, product_id)
+values (1, 3);
+
+insert into shoppingCarts (userId, product_id)
+values (2, 4);
+
+insert into shoppingCarts (userId, product_id)
+values (3, 5);
+UNLOCK TABLES;
 
 ALTER TABLE `famous` ADD CONSTRAINT `FK_338c27d0-e966-4ae6-935e-6a572c461af6` FOREIGN KEY (`userId`) REFERENCES `users`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 ALTER TABLE `offers` ADD CONSTRAINT `FK_bbe03078-351e-444b-a220-4d724504a4db` FOREIGN KEY (`userId`) REFERENCES `users`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 ALTER TABLE `products` ADD CONSTRAINT `FK_01a94b0a-acf3-478d-870f-1bc029a71749` FOREIGN KEY (`userId`) REFERENCES `users`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 ALTER TABLE `comments` ADD CONSTRAINT `FK_0ecbb43d-1b9e-4216-b37a-7ae7258e39f4` FOREIGN KEY (`userId`) REFERENCES `users`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 ALTER TABLE `comments` ADD CONSTRAINT `FK_a16b179a-adb3-4d0f-ab1c-51ef684f7b55` FOREIGN KEY (`product_id`) REFERENCES `products`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
+ALTER TABLE `shoppingCarts` ADD CONSTRAINT `FK_7e3499d5-46eb-48be-a7ab-cd21ca35fbd8` FOREIGN KEY (`userId`) REFERENCES `users`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `shoppingCarts` ADD CONSTRAINT `FK_414b22d3-0d65-4daf-8dc6-65b3ea255fbf` FOREIGN KEY (`product_id`) REFERENCES `products`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- select * from users;
 -- select * from offers;
 -- select * from famous;
 -- select * from products;
-select * from comments;
+select * from shoppingCarts;
