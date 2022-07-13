@@ -443,6 +443,13 @@ footer section .nav-item i:hover{
   }
 }
 
+/* Laptop */
+@media (min-width: 1075px) {
+  main section .carrito-item-img {
+    align-self: center;
+    width: 35%;
+  }
+}
 /*Formularios*/
 
 /* Style de inputs, selectores y text area  */
