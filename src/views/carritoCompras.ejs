@@ -3,7 +3,15 @@
         <%- include('./partials/header')  %>
         <main>
             <section>
+                <h1>Carrito de compras</h1>
                 <article class="comentarios">
+                    <% if (!(carritos.find((carrito)=>{
+                        return carrito.id == userID.id;
+                    }))) { %>
+                     <h1> Todavía no tienes ningún producto agregado</h1>
+                     <p>Envios rapidos. <i class="fa-solid fa-truck-fast"></i></p>
+                    <% } %>
+
                     <ul class="carrito">
                         <% for( let carrito of carritos ) { %>
                              <% if (userID.id == carrito.id) { %>
