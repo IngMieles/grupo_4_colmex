@@ -11,11 +11,11 @@
                         <% } else { %>
                                 <img src=<%= userID.fileImg %> alt="No image">
                         <% } %>
-                        <form action="/registro/userPerfil<%= userID.id %>/delete?_method=delete" method="post">
+                        <!-- <form action="/registro/userPerfil/%= userID.id %>/delete?_method=delete" method="post">
                             <label for="eliminar"></label>
-                            <input type="hidden" id="userId" name="userId" value= <%= userID.id %> >
+                            <input type="hidden" id="userId" name="userId" value= %= userID.id %> >
                             <input type="submit" value="Elimina tú cuenta" />
-                        </form>
+                        </form> -->
                     </article>
                     <!-- Editar al usuario -->
                     <article class="producto">
