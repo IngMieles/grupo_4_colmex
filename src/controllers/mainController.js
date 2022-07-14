@@ -170,9 +170,6 @@ const controller = {
                 let userID = req.userID;
                 res.render('detalleProducto', {productoImg,userID,comments});
             });
-            // const productoImg = await db.ProductModel.findByPk(req.params.id)
-            // let userID = req.userID;
-            // res.render('detalleProducto', {productoImg,userID,comentProduct});
         } catch (error) {
             res.send(error);
         }
@@ -193,21 +190,40 @@ const controller = {
                 raw:true,
                 nest:true
             })
-            // const articulos = carritos.filter((element)=>{
-            //     return element.id ==userID.id;
-            // })
-            res.render('carritoCompras',{carritos,userID});
-        }catch (error) {
-            res.send(error);
+            const shoppingCart = await db.ShoppingCarModel.findAll({
+                where:{userId:userID.id}
+            })
+            res.render('carritoCompras',{carritos,userID,shoppingCart});
+        }catch (err) {
+            res.send(err);
         }
     },
-    shoppingCart: (req, res) => {
+    addCart: (req, res) => {
         db.ShoppingCarModel.create({
             ...req.body,
             userId: parseInt(req.body.userId),
-            product_id: parseInt(req.body.product_id)
+            product_id: parseInt(req.body.product_id),
+            quantity: parseInt(req.body.quantity)
         })
         .then(res.redirect('/carritoCompras'));
+    },
+    addNewProductCart: (req, res) => {
+        db.ShoppingCarModel.update({
+            ...req.body,
+            userId: parseInt(req.body.userId),
+            product_id: parseInt(req.body.product_id),
+            quantity: parseInt(req.body.quantity),
+        },{where:{id:req.params.id}})
+        .then(res.redirect('/carritoCompras'));
+    },
+    deleteCart: (req, res) => {
+        db.ShoppingCarModel.destroy({
+            where:{id:req.params.id}
+        })
+        .then(res.redirect('/carritoCompras'))
+        .catch((error)=> {
+            res.send(error);
+        })
     },
 };
 

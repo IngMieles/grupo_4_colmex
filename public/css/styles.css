@@ -434,7 +434,7 @@ footer section .nav-item i:hover{
 
   main section .carrito-item-img {
     align-self: center;
-    width: 25%;
+    width: 35%;
   }
 
   main section .descripcion {
@@ -444,10 +444,10 @@ footer section .nav-item i:hover{
 }
 
 /* Laptop */
-@media (min-width: 1075px) {
+@media (min-width: 922px) {
   main section .carrito-item-img {
     align-self: center;
-    width: 35%;
+    width: 40%;
   }
 }
 /*Formularios*/

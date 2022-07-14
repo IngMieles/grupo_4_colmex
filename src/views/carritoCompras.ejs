@@ -6,39 +6,48 @@
                 <h1>Carrito de compras</h1>
                 <article class="comentarios">
                     <% if (!(carritos.find((carrito)=>{
-                        return carrito.id == userID.id;
+                        return carrito.id == userID.id && carrito.userCart.id != null;
                     }))) { %>
                      <h1> Todavía no tienes ningún producto agregado</h1>
                      <p>Envios rapidos. <i class="fa-solid fa-truck-fast"></i></p>
                     <% } %>
 
                     <ul class="carrito">
+                        <% let aux = 0%>
                         <% for( let carrito of carritos ) { %>
-                             <% if (userID.id == carrito.id) { %>
-
+                            <% if (userID.id == carrito.id && carrito.userCart.id != null) { %>
                                 <% if (carrito.userCart.fileImg) { %>
                                     <li class="carrito-item-img"><img src="img/products/<%= carrito.userCart.fileImg %>" alt="No image"></li>
                                 <% } else { %>
                                     <li class="carrito-item-img"><img src="<%= carrito.userCart.img %>" alt="No image"></li>
                                 <% } %>
-        
+                                    
+                                <% let cantidad = shoppingCart.filter(cart=>{return carrito.userCart.id == cart.product_id}) %>
                                 <li class="carrito-item">
-                                    <form action="/">
-                                        <label for="quantity">Agrega más productos:</label>
-                                        <input type="number" id="quantity" name="quantity" min="1" max="100">
+                                    <form action="/addNewProductCart/<%= shoppingCart[aux].id %>/?_method=PUT" method="post">
+                                        <label for="quantity">Cantidad:</label>
+                                        <input type="hidden" id="userId" name="userId" value="<%= userID.id %>" >
+                                        <input type="hidden" id="product_id" name="product_id" value="<%= carrito.userCart.id %>" >
+                                        <input type="number" id="quantity" name="quantity" min="1" max="100" 
+                                            value="<%= cantidad[0].quantity %>">
                                         <input type="submit" value="Agregar">
                                     </form>
                                     <br>
                                     <br>
                                     <p>Envios rapidos. <i class="fa-solid fa-truck-fast"></i></p>
-
-                                    <form action="/deleteShoppingCart/%= productoImg.id %>/delete?_method=delete" method="post">
+                                    <p> </p>
+                                    
+                                    <form action="/deleteCart/<%= shoppingCart[aux].id %>/delete?_method=delete" method="post">
                                         <label for="eliminar"></label>
-                                        <input type="hidden" id="userId" name="userId" value= <%= userID.id %> >
-                                        <input type="submit" value="Eliminar" />
+                                        <input type="hidden" id="userId" name="userId" value="<%= userID.id %>" >
+                                        <input type="hidden" id="quantity" name="quantity" value="<%= shoppingCart[aux].id %>" >
+                                        <input type="submit" value="Eliminar" >
                                     </form>
+                                    <% if (aux < shoppingCart.length) { %>
+                                        <% aux ++ %>
+                                    <% } %>
                                 </li>
-                             <% } %>
+                            <% } %>
                         <% } %>
                     </ul>
                 </article>
