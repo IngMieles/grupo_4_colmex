@@ -9,7 +9,8 @@ module.exports = (sequelize, dataTypes) => {
         comment: dataTypes.TEXT,
         product_id: dataTypes.INTEGER,
         userId: dataTypes.INTEGER,
-        fileImg: dataTypes.TEXT
+        fileImg: dataTypes.TEXT,
+        fname: dataTypes.STRING
     };
 
     const config = {

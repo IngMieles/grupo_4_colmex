@@ -178,7 +178,8 @@ const controller = {
         db.CommentModel.create({
             ...req.body,
             userId: parseInt(req.body.userId),
-            product_id: parseInt(req.body.product_id)
+            product_id: parseInt(req.body.product_id),
+            fname: req.body.fname,
         })
         .then(res.redirect('/detalleProducto/'+req.params.id));
     },

@@ -34,13 +34,11 @@
                             </li>
                         <% } %>
 
-                        <li>Current price $ <%= productoImg.precio %></li>
-                        <li>Description: <%= productoImg.description %></li>
-                        <li>Categoria: <%= productoImg.categoria %></li>
-                        <li>Ofertas similares</li>
+                        <li>$ <%= productoImg.precio %></li>
+                        <li><%= productoImg.categoria %></li>
+                        <li><%= productoImg.description %></li>
 
                         <% if (locals.userID && locals.userID.id == productoImg.userId) { %>
-                            <!-- <li class="button"><button>Agregar al carrito</button></li> -->
                             <li>
                                 <form action="/detalleProducto/<%= productoImg.id %>/delete?_method=delete" method="post">
                                     <label for="eliminar"></label>
@@ -75,6 +73,7 @@
                                     <input type="hidden" id="userId" name="userId" value= <%= userID.id %> >
                                     <input type="hidden" id="fileImg" name="fileImg" value= <%= userID.fileImg %> >
                                     <input type="hidden" id="product_id" name="product_id" value= <%= productoImg.id %> >
+                                    <input type="hidden" id="fname" name="fname" value= "<%= userID.fname %>" >
                                     <input type="text" id="comment" name="comment" placeholder="Agrega un comentario..." />
                                     <br>
                                     <br>
@@ -83,12 +82,13 @@
                             </li>
                         <% } %>
                         <br>
-                        <!-- <li class="comentarios">%= productoImg.commentProduct.fname %></li> -->
                         <% for( let Comment of comments ) { %>
                             <br>
                             <br>
                             <li class="comentarios">
-                                <img class="img-nav" src="/img/users/<%= Comment.fileImg %>" alt="No image"> <%=Comment.comment%> 
+                                <img class="img-nav" src="/img/users/<%= Comment.fileImg %>" alt="No image"> 
+                                <B><%=Comment.fname%></B> <br>
+                                <%=Comment.comment%> 
                             </li>
                         <% } %>
                     </ul>
