@@ -15,15 +15,23 @@
                 <article class="descripcion">
                     <ul class="descripcion-item">
                         <li><%= productoImg.name %></li>
-                        <li class="nav-item nav-item-end"><i class="fa-regular fa-heart"></i></li>
-                        <li class="comentarios">
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star-half-stroke"></i>
-                        <li><p><%= comments.length %>  opiniones</p></li></li>
+                        <!-- <li class="nav-item nav-item-end"><i class="fa-regular fa-heart"></i></li> -->
+                        <% let stars = Allcoments.filter(element=>{return (element.product_id == productoImg.id) }) %> 
+                        <% let aux=[] %>
+                        <% for(let element of stars){ %>
+                            <% aux.push(element.star) %> 
+                        <% } %> 
 
+                        <%let mayor = aux.sort() %>
+                        <li class="comentarios"><%= mayor[mayor.length-1] %> estrellas</li>
+                        <li class="comentarios"></li>
+                        <% for (let i=0; i<mayor[mayor.length-1]; i++) { %>
+                            <i class="fa-solid fa-star estrellas"></i>
+                            <% } %>
+                        </li>
+                        
+                        <li class="comentarios"><%= comments.length %>  opiniones </li>
+                        
                         <% if (locals.userID && locals.userID.id == productoImg.userId) { %>
                             <li>
                                 <form action="/detalleProducto/<%= productoImg.id %>/edita" method="get">
@@ -32,12 +40,12 @@
                                     <input type="submit" value="Mejora el producto y editalo" />
                                 </form>
                             </li>
-                        <% } %>
+                        <% } %> <br><br>
 
                         <li>$ <%= productoImg.precio %></li>
                         <li><%= productoImg.categoria %></li>
                         <li><%= productoImg.description %></li>
-
+                        
                         <% if (locals.userID && locals.userID.id == productoImg.userId) { %>
                             <li>
                                 <form action="/detalleProducto/<%= productoImg.id %>/delete?_method=delete" method="post">
@@ -66,14 +74,39 @@
                 <article class="comentarios">
                     <ul class="descripcion-item">
                         <li class="comentarios"><h4>Comentarios</h4></li>
+                        <% if (comments.length != 0) { %>
+                            <li class="comentarios">
+                                <% let star = Allcoments.filter(element=>{return (element.star == 5 && element.product_id == productoImg.id) }) %> 
+                                <p class="">5 estrellas <%= (star.length/comments.length)*100 %> %</p>
+                                <% star = Allcoments.filter(element=>{return (element.star == 4 && element.product_id == productoImg.id) }) %> 
+                                <p class="">4 estrellas <%= (star.length/comments.length)*100 %> %</p>
+                                <% star = Allcoments.filter(element=>{return (element.star == 3 && element.product_id == productoImg.id) }) %> 
+                                <p class="">3 estrellas <%= (star.length/comments.length)*100 %> %</p>
+                                <% star = Allcoments.filter(element=>{return (element.star == 2 && element.product_id == productoImg.id) }) %> 
+                                <p class="">2 estrellas <%= (star.length/comments.length)*100 %> %</p>
+                                <% star = Allcoments.filter(element=>{return (element.star == 1 && element.product_id == productoImg.id) }) %> 
+                                <p class="">1 estrellas <%= (star.length/comments.length)*100 %> %</p>
+                                <!-- <i class="fa-solid fa-star-half-stroke"></i> -->
+                            </li>
+                        <% } %>
+                        
                         <% if (locals.userID) { %>
                             <li class="comentarios">
                                 <form action="/detalleProducto/<%= productoImg.id %>/comment?_method=PUT" method="post">
-                                    <label for="comment"></label>
+                                    <label for="comment">Califica este producto</label>
                                     <input type="hidden" id="userId" name="userId" value= <%= userID.id %> >
                                     <input type="hidden" id="fileImg" name="fileImg" value= <%= userID.fileImg %> >
                                     <input type="hidden" id="product_id" name="product_id" value= <%= productoImg.id %> >
                                     <input type="hidden" id="fname" name="fname" value= "<%= userID.fname %>" >
+
+                                    <select id="star" name="star">
+                                        <option value="1">1 estrella</option>
+                                        <option value="2">2 estrellas</option>
+                                        <option value="3">3 estrellas</option>
+                                        <option value="4">4 estrellas</option>
+                                        <option value="5">5 estrellas</option>
+                                    </select><br><br>
+
                                     <input type="text" id="comment" name="comment" placeholder="Agrega un comentario..." />
                                     <br>
                                     <br>

@@ -7,7 +7,8 @@ const controller = {
             let userID = req.userID;
             const ofertas = await db.OfferModel.findAll()
             const destacados = await db.StarProdModel.findAll()
-            res.render('index', {ofertas,destacados,userID});
+            const Allcoments = await db.CommentModel.findAll()
+            res.render('index', {ofertas,destacados,userID,Allcoments});
         } catch (error) {
             res.send(error);
         }
@@ -163,12 +164,13 @@ const controller = {
                 raw:true,
                 nest:true
             })
+            const Allcoments = await db.CommentModel.findAll()
             db.CommentModel.findAll({
                 where:{product_id:req.params.id}
             })
             .then((comments)=>{
                 let userID = req.userID;
-                res.render('detalleProducto', {productoImg,userID,comments});
+                res.render('detalleProducto', {productoImg,userID,comments,Allcoments});
             });
         } catch (error) {
             res.send(error);
@@ -180,6 +182,7 @@ const controller = {
             userId: parseInt(req.body.userId),
             product_id: parseInt(req.body.product_id),
             fname: req.body.fname,
+            star: parseInt(req.body.star)
         })
         .then(res.redirect('/detalleProducto/'+req.params.id));
     },

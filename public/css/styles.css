@@ -72,6 +72,9 @@ header #logo {
   text-decoration: none;
 }
 
+.estrellas{
+  color: #fad504;
+}
 /* header #logo .nombre {
   flex-grow: 1;
   animation-name: creciendo;
