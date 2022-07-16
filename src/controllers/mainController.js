@@ -42,8 +42,9 @@ const controller = {
                 order:[['name','ASC']],
                 limit: 100
             })
+            const Allcoments = await db.CommentModel.findAll()
             let userID = req.userID;
-            res.render('category', {newProducts,userID});
+            res.render('category', {newProducts,userID,Allcoments});
         } catch (error) {
             res.send(error);
         }

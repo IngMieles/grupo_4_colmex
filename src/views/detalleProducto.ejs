@@ -25,8 +25,18 @@
                         <%let mayor = aux.sort() %>
                         <li class="comentarios"><%= mayor[mayor.length-1] %> estrellas</li>
                         <li class="comentarios"></li>
-                        <% for (let i=0; i<mayor[mayor.length-1]; i++) { %>
-                            <i class="fa-solid fa-star estrellas"></i>
+                            <% if (aux.length == 0) { %>
+                                <% for (let i=0; i<5; i++) { %>
+                                    <i class="fa-regular fa-star estrellas"></i>
+                                <% } %>
+                            <% } %>
+                            <% for (let i=0; i<mayor[mayor.length-1]; i++) { %>
+                                <i class="fa-solid fa-star estrellas"></i>
+                            <% } %>
+                            <% if (mayor[mayor.length-1] < 5) { %>
+                                <% for (let i=mayor[mayor.length-1]; i<5; i++) { %>
+                                    <i class="fa-regular fa-star estrellas"></i>
+                                <% } %>
                             <% } %>
                         </li>
                         
@@ -104,7 +114,7 @@
                                         <option value="2">2 estrellas</option>
                                         <option value="3">3 estrellas</option>
                                         <option value="4">4 estrellas</option>
-                                        <option value="5">5 estrellas</option>
+                                        <option value="5">5 estrella</option>
                                     </select><br><br>
 
                                     <input type="text" id="comment" name="comment" placeholder="Agrega un comentario..." />
@@ -120,7 +130,17 @@
                             <br>
                             <li class="comentarios">
                                 <img class="img-nav" src="/img/users/<%= Comment.fileImg %>" alt="No image"> 
-                                <B><%=Comment.fname%></B> <br>
+                                <B><%=Comment.fname%></B> 
+                                
+                                <% for (let i=0; i<Comment.star; i++) { %>
+                                    <i class="fa-solid fa-star estrellas"></i>
+                                <% } %>
+                                <% if (Comment.star < 5) { %>
+                                    <% for (let i=Comment.star; i<5; i++) { %>
+                                        <i class="fa-regular fa-star estrellas"></i>
+                                    <% } %>
+                                <% } %>
+                                <br>
                                 <%=Comment.comment%> 
                             </li>
                         <% } %>
