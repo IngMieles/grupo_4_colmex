@@ -146,22 +146,24 @@ CREATE TABLE `comments` (
    `userId` INT NOT NULL,
    `product_id` INT NOT NULL,
    `fileImg` TEXT,
+   `fname` VARCHAR(255) NOT NULL,
+   `star` INT NOT NULL,
    PRIMARY KEY (`id`)
 );
 --
 -- Dumping data for table `comments`
 --
-insert into comments (comment, userId, product_id,fileImg)
-values ('esta muy caro', 1, 2,'beto.jpg');
+insert into comments (comment, userId, product_id,fileImg,fname,star)
+values ('esta muy caro', 1, 2,'beto.jpg','LUIS ALBERTO',5);
 
-insert into comments (comment, userId, product_id,fileImg)
-values ('Pregunta lo que quieras del producto', 1, 3,'beto.jpg');
+insert into comments (comment, userId, product_id,fileImg,fname,star)
+values ('Pregunta lo que quieras del producto', 1, 3,'beto.jpg','LUIS ALBERTO',4);
 
-insert into comments (comment, userId, product_id,fileImg)
-values ('Pregunta lo que quieras del producto', 1, 4,'beto.jpg');
+insert into comments (comment, userId, product_id,fileImg,fname,star)
+values ('Sigue disponible?', 2, 4,'1656633069900-th-1649551002.jpg','David',3);
 
-insert into comments (comment, userId, product_id,fileImg)
-values ('Pregunta lo que quieras del producto', 1, 5,'beto.jpg');
+insert into comments (comment, userId, product_id,fileImg,fname,star)
+values ('Lo tienes en color blanco?', 3, 6,'1655866290764-pablo.JPG','Pablo',2);
 UNLOCK TABLES;
 
 --
@@ -201,6 +203,7 @@ ALTER TABLE `shoppingCarts` ADD CONSTRAINT `FK_414b22d3-0d65-4daf-8dc6-65b3ea255
 
 -- select * from users;
 -- select * from offers;
--- select * from famous;
+select * from famous;
 -- select * from products;
-select * from shoppingCarts;
+-- select * from shoppingCarts;
+select * from comments;

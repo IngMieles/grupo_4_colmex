@@ -29,5 +29,7 @@ router.get('/:id/editado', loginMiddleware, mainController.detalleProducto);
 // Formulario de comentarios del productos  → PUT
 router.put('/:id/comment', mainController.comment);
 
+// Formulario de edición a la vista 
+router.put('/save/:id', loginMiddleware, mainController.save);
 
 module.exports = router;

@@ -11,10 +11,40 @@
                     <% } else { %>
                             <img src=<%= productoImg.img %> alt="No image">
                     <% } %>
+                    <% if (locals.userID && locals.userID.id == productoImg.userId) { %>
+                        <!-- <li> -->
+                        <form action="/detalleProducto/save/<%= productoImg.id %>?_method=PUT" method="post">
+                            <label for="save">Agrega un descuento</label>
+                            <input type="hidden" id="userId" name="userId" value= <%= userID.id %> >
+                            <input type="hidden" id="name" name="name" value= <%= productoImg.name %> >
+                            <input type="hidden" id="precio" name="precio" value= <%= productoImg.precio %> >
+                            <input type="hidden" id="categoria" name="categoria" value= <%= productoImg.categoria %> >
+                            <input type="hidden" id="img" name="img" value= <%= productoImg.img %> >
+                            <input type="hidden" id="fileImg" name="fileImg" value= <%= productoImg.fileImg %> >
+                            <input type="hidden" id="description" name="description" value= <%= productoImg.description %> >
+
+                            <select id="save_product" name="save_product">
+                                <option value="5">5 %</option>
+                                <option value="10">10 %</option>
+                                <option value="15">15 %</option>
+                                <option value="20">20 %</option>
+                                <option value="25">25 %</option>
+                                <option value="30">30 %</option>
+                                <option value="35">35 %</option>
+                                <option value="40">40 %</option>
+                                <option value="45">45 %</option>
+                                <option value="50">50 %</option>
+                            </select><br><br>
+
+                            <input type="submit" value="Descuento" />
+                        </form>
+                        <!-- </li> -->
+                    <% } %> <br>
                 </article>
                 <article class="descripcion">
                     <ul class="descripcion-item">
                         <li><%= productoImg.name %></li>
+                        <li><%= productoImg.categoria %></li>
                         <!-- <li class="nav-item nav-item-end"><i class="fa-regular fa-heart"></i></li> -->
                         <% let stars = Allcoments.filter(element=>{return (element.product_id == productoImg.id) }) %> 
                         <% let aux=[] %>
@@ -50,10 +80,16 @@
                                     <input type="submit" value="Mejora el producto y editalo" />
                                 </form>
                             </li>
-                        <% } %> <br><br>
+                        <% } %> <br>
 
-                        <li>$ <%= productoImg.precio %></li>
-                        <li><%= productoImg.categoria %></li>
+                        <% if (Offert) { %>
+                            <li>$ <%= productoImg.precio %> Antes</li>
+                            <li class="oferta"><B> Ahorra el <%= Offert.save_product %> % de descuento </B></li>
+                            <li>$ <%= productoImg.precio-(productoImg.precio*(Offert.save_product/100)) %> Ahora</li>
+                        <% }else{ %>
+                            <li>$ <%= productoImg.precio %></li>
+                        <% } %>
+
                         <li><%= productoImg.description %></li>
                         
                         <% if (locals.userID && locals.userID.id == productoImg.userId) { %>

@@ -75,6 +75,10 @@ header #logo {
 .estrellas{
   color: #fad504;
 }
+
+.oferta{
+  color: #36ae7c;
+}
 /* header #logo .nombre {
   flex-grow: 1;
   animation-name: creciendo;

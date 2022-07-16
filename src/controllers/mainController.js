@@ -166,12 +166,13 @@ const controller = {
                 nest:true
             })
             const Allcoments = await db.CommentModel.findAll()
+            const Offert = await db.OfferModel.findOne({where:{product_id:req.params.id}})
             db.CommentModel.findAll({
                 where:{product_id:req.params.id}
             })
             .then((comments)=>{
                 let userID = req.userID;
-                res.render('detalleProducto', {productoImg,userID,comments,Allcoments});
+                res.render('detalleProducto', {productoImg,userID,comments,Allcoments,Offert});
             });
         } catch (error) {
             res.send(error);
@@ -229,6 +230,31 @@ const controller = {
         .catch((error)=> {
             res.send(error);
         })
+    },
+    save: async (req, res) => {
+        try {
+            const Offert = await db.OfferModel.findOne({where:{product_id:req.params.id}})
+            if(Offert){
+                db.OfferModel.update({
+                    ...req.body,
+                    userId: parseInt(req.body.userId),
+                    product_id: req.params.id,
+                    precio: parseInt(req.body.precio),
+                    save_product: parseInt(req.body.save_product),
+                },{where:{product_id:req.params.id}})
+                .then(res.redirect('/detalleProducto/'+req.params.id));
+            }
+            db.OfferModel.create({
+                ...req.body,
+                userId: parseInt(req.body.userId),
+                product_id: req.params.id,
+                precio: parseInt(req.body.precio),
+                save_product: parseInt(req.body.save_product),
+            })
+            .then(res.redirect('/detalleProducto/'+req.params.id));
+        } catch (error) {
+            res.send(error);
+        }
     },
 };
 

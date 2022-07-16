@@ -42,7 +42,9 @@
                             </li>
 
                             <li class="nav-item descripcion"><%= producto.name %></li>
-                            <li class="nav-item descripcion">$ <%= producto.precio %></li>
+                            <li class="nav-item descripcion">$ <%= producto.precio %> Antes</li>
+                            <li class="nav-item descripcion oferta"><B> Ahorra el <%= producto.save_product %> % de descuento </B></li>
+                            <li class="nav-item descripcion">$ <%= producto.precio-(producto.precio*(producto.save_product/100)) %> Ahora</li>
                             <li class="nav-item descripcion"><%= producto.description %></li>
                         </ul>
                     </article>
@@ -88,7 +90,7 @@
                             </li>
 
                             <li class="nav-item descripcion"><%= producto.name %></li>
-                            <li class="nav-item descripcion">$ <%= producto.precio %></li>
+                            <li class="nav-item descripcion">Precio de lista $ <%= producto.precio %></li>
                             <li class="nav-item descripcion"><%= producto.description %></li>
                         </ul>
                     </article>
