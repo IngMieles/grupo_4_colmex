@@ -35,10 +35,19 @@ const validaLogin = [
 ];
 
 router.get('/', mainController.index);
+// Vista de shopping cart
 router.get('/carritoCompras', loginMiddleware, mainController.carritoCompras);
+// Formulario de shopping cart del productos  → PUT
+router.put('/addCart/:id', loginMiddleware, mainController.addCart);
+// Formulario de shopping cart del productos  → PUT
+router.put('/addNewProductCart/:id', loginMiddleware, mainController.addNewProductCart);
+// Formulario de edición de productos  → DELETE
+router.delete('/deleteCart/:id/delete', loginMiddleware, mainController.deleteCart);
 
-// Listado de productos
+// Listado de las categorias
 router.get('/categorias', mainController.categorias);
+// Listado de los productos en una categoria
+router.get('/category/:categoria', mainController.category);
 
 // Formulario de creación de productos
 router.get('/crearLista', loginMiddleware, mainController.crearLista);
@@ -50,5 +59,6 @@ router.get('/login', userController.login);
 router.post('/login', validaLogin, userController.usuarioLogin);
 
 router.get('/logOut', userController.logOut);
+
 
 module.exports = router;

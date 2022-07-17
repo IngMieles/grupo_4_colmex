@@ -7,19 +7,45 @@
                 <% for( let producto of ofertas ) { %>
                     <article>
                         <ul class="nav">
-                            <li class="nav-item nav-item-end"><i class="fa-regular fa-heart"></i></li>
+                            <!-- <li class="nav-item nav-item-end"><i class="fa-regular fa-heart"></i></li> -->
                             <% if (producto.fileImg) { %>
-                                <li class="nav-item nav-item-end"><a href="detalleProducto/<%= producto.id %>">
+                                <li class="nav-item nav-item-end"><a href="detalleProducto/<%= producto.product_id %>">
                                     <img src="/img/products/<%= producto.fileImg %>" alt="No image"></a>
                                 </li>
                             <% } else { %>
-                                <li class="nav-item nav-item-end"><a href="detalleProducto/<%= producto.id %>">
+                                <li class="nav-item nav-item-end"><a href="detalleProducto/<%= producto.product_id %>">
                                     <img src="/img/products/<%= producto.img %>" alt="No image"></a>
                                 </li>
                             <% } %>
+
+                            <% let stars = Allcoments.filter(element=>{return (element.product_id == producto.product_id) }) %> 
+                            <% let aux=[] %>
+                            <% for(let element of stars){ %>
+                                <% aux.push(element.star) %> 
+                            <% } %> 
+
+                            <%let mayor = aux.sort() %>
+                            <li class="nav-item descripcion">
+                                <% if (aux.length == 0) { %>
+                                    <% for (let i=0; i<5; i++) { %>
+                                        <i class="fa-regular fa-star estrellas"></i>
+                                    <% } %>
+                                <% } %>
+                                <% for (let i=0; i<mayor[mayor.length-1]; i++) { %>
+                                    <i class="fa-solid fa-star estrellas"></i>
+                                <% } %>
+                                <% if (mayor[mayor.length-1] < 5) { %>
+                                    <% for (let i=mayor[mayor.length-1]; i<5; i++) { %>
+                                        <i class="fa-regular fa-star estrellas"></i>
+                                    <% } %>
+                                <% } %>
+                            </li>
+
                             <li class="nav-item descripcion"><%= producto.name %></li>
-                            <li class="nav-item descripcion">Current price: <%= producto.precio %></li>
-                            <li class="nav-item descripcion">Description: <%= producto.description %></li>
+                            <li class="nav-item descripcion">$ <%= producto.precio %> Antes</li>
+                            <li class="nav-item descripcion oferta"><B> Ahorra el <%= producto.save_product %> % de descuento </B></li>
+                            <li class="nav-item descripcion">$ <%= producto.precio-(producto.precio*(producto.save_product/100)) %> Ahora</li>
+                            <li class="nav-item descripcion"><%= producto.description %></li>
                         </ul>
                     </article>
                 <% } %>
@@ -29,19 +55,43 @@
                 <% for( let producto of destacados ) { %>
                     <article>
                         <ul class="nav">
-                            <li class="nav-item nav-item-end"><i class="fa-regular fa-heart"></i></li>
-                            <% if (producto.fileImg) { %>
-                                <li class="nav-item nav-item-end"><a href="detalleProducto/<%= producto.id %>">
-                                    <img src="/img/products/<%= producto.fileImg %>" alt="No image"></a>
+                            <!-- <li class="nav-item nav-item-end"><i class="fa-regular fa-heart"></i></li> -->
+                            <% if (producto.fileImgP) { %>
+                                <li class="nav-item nav-item-end"><a href="detalleProducto/<%= producto.product_id %>">
+                                    <img src="/img/products/<%= producto.fileImgP %>" alt="No image"></a>
                                 </li>
                             <% } else { %>
-                                <li class="nav-item nav-item-end"><a href="detalleProducto/<%= producto.id %>">
-                                    <img src="/img/products/<%= producto.img %>" alt="No image"></a>
+                                <li class="nav-item nav-item-end"><a href="detalleProducto/<%= producto.product_id %>">
+                                    <img src=<%= producto.img %> alt="No image"></a>
                                 </li>
                             <% } %>
+                            
+                            <% let stars = Allcoments.filter(element=>{return (element.product_id == producto.product_id) }) %> 
+                            <% let aux=[] %>
+                            <% for(let element of stars){ %>
+                                <% aux.push(element.star) %> 
+                            <% } %> 
+
+                            <%let mayor = aux.sort() %>
+                            <li class="nav-item descripcion">
+                                <% if (aux.length == 0) { %>
+                                    <% for (let i=0; i<5; i++) { %>
+                                        <i class="fa-regular fa-star estrellas"></i>
+                                    <% } %>
+                                <% } %>
+                                <% for (let i=0; i<mayor[mayor.length-1]; i++) { %>
+                                    <i class="fa-solid fa-star estrellas"></i>
+                                <% } %>
+                                <% if (mayor[mayor.length-1] < 5) { %>
+                                    <% for (let i=mayor[mayor.length-1]; i<5; i++) { %>
+                                        <i class="fa-regular fa-star estrellas"></i>
+                                    <% } %>
+                                <% } %>
+                            </li>
+
                             <li class="nav-item descripcion"><%= producto.name %></li>
-                            <li class="nav-item descripcion">Current price: <%= producto.precio %></li>
-                            <li class="nav-item descripcion">Description: <%= producto.description %></li>
+                            <li class="nav-item descripcion">Precio de lista $ <%= producto.precio %></li>
+                            <li class="nav-item descripcion"><%= producto.description %></li>
                         </ul>
                     </article>
                 <% } %>

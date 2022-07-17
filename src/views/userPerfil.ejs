@@ -11,13 +11,13 @@
                         <% } else { %>
                                 <img src=<%= userID.fileImg %> alt="No image">
                         <% } %>
-                        <form action="/registro/userPerfil<%= userID.id %>/delete?_method=delete" method="post">
+                        <!-- <form action="/registro/userPerfil/%= userID.id %>/delete?_method=delete" method="post">
                             <label for="eliminar"></label>
-                            <input type="hidden" id="userId" name="userId" value= <%= userID.id %> >
-                            <input type="submit" value="Elimina al usuario" />
-                        </form>
+                            <input type="hidden" id="userId" name="userId" value= %= userID.id %> >
+                            <input type="submit" value="Elimina tú cuenta" />
+                        </form> -->
                     </article>
-                    <!-- <article class="descripcion"> -->
+                    <!-- Editar al usuario -->
                     <article class="producto">
                         <ul class="descripcion-item">
                             <li><%= userID.fname %></li>
@@ -30,9 +30,9 @@
                             <li> <%= userID.country %></li>
                             <li> <%= userID.subject %></li>
                             <li>
-                                <form action="/registro/userPerfil<%= userID.id %>/edita" method="get">
+                                <form action="/registro/userPerfil/<%= userID.id %>/edita" method="get">
                                     <label for="edita"></label>
-                                    <input type="hidden" id="userId" name="userId" value= <%= userID.id %> >
+                                    <!-- <input type="hidden" id="userId" name="userId" value= %= userID.id %> > -->
                                     <input type="submit" value="Edita tú información" />
                                 </form>
                             </li>
