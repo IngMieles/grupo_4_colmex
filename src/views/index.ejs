@@ -56,13 +56,13 @@
                     <article>
                         <ul class="nav">
                             <!-- <li class="nav-item nav-item-end"><i class="fa-regular fa-heart"></i></li> -->
-                            <% if (producto.fileImg) { %>
+                            <% if (producto.fileImgP) { %>
                                 <li class="nav-item nav-item-end"><a href="detalleProducto/<%= producto.product_id %>">
-                                    <img src="/img/products/<%= producto.fileImg %>" alt="No image"></a>
+                                    <img src="/img/products/<%= producto.fileImgP %>" alt="No image"></a>
                                 </li>
                             <% } else { %>
                                 <li class="nav-item nav-item-end"><a href="detalleProducto/<%= producto.product_id %>">
-                                    <img src="/img/products/<%= producto.img %>" alt="No image"></a>
+                                    <img src=<%= producto.img %> alt="No image"></a>
                                 </li>
                             <% } %>
                             

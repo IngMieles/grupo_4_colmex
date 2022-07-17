@@ -179,6 +179,16 @@ const controller = {
         }
     },
     comment: (req, res) => {
+        if(req.body.star == 5){
+            db.StarProdModel.create({
+                ...req.body,
+                userId: parseInt(req.body.userId),
+                product_id: req.params.id,
+                precio: parseInt(req.body.precio),
+                save_product: parseInt(req.body.save_product),
+                star: parseInt(req.body.star)
+            })
+        }
         db.CommentModel.create({
             ...req.body,
             userId: parseInt(req.body.userId),

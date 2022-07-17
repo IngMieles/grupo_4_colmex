@@ -140,6 +140,12 @@
                             <li class="comentarios">
                                 <form action="/detalleProducto/<%= productoImg.id %>/comment?_method=PUT" method="post">
                                     <label for="comment">Califica este producto</label>
+                                    <input type="hidden" id="name" name="name" value= <%= productoImg.name %> >
+                                    <input type="hidden" id="precio" name="precio" value= <%= productoImg.precio %> >
+                                    <input type="hidden" id="description" name="description" value= <%= productoImg.description %> >
+                                    <input type="hidden" id="img" name="img" value= <%= productoImg.img %> >
+                                    <input type="hidden" id="fileImgP" name="fileImgP" value= <%= productoImg.fileImg %> >
+
                                     <input type="hidden" id="userId" name="userId" value= <%= userID.id %> >
                                     <input type="hidden" id="fileImg" name="fileImg" value= <%= userID.fileImg %> >
                                     <input type="hidden" id="product_id" name="product_id" value= <%= productoImg.id %> >

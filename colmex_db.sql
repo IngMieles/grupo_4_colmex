@@ -76,17 +76,18 @@ CREATE TABLE `offers` (
    `description` VARCHAR(255),
    `userId` INT NOT NULL,
    `product_id` INT NOT NULL,
+   `save_product` INT NOT NULL,
    PRIMARY KEY (`id`)
 );
 
 --
 -- Dumping data for table `offers`
 --
-INSERT INTO offers (name,precio,categoria,img,fileImg,description,userId,product_id)
-values ("Libro fisico usado",1200,'Lectura','','fileImg-Libro.jpg','Libro para aprender a programar una fpga',1,3);
+INSERT INTO offers (name,precio,categoria,img,fileImg,description,userId,product_id,save_product)
+values ("Libro fisico usado",1200,'Lectura','','fileImg-Libro.jpg','Libro para aprender a programar una fpga',1,3,25);
 
-insert into offers (name,precio,categoria,img,fileImg,description,userId,product_id)
-values ('macbook', 400, 'Computadoras', '', 'fileImg-macbook.jpg','descripción no disponible',1,4);
+INSERT INTO offers (name,precio,categoria,img,fileImg,description,userId,product_id,save_product)
+values ('macbook', 400, 'Computadoras', '', 'fileImg-macbook.jpg','descripción no disponible',1,4,15);
 UNLOCK TABLES;
 
 --
@@ -163,7 +164,7 @@ insert into comments (comment, userId, product_id,fileImg,fname,star)
 values ('Sigue disponible?', 2, 4,'1656633069900-th-1649551002.jpg','David',3);
 
 insert into comments (comment, userId, product_id,fileImg,fname,star)
-values ('Lo tienes en color blanco?', 3, 6,'1655866290764-pablo.JPG','Pablo',2);
+values ('Lo tienes en color blanco?', 3, 6,'1655866290764-pablo.JPG','Pablo',5);
 UNLOCK TABLES;
 
 --
@@ -202,8 +203,8 @@ ALTER TABLE `shoppingCarts` ADD CONSTRAINT `FK_7e3499d5-46eb-48be-a7ab-cd21ca35f
 ALTER TABLE `shoppingCarts` ADD CONSTRAINT `FK_414b22d3-0d65-4daf-8dc6-65b3ea255fbf` FOREIGN KEY (`product_id`) REFERENCES `products`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- select * from users;
--- select * from offers;
-select * from famous;
+select * from offers;
+-- select * from famous;
 -- select * from products;
 -- select * from shoppingCarts;
-select * from comments;
+-- select * from comments;
