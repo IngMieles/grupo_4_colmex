@@ -7,7 +7,8 @@ const controller = {
             let userID = req.userID;
             const ofertas = await db.OfferModel.findAll()
             const destacados = await db.StarProdModel.findAll()
-            res.render('index', {ofertas,destacados,userID});
+            const Allcoments = await db.CommentModel.findAll()
+            res.render('index', {ofertas,destacados,userID,Allcoments});
         } catch (error) {
             res.send(error);
         }
@@ -41,8 +42,9 @@ const controller = {
                 order:[['name','ASC']],
                 limit: 100
             })
+            const Allcoments = await db.CommentModel.findAll()
             let userID = req.userID;
-            res.render('category', {newProducts,userID});
+            res.render('category', {newProducts,userID,Allcoments});
         } catch (error) {
             res.send(error);
         }
@@ -163,25 +165,36 @@ const controller = {
                 raw:true,
                 nest:true
             })
+            const Allcoments = await db.CommentModel.findAll()
+            const Offert = await db.OfferModel.findOne({where:{product_id:req.params.id}})
             db.CommentModel.findAll({
                 where:{product_id:req.params.id}
             })
             .then((comments)=>{
                 let userID = req.userID;
-                res.render('detalleProducto', {productoImg,userID,comments});
+                res.render('detalleProducto', {productoImg,userID,comments,Allcoments,Offert});
             });
-            // const productoImg = await db.ProductModel.findByPk(req.params.id)
-            // let userID = req.userID;
-            // res.render('detalleProducto', {productoImg,userID,comentProduct});
         } catch (error) {
             res.send(error);
         }
     },
     comment: (req, res) => {
+        if(req.body.star == 5){
+            db.StarProdModel.create({
+                ...req.body,
+                userId: parseInt(req.body.userId),
+                product_id: req.params.id,
+                precio: parseInt(req.body.precio),
+                save_product: parseInt(req.body.save_product),
+                star: parseInt(req.body.star)
+            })
+        }
         db.CommentModel.create({
             ...req.body,
             userId: parseInt(req.body.userId),
-            product_id: parseInt(req.body.product_id)
+            product_id: parseInt(req.body.product_id),
+            fname: req.body.fname,
+            star: parseInt(req.body.star)
         })
         .then(res.redirect('/detalleProducto/'+req.params.id));
     },
@@ -193,21 +206,65 @@ const controller = {
                 raw:true,
                 nest:true
             })
-            // const articulos = carritos.filter((element)=>{
-            //     return element.id ==userID.id;
-            // })
-            res.render('carritoCompras',{carritos,userID});
-        }catch (error) {
-            res.send(error);
+            const shoppingCart = await db.ShoppingCarModel.findAll({
+                where:{userId:userID.id}
+            })
+            res.render('carritoCompras',{carritos,userID,shoppingCart});
+        }catch (err) {
+            res.send(err);
         }
     },
-    shoppingCart: (req, res) => {
+    addCart: (req, res) => {
         db.ShoppingCarModel.create({
             ...req.body,
             userId: parseInt(req.body.userId),
-            product_id: parseInt(req.body.product_id)
+            product_id: parseInt(req.body.product_id),
+            quantity: parseInt(req.body.quantity)
         })
         .then(res.redirect('/carritoCompras'));
+    },
+    addNewProductCart: (req, res) => {
+        db.ShoppingCarModel.update({
+            ...req.body,
+            userId: parseInt(req.body.userId),
+            product_id: parseInt(req.body.product_id),
+            quantity: parseInt(req.body.quantity),
+        },{where:{id:req.params.id}})
+        .then(res.redirect('/carritoCompras'));
+    },
+    deleteCart: (req, res) => {
+        db.ShoppingCarModel.destroy({
+            where:{id:req.params.id}
+        })
+        .then(res.redirect('/carritoCompras'))
+        .catch((error)=> {
+            res.send(error);
+        })
+    },
+    save: async (req, res) => {
+        try {
+            const Offert = await db.OfferModel.findOne({where:{product_id:req.params.id}})
+            if(Offert){
+                db.OfferModel.update({
+                    ...req.body,
+                    userId: parseInt(req.body.userId),
+                    product_id: req.params.id,
+                    precio: parseInt(req.body.precio),
+                    save_product: parseInt(req.body.save_product),
+                },{where:{product_id:req.params.id}})
+                .then(res.redirect('/detalleProducto/'+req.params.id));
+            }
+            db.OfferModel.create({
+                ...req.body,
+                userId: parseInt(req.body.userId),
+                product_id: req.params.id,
+                precio: parseInt(req.body.precio),
+                save_product: parseInt(req.body.save_product),
+            })
+            .then(res.redirect('/detalleProducto/'+req.params.id));
+        } catch (error) {
+            res.send(error);
+        }
     },
 };
 

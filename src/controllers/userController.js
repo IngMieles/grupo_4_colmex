@@ -67,7 +67,7 @@ const controller = {
                     fileImg: 'default-user.jpg',
                 });
             }
-            res.render('login');
+            res.render('login',{errorLog:[{msg:"Ya estás registrado. Ingresa!!!"}]});
         }else{
             res.render('registro',{errors:errors.array(),old: req.body});
         }

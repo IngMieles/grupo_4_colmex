@@ -45,21 +45,22 @@ CREATE TABLE `famous` (
    `precio` FLOAT NOT NULL,
    `categoria` VARCHAR(255) NOT NULL,
    `img` TEXT,
-   `fileImg` TEXT,
+   `fileImgP` TEXT,
    `description` VARCHAR(255),
    `userId` INT NOT NULL,
    `product_id` INT NOT NULL,
+   `star` INT NOT NULL,
    PRIMARY KEY (`id`)
 );
 
 --
 -- Dumping data for table `famous`
 --
-INSERT INTO famous (name,precio,categoria,img,fileImg,description,userId,product_id)
-values ('FPGA-Board',4499,'Electrónica','','fileImg-fpgaBoard.jpg','Descripción: Tarjeta de desarrollo FPGA disponible para ser programada en VHDL y Verilog',1,2);
+INSERT INTO famous (name,precio,categoria,img,fileImgP,description,userId,product_id,star)
+values ('FPGA-Board',4499,'Electrónica','','fileImg-fpgaBoard.jpg','Descripción: Tarjeta de desarrollo FPGA disponible para ser programada en VHDL y Verilog',1,2,5);
 
-insert into famous (name,precio,categoria,img,fileImg,description,userId,product_id)
-values ('tv-samsung-smart', 600, 'Entretenimiento', '', 'fileImg-tv-samsung-smart.jpg','descripción no disponible',1,6);
+insert into famous (name,precio,categoria,img,fileImgP,description,userId,product_id,star)
+values ('tv-samsung-smart', 600, 'Entretenimiento', '', 'fileImg-tv-samsung-smart.jpg','descripción no disponible',1,6,5);
 UNLOCK TABLES;
 
 --
@@ -76,17 +77,18 @@ CREATE TABLE `offers` (
    `description` VARCHAR(255),
    `userId` INT NOT NULL,
    `product_id` INT NOT NULL,
+   `save_product` INT NOT NULL,
    PRIMARY KEY (`id`)
 );
 
 --
 -- Dumping data for table `offers`
 --
-INSERT INTO offers (name,precio,categoria,img,fileImg,description,userId,product_id)
-values ("Libro fisico usado",1200,'Lectura','','fileImg-Libro.jpg','Libro para aprender a programar una fpga',1,3);
+INSERT INTO offers (name,precio,categoria,img,fileImg,description,userId,product_id,save_product)
+values ("Libro fisico usado",1200,'Lectura','','fileImg-Libro.jpg','Libro para aprender a programar una fpga',1,3,25);
 
-insert into offers (name,precio,categoria,img,fileImg,description,userId,product_id)
-values ('macbook', 400, 'Computadoras', '', 'fileImg-macbook.jpg','descripción no disponible',1,4);
+INSERT INTO offers (name,precio,categoria,img,fileImg,description,userId,product_id,save_product)
+values ('macbook', 400, 'Computadoras', '', 'fileImg-macbook.jpg','descripción no disponible',1,4,15);
 UNLOCK TABLES;
 
 --
@@ -127,10 +129,10 @@ insert into products (name, precio, categoria, img, fileImg, description, userId
 values ('tv-samsung-smart', 600, 'Entretenimiento', null, 'fileImg-tv-samsung-smart.jpg','descripción no disponible',1);
 
 insert into products (name, precio, categoria, img, fileImg, description, userId)
-values ('Bicicleta roja', 1250, 'Deportes', 'https://ciclo-mania.com/wp-content/uploads/2019/11/Bicicleta-de-carretera-WRC-Volcano-disc-105.jpeg', null,'Bicicleta de alto rendimiento',1);
+values ('Bicicleta roja', 1250, 'Deportes', 'https://ciclo-mania.com/wp-content/uploads/2019/11/Bicicleta-de-carretera-WRC-Volcano-disc-105.jpeg', null,'Bicicleta de alto rendimiento',2);
 
 insert into products (name, precio, categoria, img, fileImg, description, userId)
-values ('Mouse Inalámbrico para Notebook, PC, computadora', 15, 'Computo', 'https://www.quierofertas.com/media/catalog/product/m/o/mouse4_1_3_1_1_1.jpg', null,'Mouse Inalámbrico para Notebook',1);
+values ('Mouse Inalámbrico para Notebook, PC, computadora', 15, 'Computo', 'https://www.quierofertas.com/media/catalog/product/m/o/mouse4_1_3_1_1_1.jpg', null,'Mouse Inalámbrico para Notebook',3);
 
 insert into products (name, precio, categoria, img, fileImg, description, userId)
 values ('Imagen de un paisaje', 3333, 'SIN CATEGORIA', 'https://img.fotocommunity.com/atardeceres-1b2829bd-e28f-47e5-9a55-8d9988f8e184.jpg?height=1080', null,'Es un cuadro de un paisaje de 30x30 cm.',1);
@@ -146,22 +148,24 @@ CREATE TABLE `comments` (
    `userId` INT NOT NULL,
    `product_id` INT NOT NULL,
    `fileImg` TEXT,
+   `fname` VARCHAR(255) NOT NULL,
+   `star` INT NOT NULL,
    PRIMARY KEY (`id`)
 );
 --
 -- Dumping data for table `comments`
 --
-insert into comments (comment, userId, product_id,fileImg)
-values ('esta muy caro', 1, 2,'beto.jpg');
+insert into comments (comment, userId, product_id,fileImg,fname,star)
+values ('esta muy caro', 1, 2,'beto.jpg','LUIS ALBERTO',5);
 
-insert into comments (comment, userId, product_id,fileImg)
-values ('Pregunta lo que quieras del producto', 1, 3,'beto.jpg');
+insert into comments (comment, userId, product_id,fileImg,fname,star)
+values ('Pregunta lo que quieras del producto', 1, 3,'beto.jpg','LUIS ALBERTO',4);
 
-insert into comments (comment, userId, product_id,fileImg)
-values ('Pregunta lo que quieras del producto', 1, 4,'beto.jpg');
+insert into comments (comment, userId, product_id,fileImg,fname,star)
+values ('Sigue disponible?', 2, 4,'1656633069900-th-1649551002.jpg','David',3);
 
-insert into comments (comment, userId, product_id,fileImg)
-values ('Pregunta lo que quieras del producto', 1, 5,'beto.jpg');
+insert into comments (comment, userId, product_id,fileImg,fname,star)
+values ('Lo tienes en color blanco?', 3, 6,'1655866290764-pablo.JPG','Pablo',5);
 UNLOCK TABLES;
 
 --
@@ -172,22 +176,23 @@ CREATE TABLE `shoppingCarts` (
    `id` INT NOT NULL AUTO_INCREMENT,
    `userId` INT NOT NULL,
    `product_id` INT NOT NULL,
+   `quantity` INT NOT NULL,
    PRIMARY KEY (`id`)
 );
 --
--- Dumping data for table `comments`
+-- Dumping data for table `shoppingCarts`
 --
-insert into shoppingCarts (userId, product_id)
-values (1, 2);
+insert into shoppingCarts (userId, product_id,quantity)
+values (1, 7, 3);
 
-insert into shoppingCarts (userId, product_id)
-values (1, 3);
+insert into shoppingCarts (userId, product_id,quantity)
+values (1, 8, 6);
 
-insert into shoppingCarts (userId, product_id)
-values (2, 4);
+insert into shoppingCarts (userId, product_id,quantity)
+values (2, 2, 1);
 
-insert into shoppingCarts (userId, product_id)
-values (3, 5);
+insert into shoppingCarts (userId, product_id,quantity)
+values (3, 3, 1);
 UNLOCK TABLES;
 
 ALTER TABLE `famous` ADD CONSTRAINT `FK_338c27d0-e966-4ae6-935e-6a572c461af6` FOREIGN KEY (`userId`) REFERENCES `users`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
@@ -200,6 +205,7 @@ ALTER TABLE `shoppingCarts` ADD CONSTRAINT `FK_414b22d3-0d65-4daf-8dc6-65b3ea255
 
 -- select * from users;
 -- select * from offers;
--- select * from famous;
+select * from famous;
 -- select * from products;
-select * from shoppingCarts;
+-- select * from shoppingCarts;
+-- select * from comments;

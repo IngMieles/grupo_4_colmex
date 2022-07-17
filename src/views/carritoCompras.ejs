@@ -3,28 +3,54 @@
         <%- include('./partials/header')  %>
         <main>
             <section>
-                <div class="comentarios">
+                <h1>Carrito de compras</h1>
+                <article class="comentarios">
+                    <% if (!(carritos.find((carrito)=>{
+                        return carrito.id == userID.id && carrito.userCart.id != null;
+                    }))) { %>
+                     <h1> Todavía no tienes ningún producto agregado</h1>
+                     <p>Envios rapidos. <i class="fa-solid fa-truck-fast"></i></p>
+                    <% } %>
+
                     <ul class="carrito">
+                        <% let aux = 0%>
                         <% for( let carrito of carritos ) { %>
-                             <% if (userID.id == carrito.id) { %>
-                                <li class="carrito-item-img"><img src="img/products/<%= carrito.userCart.fileImg %>" alt="No image"></li>
+                            <% if (userID.id == carrito.id && carrito.userCart.id != null) { %>
+                                <% if (carrito.userCart.fileImg) { %>
+                                    <li class="carrito-item-img"><img src="img/products/<%= carrito.userCart.fileImg %>" alt="No image"></li>
+                                <% } else { %>
+                                    <li class="carrito-item-img"><img src="<%= carrito.userCart.img %>" alt="No image"></li>
+                                <% } %>
+                                    
+                                <% let cantidad = shoppingCart.filter(cart=>{return carrito.userCart.id == cart.product_id}) %>
                                 <li class="carrito-item">
-                                    <p>Eliminar de tu carrito de compras</p> 
-                                    <button class="button1">Eliminar</button>
-        
-                                    <form action="/">
-                                        <label for="quantity">Agrega más productos:</label>
-                                        <input type="number" id="quantity" name="quantity" min="1" max="100">
-                                        <!-- <input type="submit"> -->
+                                    <form action="/addNewProductCart/<%= shoppingCart[aux].id %>/?_method=PUT" method="post">
+                                        <label for="quantity">Cantidad:</label>
+                                        <input type="hidden" id="userId" name="userId" value="<%= userID.id %>" >
+                                        <input type="hidden" id="product_id" name="product_id" value="<%= carrito.userCart.id %>" >
+                                        <input type="number" id="quantity" name="quantity" min="1" max="100" 
+                                            value="<%= cantidad[0].quantity %>">
+                                        <input type="submit" value="Agregar">
                                     </form>
-        
-                                    <p>Envios rapidos. <i class="fa-solid fa-truck-fast"></i></p> 
-                                    <button class="button2">Pagar</button>
+                                    <br>
+                                    <br>
+                                    <p>Envios rapidos. <i class="fa-solid fa-truck-fast"></i></p>
+                                    <p> </p>
+                                    
+                                    <form action="/deleteCart/<%= shoppingCart[aux].id %>/delete?_method=delete" method="post">
+                                        <label for="eliminar"></label>
+                                        <input type="hidden" id="userId" name="userId" value="<%= userID.id %>" >
+                                        <input type="hidden" id="quantity" name="quantity" value="<%= shoppingCart[aux].id %>" >
+                                        <input type="submit" value="Eliminar" >
+                                    </form>
+                                    <% if (aux < shoppingCart.length) { %>
+                                        <% aux ++ %>
+                                    <% } %>
                                 </li>
-                             <% } %>
+                            <% } %>
                         <% } %>
                     </ul>
-                </div>
+                </article>
             </section>
         </main>
         <%- include('./partials/footer')  %>

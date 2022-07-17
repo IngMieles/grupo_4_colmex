@@ -72,6 +72,13 @@ header #logo {
   text-decoration: none;
 }
 
+.estrellas{
+  color: #fad504;
+}
+
+.oferta{
+  color: #36ae7c;
+}
 /* header #logo .nombre {
   flex-grow: 1;
   animation-name: creciendo;
@@ -434,7 +441,7 @@ footer section .nav-item i:hover{
 
   main section .carrito-item-img {
     align-self: center;
-    width: 25%;
+    width: 35%;
   }
 
   main section .descripcion {
@@ -443,6 +450,13 @@ footer section .nav-item i:hover{
   }
 }
 
+/* Laptop */
+@media (min-width: 922px) {
+  main section .carrito-item-img {
+    align-self: center;
+    width: 40%;
+  }
+}
 /*Formularios*/
 
 /* Style de inputs, selectores y text area  */

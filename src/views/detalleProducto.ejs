@@ -11,19 +11,67 @@
                     <% } else { %>
                             <img src=<%= productoImg.img %> alt="No image">
                     <% } %>
+                    <% if (locals.userID && locals.userID.id == productoImg.userId) { %>
+                        <!-- <li> -->
+                        <form action="/detalleProducto/save/<%= productoImg.id %>?_method=PUT" method="post">
+                            <label for="save">Agrega un descuento</label>
+                            <input type="hidden" id="userId" name="userId" value= <%= userID.id %> >
+                            <input type="hidden" id="name" name="name" value= <%= productoImg.name %> >
+                            <input type="hidden" id="precio" name="precio" value= <%= productoImg.precio %> >
+                            <input type="hidden" id="categoria" name="categoria" value= <%= productoImg.categoria %> >
+                            <input type="hidden" id="img" name="img" value= <%= productoImg.img %> >
+                            <input type="hidden" id="fileImg" name="fileImg" value= <%= productoImg.fileImg %> >
+                            <input type="hidden" id="description" name="description" value= <%= productoImg.description %> >
+
+                            <select id="save_product" name="save_product">
+                                <option value="5">5 %</option>
+                                <option value="10">10 %</option>
+                                <option value="15">15 %</option>
+                                <option value="20">20 %</option>
+                                <option value="25">25 %</option>
+                                <option value="30">30 %</option>
+                                <option value="35">35 %</option>
+                                <option value="40">40 %</option>
+                                <option value="45">45 %</option>
+                                <option value="50">50 %</option>
+                            </select><br><br>
+
+                            <input type="submit" value="Descuento" />
+                        </form>
+                        <!-- </li> -->
+                    <% } %> <br>
                 </article>
                 <article class="descripcion">
                     <ul class="descripcion-item">
                         <li><%= productoImg.name %></li>
-                        <li class="nav-item nav-item-end"><i class="fa-regular fa-heart"></i></li>
-                        <li class="comentarios">
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star-half-stroke"></i>
-                        <li><p><%= comments.length %>  opiniones</p></li></li>
+                        <li><%= productoImg.categoria %></li>
+                        <!-- <li class="nav-item nav-item-end"><i class="fa-regular fa-heart"></i></li> -->
+                        <% let stars = Allcoments.filter(element=>{return (element.product_id == productoImg.id) }) %> 
+                        <% let aux=[] %>
+                        <% for(let element of stars){ %>
+                            <% aux.push(element.star) %> 
+                        <% } %> 
 
+                        <%let mayor = aux.sort() %>
+                        <li class="comentarios"><%= mayor[mayor.length-1] %> estrellas</li>
+                        <li class="comentarios"></li>
+                            <% if (aux.length == 0) { %>
+                                <% for (let i=0; i<5; i++) { %>
+                                    <i class="fa-regular fa-star estrellas"></i>
+                                <% } %>
+                            <% } %>
+                            <% for (let i=0; i<mayor[mayor.length-1]; i++) { %>
+                                <i class="fa-solid fa-star estrellas"></i>
+                            <% } %>
+                            <% if (mayor[mayor.length-1] < 5) { %>
+                                <% for (let i=mayor[mayor.length-1]; i<5; i++) { %>
+                                    <i class="fa-regular fa-star estrellas"></i>
+                                <% } %>
+                            <% } %>
+                        </li>
+                        
+                        <li class="comentarios"><%= comments.length %>  opiniones </li>
+                        
                         <% if (locals.userID && locals.userID.id == productoImg.userId) { %>
                             <li>
                                 <form action="/detalleProducto/<%= productoImg.id %>/edita" method="get">
@@ -32,15 +80,19 @@
                                     <input type="submit" value="Mejora el producto y editalo" />
                                 </form>
                             </li>
+                        <% } %> <br>
+
+                        <% if (Offert) { %>
+                            <li>$ <%= productoImg.precio %> Antes</li>
+                            <li class="oferta"><B> Ahorra el <%= Offert.save_product %> % de descuento </B></li>
+                            <li>$ <%= productoImg.precio-(productoImg.precio*(Offert.save_product/100)) %> Ahora</li>
+                        <% }else{ %>
+                            <li>$ <%= productoImg.precio %></li>
                         <% } %>
 
-                        <li>Current price $ <%= productoImg.precio %></li>
-                        <li>Description: <%= productoImg.description %></li>
-                        <li>Categoria: <%= productoImg.categoria %></li>
-                        <li>Ofertas similares</li>
-
+                        <li><%= productoImg.description %></li>
+                        
                         <% if (locals.userID && locals.userID.id == productoImg.userId) { %>
-                            <!-- <li class="button"><button>Agregar al carrito</button></li> -->
                             <li>
                                 <form action="/detalleProducto/<%= productoImg.id %>/delete?_method=delete" method="post">
                                     <label for="eliminar"></label>
@@ -52,10 +104,11 @@
 
                         <% if (locals.userID && locals.userID.id != productoImg.userId) { %>
                             <li>
-                                <form action="/shoppingCart/<%= productoImg.id %>?_method=PUT" method="post">
+                                <form action="/addCart/<%= productoImg.id %>?_method=PUT" method="post">
                                     <label for="carrito"></label>
                                     <input type="hidden" id="userId" name="userId" value= <%= userID.id %> >
                                     <input type="hidden" id="product_id" name="product_id" value= <%= productoImg.id %> >
+                                    <input type="hidden" id="quantity" name="quantity" value= "1" >
                                     <input type="submit" value="Agregar al carrito de compras" />
                                 </form>
                             </li>
@@ -67,13 +120,45 @@
                 <article class="comentarios">
                     <ul class="descripcion-item">
                         <li class="comentarios"><h4>Comentarios</h4></li>
+                        <% if (comments.length != 0) { %>
+                            <li class="comentarios">
+                                <% let star = Allcoments.filter(element=>{return (element.star == 5 && element.product_id == productoImg.id) }) %> 
+                                <p class="">5 estrellas <%= (star.length/comments.length)*100 %> %</p>
+                                <% star = Allcoments.filter(element=>{return (element.star == 4 && element.product_id == productoImg.id) }) %> 
+                                <p class="">4 estrellas <%= (star.length/comments.length)*100 %> %</p>
+                                <% star = Allcoments.filter(element=>{return (element.star == 3 && element.product_id == productoImg.id) }) %> 
+                                <p class="">3 estrellas <%= (star.length/comments.length)*100 %> %</p>
+                                <% star = Allcoments.filter(element=>{return (element.star == 2 && element.product_id == productoImg.id) }) %> 
+                                <p class="">2 estrellas <%= (star.length/comments.length)*100 %> %</p>
+                                <% star = Allcoments.filter(element=>{return (element.star == 1 && element.product_id == productoImg.id) }) %> 
+                                <p class="">1 estrellas <%= (star.length/comments.length)*100 %> %</p>
+                                <!-- <i class="fa-solid fa-star-half-stroke"></i> -->
+                            </li>
+                        <% } %>
+                        
                         <% if (locals.userID) { %>
                             <li class="comentarios">
                                 <form action="/detalleProducto/<%= productoImg.id %>/comment?_method=PUT" method="post">
-                                    <label for="comment"></label>
+                                    <label for="comment">Califica este producto</label>
+                                    <input type="hidden" id="name" name="name" value= <%= productoImg.name %> >
+                                    <input type="hidden" id="precio" name="precio" value= <%= productoImg.precio %> >
+                                    <input type="hidden" id="description" name="description" value= <%= productoImg.description %> >
+                                    <input type="hidden" id="img" name="img" value= <%= productoImg.img %> >
+                                    <input type="hidden" id="fileImgP" name="fileImgP" value= <%= productoImg.fileImg %> >
+
                                     <input type="hidden" id="userId" name="userId" value= <%= userID.id %> >
                                     <input type="hidden" id="fileImg" name="fileImg" value= <%= userID.fileImg %> >
                                     <input type="hidden" id="product_id" name="product_id" value= <%= productoImg.id %> >
+                                    <input type="hidden" id="fname" name="fname" value= "<%= userID.fname %>" >
+
+                                    <select id="star" name="star">
+                                        <option value="1">1 estrella</option>
+                                        <option value="2">2 estrellas</option>
+                                        <option value="3">3 estrellas</option>
+                                        <option value="4">4 estrellas</option>
+                                        <option value="5">5 estrella</option>
+                                    </select><br><br>
+
                                     <input type="text" id="comment" name="comment" placeholder="Agrega un comentario..." />
                                     <br>
                                     <br>
@@ -82,12 +167,23 @@
                             </li>
                         <% } %>
                         <br>
-                        <!-- <li class="comentarios">%= productoImg.commentProduct.fname %></li> -->
                         <% for( let Comment of comments ) { %>
                             <br>
                             <br>
                             <li class="comentarios">
-                                <img class="img-nav" src="/img/users/<%= Comment.fileImg %>" alt="No image">: <%=Comment.comment%> 
+                                <img class="img-nav" src="/img/users/<%= Comment.fileImg %>" alt="No image"> 
+                                <B><%=Comment.fname%></B> 
+                                
+                                <% for (let i=0; i<Comment.star; i++) { %>
+                                    <i class="fa-solid fa-star estrellas"></i>
+                                <% } %>
+                                <% if (Comment.star < 5) { %>
+                                    <% for (let i=Comment.star; i<5; i++) { %>
+                                        <i class="fa-regular fa-star estrellas"></i>
+                                    <% } %>
+                                <% } %>
+                                <br>
+                                <%=Comment.comment%> 
                             </li>
                         <% } %>
                     </ul>

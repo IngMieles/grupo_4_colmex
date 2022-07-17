@@ -38,7 +38,11 @@ router.get('/', mainController.index);
 // Vista de shopping cart
 router.get('/carritoCompras', loginMiddleware, mainController.carritoCompras);
 // Formulario de shopping cart del productos  → PUT
-router.put('/shoppingCart/:id', loginMiddleware, mainController.shoppingCart);
+router.put('/addCart/:id', loginMiddleware, mainController.addCart);
+// Formulario de shopping cart del productos  → PUT
+router.put('/addNewProductCart/:id', loginMiddleware, mainController.addNewProductCart);
+// Formulario de edición de productos  → DELETE
+router.delete('/deleteCart/:id/delete', loginMiddleware, mainController.deleteCart);
 
 // Listado de las categorias
 router.get('/categorias', mainController.categorias);
