@@ -45,21 +45,22 @@ CREATE TABLE `famous` (
    `precio` FLOAT NOT NULL,
    `categoria` VARCHAR(255) NOT NULL,
    `img` TEXT,
-   `fileImg` TEXT,
+   `fileImgP` TEXT,
    `description` VARCHAR(255),
    `userId` INT NOT NULL,
    `product_id` INT NOT NULL,
+   `star` INT NOT NULL,
    PRIMARY KEY (`id`)
 );
 
 --
 -- Dumping data for table `famous`
 --
-INSERT INTO famous (name,precio,categoria,img,fileImg,description,userId,product_id)
-values ('FPGA-Board',4499,'Electrónica','','fileImg-fpgaBoard.jpg','Descripción: Tarjeta de desarrollo FPGA disponible para ser programada en VHDL y Verilog',1,2);
+INSERT INTO famous (name,precio,categoria,img,fileImgP,description,userId,product_id,star)
+values ('FPGA-Board',4499,'Electrónica','','fileImg-fpgaBoard.jpg','Descripción: Tarjeta de desarrollo FPGA disponible para ser programada en VHDL y Verilog',1,2,5);
 
-insert into famous (name,precio,categoria,img,fileImg,description,userId,product_id)
-values ('tv-samsung-smart', 600, 'Entretenimiento', '', 'fileImg-tv-samsung-smart.jpg','descripción no disponible',1,6);
+insert into famous (name,precio,categoria,img,fileImgP,description,userId,product_id,star)
+values ('tv-samsung-smart', 600, 'Entretenimiento', '', 'fileImg-tv-samsung-smart.jpg','descripción no disponible',1,6,5);
 UNLOCK TABLES;
 
 --
@@ -203,8 +204,8 @@ ALTER TABLE `shoppingCarts` ADD CONSTRAINT `FK_7e3499d5-46eb-48be-a7ab-cd21ca35f
 ALTER TABLE `shoppingCarts` ADD CONSTRAINT `FK_414b22d3-0d65-4daf-8dc6-65b3ea255fbf` FOREIGN KEY (`product_id`) REFERENCES `products`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- select * from users;
-select * from offers;
--- select * from famous;
+-- select * from offers;
+select * from famous;
 -- select * from products;
 -- select * from shoppingCarts;
 -- select * from comments;
