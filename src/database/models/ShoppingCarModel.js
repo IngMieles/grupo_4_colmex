@@ -9,6 +9,7 @@ module.exports = (sequelize, dataTypes) => {
         product_id: dataTypes.INTEGER,
         userId: dataTypes.INTEGER,
         quantity: dataTypes.INTEGER,
+        seller_id: dataTypes.INTEGER,
     };
 
     const config = {

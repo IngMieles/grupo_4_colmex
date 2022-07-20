@@ -1,0 +1,43 @@
+<%- include('./partials/head')  %>
+    <body>
+        <%- include('./partials/header')  %>
+        <main>
+            <h2> Notificaciones </h2>
+            <% if (locals.userID) { %>
+                <section>
+                    <article class="producto">
+                        <h3><%= userID.fname %></h3>
+                        <% if (userNotifications.length!= 0) { %>
+                            <h3><%= userNotifications.length %> de tus productos están en proceso de compra</h3>
+                            <h4>Felicidades!!!</h4>
+                        <% } else {%>
+                            <h3>No tienes notificaciones</h3>
+                        <% } %>
+                        
+                    </article>
+                    <!-- Descripción de las notificaciones -->
+                    <article class="producto">
+                        <ul class="descripcion-item">
+
+                            <% for( let userNotification of userNotifications ) { %>
+                                <h3><%= userNotification.user.fname %> compro <%= userNotification.quantity %> de tus productos</h3>
+                                
+                                <% if (userNotification.product.fileImg) { %>
+                                    <li class="nav-item nav-item-end"><a href="detalleProducto/<%= userNotification.product.id %>">
+                                        <img src="/img/products/<%= userNotification.product.fileImg %>" alt="No image"></a>
+                                    </li>
+                                <% } else { %>
+                                    <li class="nav-item nav-item-end"><a href="detalleProducto/<%= userNotification.product.id %>">
+                                        <img src="<%= userNotification.product.img %>" alt="No image"></a>
+                                    </li>
+                                <% } %>
+
+                            <% } %>
+                        </ul>
+                    </article>
+                </section>
+            <% } %>
+        </main>
+        <%- include('./partials/footer')  %>
+    </body>
+</html>

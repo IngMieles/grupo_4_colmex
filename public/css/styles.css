@@ -413,6 +413,35 @@ footer section .nav-item i:hover{
   }
 }
 
+/*Formularios*/
+
+/* Style de inputs, selectores y text area  */
+input[type="text"],
+input[type="url"],
+input[type="file"],
+input[type="email"],
+input[type="date"],
+input[type="checkbox"],
+input[type="password"],
+input[type="tlf"],
+select,
+textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  resize: vertical;
+}
+
+input[type="number"]{
+  width: 35%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  resize: vertical;
+}
 /* Laptop */
 @media (min-width: 769px) {
 
@@ -457,27 +486,7 @@ footer section .nav-item i:hover{
     width: 40%;
   }
 }
-/*Formularios*/
 
-/* Style de inputs, selectores y text area  */
-input[type="text"],
-input[type="url"],
-input[type="number"],
-input[type="file"],
-input[type="email"],
-input[type="date"],
-input[type="checkbox"],
-input[type="password"],
-input[type="tlf"],
-select,
-textarea {
-  width: 100%;
-  padding: 12px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-  resize: vertical;
-}
 
 /* Style de etiquetas */
 label {
@@ -487,6 +496,17 @@ label {
 
 /* Style de submit button */
 input[type="submit"] {
+  background-color: #220e96;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  float: right;
+}
+
+/* button style submit */
+#icon {
   background-color: #220e96;
   color: white;
   padding: 12px 20px;

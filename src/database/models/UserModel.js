@@ -27,10 +27,6 @@ module.exports = (sequelize, dataTypes) => {
     const UserModel = sequelize.define(alias, cols, config);
 
     UserModel.associate = function(models){
-        // UserModel.belongsTo(models.CommentModel,{
-        //     as:'userComent',
-        //     foreignKey:'id'
-        // })
         UserModel.belongsToMany(models.ProductModel,{
             as:'commentProduct',
             through: "comments",
