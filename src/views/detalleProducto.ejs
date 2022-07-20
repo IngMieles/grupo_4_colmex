@@ -101,7 +101,7 @@
                                 </form>
                             </li>
                         <% } %>
-
+                        
                         <% if (locals.userID && locals.userID.id != productoImg.userId) { %>
                             <li>
                                 <form action="/addCart/<%= productoImg.id %>?_method=PUT" method="post">
@@ -109,6 +109,7 @@
                                     <input type="hidden" id="userId" name="userId" value= <%= userID.id %> >
                                     <input type="hidden" id="product_id" name="product_id" value= <%= productoImg.id %> >
                                     <input type="hidden" id="quantity" name="quantity" value= "1" >
+                                    <input type="hidden" id="seller_id" name="seller_id" value= <%= productoImg.userId %> >
                                     <input type="submit" value="Agregar al carrito de compras" />
                                 </form>
                             </li>
@@ -173,7 +174,7 @@
                             <li class="comentarios">
                                 <img class="img-nav" src="/img/users/<%= Comment.fileImg %>" alt="No image"> 
                                 <B><%=Comment.fname%></B> 
-                                
+                                <br>
                                 <% for (let i=0; i<Comment.star; i++) { %>
                                     <i class="fa-solid fa-star estrellas"></i>
                                 <% } %>

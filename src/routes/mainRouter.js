@@ -60,5 +60,9 @@ router.post('/login', validaLogin, userController.usuarioLogin);
 
 router.get('/logOut', userController.logOut);
 
+// Vista de las notificaciones
+router.get('/notification', mainController.notification);
+// Vista de las notificaciones
+router.post('/notifications', mainController.notifications);
 
 module.exports = router;
