@@ -288,13 +288,6 @@ const controller = {
                 quantity: req.body.quantity
             };
             await db.NotificationModel.create(notification);
-            // const userNotifications = await db.NotificationModel.findAll({
-                // attributes: {
-                    // exclude: ['userId', 'product_id']
-                    // exclude: ['password', 'email', 'telefono','birth_date','addres']
-                // },
-            //     include: ['user', 'product','shoppingCart']
-            // });
             await db.ShoppingCarModel.destroy({
                 where:{id:req.body.shoppingCart_id}
             })
