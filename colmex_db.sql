@@ -177,23 +177,37 @@ CREATE TABLE `shoppingCarts` (
    `userId` INT NOT NULL,
    `product_id` INT NOT NULL,
    `quantity` INT NOT NULL,
+   `seller_id` INT NOT NULL,
    PRIMARY KEY (`id`)
 );
 --
 -- Dumping data for table `shoppingCarts`
 --
-insert into shoppingCarts (userId, product_id,quantity)
-values (1, 7, 3);
+insert into shoppingCarts (userId, product_id,quantity,seller_id)
+values (1, 7, 3, 2);
 
-insert into shoppingCarts (userId, product_id,quantity)
-values (1, 8, 6);
+insert into shoppingCarts (userId, product_id,quantity,seller_id)
+values (1, 8, 6, 3);
 
-insert into shoppingCarts (userId, product_id,quantity)
-values (2, 2, 1);
+insert into shoppingCarts (userId, product_id,quantity,seller_id)
+values (2, 2, 1, 1);
 
-insert into shoppingCarts (userId, product_id,quantity)
-values (3, 3, 1);
+insert into shoppingCarts (userId, product_id,quantity,seller_id)
+values (3, 3, 1, 1);
 UNLOCK TABLES;
+
+--
+-- Table structure for table ``notifications``
+--
+DROP TABLE IF EXISTS `notifications`;
+CREATE TABLE `notifications` (
+   `id` INT NOT NULL AUTO_INCREMENT,
+   `userId` INT NOT NULL,
+   `product_id` INT NOT NULL,
+   `seller_id` INT NOT NULL,
+   `quantity` INT NOT NULL,
+   PRIMARY KEY (`id`)
+);
 
 ALTER TABLE `famous` ADD CONSTRAINT `FK_338c27d0-e966-4ae6-935e-6a572c461af6` FOREIGN KEY (`userId`) REFERENCES `users`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 ALTER TABLE `offers` ADD CONSTRAINT `FK_bbe03078-351e-444b-a220-4d724504a4db` FOREIGN KEY (`userId`) REFERENCES `users`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
@@ -202,10 +216,13 @@ ALTER TABLE `comments` ADD CONSTRAINT `FK_0ecbb43d-1b9e-4216-b37a-7ae7258e39f4` 
 ALTER TABLE `comments` ADD CONSTRAINT `FK_a16b179a-adb3-4d0f-ab1c-51ef684f7b55` FOREIGN KEY (`product_id`) REFERENCES `products`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 ALTER TABLE `shoppingCarts` ADD CONSTRAINT `FK_7e3499d5-46eb-48be-a7ab-cd21ca35fbd8` FOREIGN KEY (`userId`) REFERENCES `users`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 ALTER TABLE `shoppingCarts` ADD CONSTRAINT `FK_414b22d3-0d65-4daf-8dc6-65b3ea255fbf` FOREIGN KEY (`product_id`) REFERENCES `products`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `notifications` ADD CONSTRAINT `FK_69081751-395a-44d1-923d-dd0c5928cb08` FOREIGN KEY (`userId`) REFERENCES `users`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `notifications` ADD CONSTRAINT `FK_ac691e8d-59cc-4ee6-8c53-c2a9e460fdc6` FOREIGN KEY (`product_id`) REFERENCES `products`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- select * from users;
 -- select * from offers;
-select * from famous;
+-- select * from famous;
 -- select * from products;
 -- select * from shoppingCarts;
 -- select * from comments;
+-- select * from notifications;

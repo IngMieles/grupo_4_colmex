@@ -229,6 +229,7 @@ const controller = {
             userId: parseInt(req.body.userId),
             product_id: parseInt(req.body.product_id),
             quantity: parseInt(req.body.quantity),
+            seller_id: parseInt(req.body.seller_id),
         },{where:{id:req.params.id}})
         .then(res.redirect('/carritoCompras'));
     },
@@ -263,6 +264,35 @@ const controller = {
             })
             .then(res.redirect('/detalleProducto/'+req.params.id));
         } catch (error) {
+            res.send(error);
+        }
+    },
+    notification: async (req,res) =>{
+        try{
+            let userID = req.userID;
+            const userNotifications = await db.NotificationModel.findAll({
+                where:{seller_id:userID.id},
+                include: ['user', 'product']
+            });
+            res.render('notification',{userNotifications,userID});
+        }catch (error) {
+            res.send(error);
+        }
+    },
+    notifications: async (req,res) =>{
+        try{
+            const notification = {
+                userId: req.body.userId,
+                product_id: req.body.product_id,
+                seller_id: req.body.seller_id,
+                quantity: req.body.quantity
+            };
+            await db.NotificationModel.create(notification);
+            await db.ShoppingCarModel.destroy({
+                where:{id:req.body.shoppingCart_id}
+            })
+            res.redirect('carritoCompras');
+        }catch (error) {
             res.send(error);
         }
     },
