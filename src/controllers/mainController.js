@@ -296,6 +296,7 @@ const controller = {
             res.send(error);
         }
     },
+    
 };
 
 module.exports = controller;
