@@ -5,6 +5,9 @@ const db = require('../database/models');
 
 const controller = {
     login: (req, res) => {
+        if(req.session.userID){
+            return res.redirect('/');
+        }
         res.render('login');
     },
     logOut: (req, res) => {
