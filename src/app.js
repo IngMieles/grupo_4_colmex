@@ -6,8 +6,6 @@ const mainProducto = require('./routes/productRouter');
 const mainUsers = require('./routes/UserRouter');
 const methodOverride = require('method-override');
 
-const mainApiRouter = require('./routes/api/mainApiRouter');
-
 const session = require('express-session');
 app.use(session( {secret: "colmex", resave: false, saveUninitialized: false}));
 
@@ -33,8 +31,6 @@ app.set('views',path.resolve(__dirname,'./views'));
 app.use('/', mainRouter);
 app.use('/detalleProducto', mainProducto);
 app.use('/registro', mainUsers);
-
-app.use('/api', mainApiRouter);
 
 app.listen(3000,() => console.log('Servidor activo en el puerto 3000...'));
 
