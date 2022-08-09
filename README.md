@@ -13,3 +13,13 @@
 ## Link Pagina registro
 ## Link Pagina login
 ## Link Pagina crear lista: https://wireframe.cc/sb3GMM
+
+## Pasos para iniciar el proyecto
+## 1. Conectarse al repositorio Github y copiar el enlace: https://github.com/IngMieles/grupo_4_colmex
+## 2. Usar el comando git clone https://github.com/IngMieles/grupo_4_colmex
+## 3. Duplicar el archivo .env.example y cambiar el nombre para que sea solo .env
+## 4. Iniciar Xampp en el puerto 3306
+## 5. Iniciar Workbench e importar la tabla colmex_db.sql
+## 6. Instalar las dependencias npm install
+## 7. Iniciar el proyecto con el comando npm start
+## 8. Get your mind blowned up
