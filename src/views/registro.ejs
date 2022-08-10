@@ -57,6 +57,11 @@
               <div class="col-25">
                 <% if (locals.errors) { %>
                   <% if (locals.old && old.fname) { %>
+                    <% if (old.fname.length < 2) { %>
+                      <div class="container" style="background-color: #eb5353;">
+                        <b>Debe tener al menos 2 caracteres</b>
+                      </div>
+                    <% } %>
                     <label for="fname">Nombre <i class="fa-duotone fa-asterisk asterisk"></i></label>
                   <% } else { %>
                     <div class="container" style="background-color: #eb5353;">
@@ -82,6 +87,11 @@
               <div class="col-25">
                 <% if (locals.errors) { %>
                   <% if (locals.old && old.lname) { %>
+                    <% if (old.lname.length < 2) { %>
+                      <div class="container" style="background-color: #eb5353;">
+                        <b>Debe tener al menos 2 caracteres</b>
+                      </div>
+                    <% } %>
                     <label for="lname">Apellido <i class="fa-duotone fa-asterisk asterisk"></i></label>
                   <% } else { %>
                     <div class="container" style="background-color: #eb5353;">
@@ -146,6 +156,11 @@
               <div class="col-25">
                 <% if (locals.errors) { %>
                   <% if (locals.old && old.password) { %>
+                    <% if (old.lname.length < 8) { %>
+                      <div class="container" style="background-color: #eb5353;">
+                        <b>Debe tener al menos 8 caracteres</b>
+                      </div>
+                    <% } %>
                     <label for="password">Contraseña <i class="fa-duotone fa-asterisk asterisk"></i></label>
                   <% } else { %>
                     <div class="container" style="background-color: #eb5353;">

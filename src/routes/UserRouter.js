@@ -21,8 +21,8 @@ const upload = multer({storage});
 
 // Validaciones
 const validaRegistro = [
-    body('fname').notEmpty().withMessage('Es necesario llenar el campo: Nombre '),
-    body('lname').notEmpty().withMessage('Es necesario llenar el campo: Apellido'),
+    body('fname').isLength({min:2}).withMessage('Es necesario llenar el campo: Nombre '),
+    body('lname').isLength({min:2}).withMessage('Es necesario llenar el campo: Apellido'),
     body('password').isLength({min:8}).withMessage('La contraseña debe tener al menos 8 caracteres'),
     body('email').isEmail().withMessage('Ingresa un email valido')
 ];
