@@ -13,6 +13,11 @@
               <b><%= errorLog[0].msg  %></b>
             </div>
           <% } %>
+          <% if (locals.registro) { %>
+            <div class="container" style="background-color: #1f7a54;">
+              <b><%= registro[0].msg  %></b>
+            </div>
+          <% } %>
 
           <form action="/login" method="post">
             <div class="container">
