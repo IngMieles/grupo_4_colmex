@@ -8,7 +8,6 @@ const {body} = require('express-validator');
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        console.log(file);
         cb(null, 'public/img/users')
     },
 filename: (req, file, cb) => {
@@ -42,8 +41,8 @@ router.get('/userPerfil', loginMiddleware, userController.userPerfil);
 
 // Validaciones
 const validaEdita = [
-    body('fname').notEmpty().withMessage('Nombre del usuario'),
-    body('lname').notEmpty().withMessage('Apellido del usuario'),
+    body('fname').isLength({min:2}).withMessage('Nombre del usuario'),
+    body('lname').isLength({min:2}).withMessage('Apellido del usuario'),
     body('subject').notEmpty().withMessage('Agrega un comentario')
 ];
 

@@ -7,7 +7,6 @@ const loginMiddleware = require('../../middlewares/loginMiddleware');
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        console.log(file);
         cb(null, 'public/img/products')
     },
 filename: (req, file, cb) => {
@@ -22,10 +21,18 @@ const {body,check} = require('express-validator');
 
 // Validaciones
 const validaProducto = [
-    body('name').notEmpty().withMessage('Agrega un nombre al producto'),
+    body('name').isLength({min:5}).withMessage('Minimo 5 caracteres para el nombre'),
     body('precio').notEmpty().withMessage('Olvidaste poner el precio del producto'),
     body('categoria').notEmpty().withMessage('Clasificalo en una categoría'),
-    body('description').notEmpty().withMessage('Describe tú producto')
+    body('description').isLength({min:20}).withMessage('Describe tú producto al menos 20 caracteres'),
+    body('fileImg').custom((value, {req}) => {
+        if(req.file == undefined){
+            return 'valido';
+        }
+        if(req.file.mimetype === 'image/jpg' || req.file.mimetype === 'image/jpeg' || req.file.mimetype === 'image/png' || req.file.mimetype === 'image/gif'){
+            return 'valido';
+        }else{return false;}
+    }).withMessage('Validos solo los formatos JPG, JPEG, PNG y GIF')
 ];
 
 // Validaciones login
@@ -52,7 +59,7 @@ router.get('/category/:categoria', mainController.category);
 // Formulario de creación de productos
 router.get('/crearLista', loginMiddleware, mainController.crearLista);
 // Acción de creación (a donde se envía el formulario)
-router.post('/crearLista', upload.single('fileImg'), validaProducto, mainController.crear);
+router.post('/crearLista', loginMiddleware, upload.single('fileImg'), validaProducto, mainController.crear);
 
 // Formulario para login
 router.get('/login', userController.login);
