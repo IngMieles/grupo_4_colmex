@@ -40,13 +40,22 @@
             </div>
             <div class="row">
               <div class="col-25">
-                <label for="fileImg">Agrega una imagen de perfil</label>
+                <% if (locals.errors) { %>
+                  <% if ( errors.findIndex(error => error.param == "fileImg") != -1 ) { %>
+                    <div class="container" style="background-color: #eb5353;">
+                      <b><%= errors[errors.findIndex(error => error.param == "fileImg")].msg  %></b>
+                    </div>
+                  <% } %>
+                <% } else {%>
+                  <label for="fileImg">Agrega una imagen de perfil</label>
+                <% } %>
               </div>
               <div class="col-75">
                 <input
                   type="file"
                   id="fileImg"
                   name="fileImg"
+                  value="Ingresa una imagen"
                 />
               </div>
             </div>

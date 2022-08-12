@@ -24,7 +24,15 @@ const validaRegistro = [
     body('fname').isLength({min:2}).withMessage('Es necesario llenar el campo: Nombre '),
     body('lname').isLength({min:2}).withMessage('Es necesario llenar el campo: Apellido'),
     body('password').isLength({min:8}).withMessage('La contraseña debe tener al menos 8 caracteres'),
-    body('email').isEmail().withMessage('Ingresa un email valido')
+    body('email').isEmail().withMessage('Ingresa un email valido'),
+    body('fileImg').custom((value, {req}) => {
+        if(req.file == undefined){
+            return 'valido';
+        }
+        if(req.file.mimetype === 'image/jpg' || req.file.mimetype === 'image/jpeg' || req.file.mimetype === 'image/png' || req.file.mimetype === 'image/gif'){
+            return 'valido';
+        }else{return false;}
+    }).withMessage('Validos solo los formatos JPG, JPEG, PNG y GIF')
 ];
 
 router.get('/', userController.registro);
