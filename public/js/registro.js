@@ -15,7 +15,8 @@ document.addEventListener('DOMContentLoaded', function() {
   document.querySelector('#frontFileImg').style.display = 'none';
 
 });
-  
+
+  var fname = false;
   function load_fistName() {
     
     const name = document.querySelector('#fname');
@@ -24,9 +25,11 @@ document.addEventListener('DOMContentLoaded', function() {
         document.querySelector('#frontFname').style.display = 'block';
     }else{
         document.querySelector('#frontFname').style.display = 'none';
+        fname = true;
     }
   }
 
+  var lname = false;
   function load_lastName() {
 
     const name = document.querySelector('#lname');
@@ -35,9 +38,11 @@ document.addEventListener('DOMContentLoaded', function() {
         document.querySelector('#frontLname').style.display = 'block';
     }else{
         document.querySelector('#frontLname').style.display = 'none';
+        lname = true;
     }
   }
   
+  var email = false;
   function load_emailName() {
     
     const correo = document.querySelector('#email');
@@ -47,9 +52,11 @@ document.addEventListener('DOMContentLoaded', function() {
       document.querySelector('#frontEmail').style.display = 'block';
     }else{
       document.querySelector('#frontEmail').style.display = 'none';
+      email = true;
     }
   }
   
+  var password = false;
   function load_password() {
 
     const name = document.querySelector('#password');
@@ -58,10 +65,30 @@ document.addEventListener('DOMContentLoaded', function() {
         document.querySelector('#frontPassword').style.display = 'block';
     }else{
         document.querySelector('#frontPassword').style.display = 'none';
+        password = true;
     }
   }
   
   function load_fileImg() {
-  
     document.querySelector('#frontFileImg').style.display = 'block';
   }
+
+  // Validación antes de enviar el formulario
+window.addEventListener('load', function(e){
+  var formulario = document.querySelector('#formRegistro');
+  formulario.addEventListener('submit',(evento)=>{
+    if(!fname){
+      this.alert('Falta el campo "Nombre"!!!');
+      evento.preventDefault();
+    }else if(!lname){
+      this.alert('Falta el campo "Apellido"!!!');
+      evento.preventDefault();
+    }else if(!email){
+      this.alert('Falta el campo de "correo electronico"!!!');
+      evento.preventDefault();
+    }else if(!password){
+      this.alert('Falta el campo de "contraseña"!!!');
+      evento.preventDefault();
+    }
+  });
+});
