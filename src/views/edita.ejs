@@ -39,6 +39,9 @@
                               placeholder="Nuevo nombre del producto"
                             <% } %>
                           />
+                          <div class="container" id="frontName" style="background-color: #eb5353;">
+                            <b>Debe tener al menos 5 caracteres</b>
+                          </div>
                         </div>
                       </div>
 
@@ -102,6 +105,9 @@
                             id="fileImg"
                             name="fileImg"
                           />
+                          <div class="container" id="frontFileImg" style="color: #eb5353;">
+                            <b>Verifica que sea formato JPG, JPEG, PNG o GIF</b>
+                          </div>
                         </div>
                       </div>
 
@@ -130,5 +136,6 @@
             </section>
         </main>
         <%- include('./partials/footer')  %>
+        <script src="js/crearLista.js"></script>
     </body>
 </html>
