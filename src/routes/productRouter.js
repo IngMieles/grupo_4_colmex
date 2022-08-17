@@ -9,10 +9,10 @@ const {body} = require('express-validator');
 
 // Validaciones
 const validaEdita = [
-    body('name').notEmpty().withMessage('Agrega un nombre al producto'),
+    body('name').isLength({min:5}).withMessage('Agrega un nombre al producto'),
     body('precio').notEmpty().withMessage('Olvidaste poner el precio del producto'),
     body('categoria').notEmpty().withMessage('Clasificalo en una categoría'),
-    body('description').notEmpty().withMessage('Describe tú producto')
+    body('description').isLength({min:20}).withMessage('Describe tú producto')
 ];
 
 // Detalle de un producto particular

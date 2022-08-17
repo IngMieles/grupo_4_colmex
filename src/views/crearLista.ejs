@@ -10,7 +10,7 @@
             <% } %>
             <h2>Crea un nuevo producto</h2>
 
-            <form action="/crearLista" method="post" enctype = "multipart/form-data">
+            <form id="formCrear" action="/crearLista" method="post" enctype = "multipart/form-data">
 
               <div class="container">
                 <div class="row">
@@ -42,6 +42,9 @@
                           placeholder="Nuevo nombre del producto"
                         <% } %>
                       />
+                      <div class="container" id="frontName" style="background-color: #eb5353;">
+                        <b>Debe tener al menos 5 caracteres</b>
+                      </div>
                     </div>
                 </div>
 
@@ -93,7 +96,15 @@
 
                 <div class="row">
                   <div class="col-25">
-                    <label for="fileImg">Agrega una imagen</label>
+                    <% if (locals.errors) { %>
+                      <% if ( errors.findIndex(error => error.param == "fileImg") != -1 ) { %>
+                        <div class="container" style="background-color: #eb5353;">
+                          <b><%= errors[errors.findIndex(error => error.param == "fileImg")].msg  %></b>
+                        </div>
+                      <% } %>
+                    <% } else {%>
+                      <label for="fileImg">Agrega una imagen</label>
+                    <% } %>
                   </div>
                   <div class="col-75">
                     <input
@@ -101,6 +112,9 @@
                       id="fileImg"
                       name="fileImg"
                     />
+                    <div class="container" id="frontFileImg" style="color: #eb5353;">
+                      <b>Verifica que sea formato JPG, JPEG, PNG o GIF</b>
+                    </div>
                   </div>
                 </div>
 
@@ -162,6 +176,9 @@
                           placeholder="Descripción general del producto" 
                       <% } %> 
                       style="height:200px"></textarea>
+                      <div class="container" id="frontDescription" style="background-color: #eb5353;">
+                        <b>Debe tener al menos 20 caracteres</b>
+                      </div>
                     </div>
                 </div>
 
@@ -174,5 +191,6 @@
 
         </main>
         <%- include('./partials/footer')  %>
+        <script src="js/crearLista.js"></script>
     </body>
 </html>
