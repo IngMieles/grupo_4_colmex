@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     const name = document.querySelector('#fname');
     
-    if(name.value.length < 2){
+    if(name.value.length < 1){
         document.querySelector('#frontFname').style.display = 'block';
     }else{
         document.querySelector('#frontFname').style.display = 'none';
@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const name = document.querySelector('#lname');
     
-    if(name.value.length < 2){
+    if(name.value.length < 1){
         document.querySelector('#frontLname').style.display = 'block';
     }else{
         document.querySelector('#frontLname').style.display = 'none';
