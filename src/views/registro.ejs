@@ -71,14 +71,14 @@
                         <b>Debe tener al menos 2 caracteres</b>
                       </div>
                     <% } %>
-                    <label for="fname">Nombre <i class="fa-duotone fa-asterisk asterisk"></i></label>
+                    <label for="fname">Nombre<i class="fa-duotone fa-asterisk asterisk"></i></label>
                   <% } else { %>
                     <div class="container" style="background-color: #eb5353;">
                       <b><%= errors[errors.findIndex(error => error.param == "fname")].msg  %></b>
                     </div>
                   <% } %>
                 <% } else {%>
-                  <label for="fname">Nombre <i class="fa-duotone fa-asterisk asterisk"></i></label>
+                  <label for="fname">Nombre<i class="fa-duotone fa-asterisk asterisk"></i></label>
                 <% } %>
               </div>
               <div class="col-75">
@@ -89,6 +89,9 @@
                     placeholder="Tú nombre"
                   <% } %>
                 >
+                <div class="container" id="frontFname" style="background-color: #eb5353;">
+                  <b>Debe tener al menos 2 caracteres</b>
+                </div>
               </div>
             </div>
 
@@ -101,14 +104,14 @@
                         <b>Debe tener al menos 2 caracteres</b>
                       </div>
                     <% } %>
-                    <label for="lname">Apellido <i class="fa-duotone fa-asterisk asterisk"></i></label>
+                    <label for="lname">Apellido<i class="fa-duotone fa-asterisk asterisk"></i></label>
                   <% } else { %>
                     <div class="container" style="background-color: #eb5353;">
                       <b><%= errors[errors.findIndex(error => error.param == "lname")].msg  %></b>
                     </div>
                   <% } %>
                 <% } else {%>
-                  <label for="lname">Apellido <i class="fa-duotone fa-asterisk asterisk"></i></label>
+                  <label for="lname">Apellido<i class="fa-duotone fa-asterisk asterisk"></i></label>
                 <% } %>
               </div>
               <div class="col-75">
@@ -119,6 +122,9 @@
                     placeholder="Tú apellido"
                   <% } %>
                 >
+                <div class="container" id="frontLname" style="background-color: #eb5353;">
+                  <b>Debe tener al menos 2 caracteres</b>
+                </div>
               </div>
             </div>
 
@@ -149,6 +155,9 @@
                     placeholder="miCorreo@email.com"
                   <% } %>
                 >
+                <div class="container" id="frontEmail" style="background-color: #eb5353;">
+                  <b>Ejemplo de correo valido: miCorreo@email.com</b>
+                </div>
               </div>
             </div>
 
@@ -192,6 +201,9 @@
                   name="password"
                   placeholder="Password"
                 />
+                <div class="container" id="frontPassword" style="background-color: #eb5353;">
+                  <b>Debe tener al menos 8 caracteres</b>
+                </div>
               </div>
             </div>
 
@@ -232,6 +244,7 @@
         </form>
       </section>
     </main>
-  <%- include('./partials/footer')  %>
+    <%- include('./partials/footer')  %>
+    <script src="js/registro.js"></script>
 </body>
 </html>

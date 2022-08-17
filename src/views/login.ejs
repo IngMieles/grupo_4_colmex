@@ -43,6 +43,9 @@
                       placeholder="Email"
                     <% } %>
                   />
+                  <div class="container" id="frontEmail" style="background-color: #eb5353;">
+                    <b>Ejemplo de correo valido: miCorreo@email.com</b>
+                  </div>
                 </div>
               </div>
               <div class="row">
@@ -63,6 +66,9 @@
                 </div>
                 <div class="col-75">
                   <input type="password" id="password" name="password" placeholder="password"/>
+                  <div class="container" id="frontPassword" style="background-color: #eb5353;">
+                    <b>Debe tener al menos 8 caracteres</b>
+                  </div>
                 </div>
               </div>
               <section>
@@ -80,5 +86,6 @@
           </div>
         </main>
         <%- include('./partials/footer')  %>
+        <script src="js/login.js"></script>
     </body>
 </html>
