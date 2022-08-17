@@ -50,31 +50,48 @@ const controller = {
         }
     },
     registro: (req, res) => {
+        if(req.session.userID){
+            return res.redirect('/');
+        }
         res.render('registro');
     },
-    registerUsers: (req, res) => {
+    registerUsers: async (req, res) => {
         let errors = validationResult(req);
-        if(errors.isEmpty()){
-            if (req.file) {
-                db.UserModel.create({
-                    telefono: parseInt(req.body.telefono),
-                    ...req.body,
-                    password: bcrypt.hashSync(req.body.password,10),
-                    fileImg: req.file.filename
-                });
-            } else {
-                db.UserModel.create({
-                    telefono: parseInt(req.body.telefono),
-                    ...req.body,
-                    password: bcrypt.hashSync(req.body.password,10),
-                    fileImg: 'default-user.jpg',
-                });
+        try {
+            const validaEmail = await db.UserModel.findOne({
+                where:{email:{[db.Sequelize.Op.like]:req.body.email}}
+            })
+            if(validaEmail){
+                errors.errors.push( {
+                    value: '',
+                    msg: 'El correo ya existe ingresa otro!!',
+                    param: 'email',
+                    location: 'body'
+                })
             }
-            res.render('login',{errorLog:[{msg:"Ya estás registrado. Ingresa!!!"}]});
-        }else{
-            res.render('registro',{errors:errors.array(),old: req.body});
+            if(errors.isEmpty()){
+                if (req.file) {
+                    db.UserModel.create({
+                        telefono: parseInt(req.body.telefono),
+                        ...req.body,
+                        password: bcrypt.hashSync(req.body.password,10),
+                        fileImg: req.file.filename
+                    });
+                } else {
+                    db.UserModel.create({
+                        telefono: parseInt(req.body.telefono),
+                        ...req.body,
+                        password: bcrypt.hashSync(req.body.password,10),
+                        fileImg: 'default-user.jpg',
+                    });
+                }
+                res.render('login',{registro:[{msg:"Te registraste con exito!!!"}]});
+            }else{
+                res.render('registro',{errors:errors.array(),old: req.body});
+            }
+        } catch (error) {
+            res.send(error);
         }
-        
     },
     userPerfil: (req, res) => {
         let userID = req.userID;
