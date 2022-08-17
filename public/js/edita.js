@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
   
   });
 
-  
+  var formName = false;
   function load_name() {
     
     const name = document.querySelector('#name');
@@ -21,9 +21,10 @@ document.addEventListener('DOMContentLoaded', function() {
         document.querySelector('#editaName').style.display = 'block';
     }else{
         document.querySelector('#editaName').style.display = 'none';
+        formName = true;
     }
   }
-  
+  var description = false;
   function load_description() {
     
     const name = document.querySelector('#description');
@@ -32,16 +33,24 @@ document.addEventListener('DOMContentLoaded', function() {
         document.querySelector('#editaDescription').style.display = 'block';
     }else{
         document.querySelector('#editaDescription').style.display = 'none';
+        description = true;
     }
   }
   
   function load_fileImg() {
-    
-    // const name = document.querySelector('#fileImg');
-    
-    // if(name.value.length < 19){
-        document.querySelector('#frontFileImg').style.display = 'block';
-    // }else{
-    //     document.querySelector('#frontFileImg').style.display = 'none';
-    // }
+    document.querySelector('#frontFileImg').style.display = 'block';
   }
+
+      // Validación antes de enviar el formulario
+window.addEventListener('load', function(e){
+  var formulario = document.querySelector('#formEdita');
+  formulario.addEventListener('submit',(evento)=>{
+    if(!formName){
+      this.alert('Falta el campo "Nombre"!!!');
+      evento.preventDefault();
+    }else if(!description){
+      this.alert('Falta describir el producto!!!');
+      evento.preventDefault();
+    }
+  });
+});
