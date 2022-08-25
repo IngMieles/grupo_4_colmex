@@ -1,5 +1,17 @@
 window.addEventListener('load', function() {
 
+    // fetch('https://api.chucknorris.io/jokes/random')
+    // .then(response => response.json())
+    // .then(data => console.log(data))
+    // .catch(error=>console.error(error));
+
+    // location.reload();
+    let userName = document.querySelector('#userName');
+    console.log(userName.innerText);
+
+    sessionStorage.setItem('userName',userName.innerText);
+    console.log('session');
+    console.log(sessionStorage.getItem('userName'));
     // console.log('Hola mundo de front-end!');
     // console.log('Archivo index.js');
 

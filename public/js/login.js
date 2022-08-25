@@ -42,7 +42,6 @@ document.addEventListener('DOMContentLoaded', function() {
     fname.style.backgroundColor = 'white';
   }
 
-
     var email = false;
     function load_emailName() {
       
@@ -63,7 +62,7 @@ document.addEventListener('DOMContentLoaded', function() {
       var regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/;
       
       if(!regex.test(correo.value)){
-        alert('Este campo no puede estar vacio!!!')
+        alert('El campo usuario no puede estar vacio!!!')
       }else{
         document.querySelector('#frontEmail').style.display = 'none';
         email = true;
@@ -86,20 +85,29 @@ document.addEventListener('DOMContentLoaded', function() {
       function blur_password() {
         const name = document.querySelector('#password');
         if(name.value.length < 7){
-            alert('Este campo no puede estar vacio!!!')
+            alert('Falta el campo de "contraseña"!!!')
         }
       }
 
-        // Validación antes de enviar el formulario
+// Validación antes de enviar el formulario
 window.addEventListener('load', function(e){
-  var formulario = document.querySelector('#formLogin');
+  const formulario = document.querySelector('#formLogin');
   formulario.addEventListener('submit',(evento)=>{
     if(!email){
       this.alert('Falta el campo de Usuario ingre tú "correo electrónico"!!!');
       evento.preventDefault();
-    }else if(!password){
+    }
+    if(!password){
       this.alert('Falta el campo de "contraseña"!!!');
       evento.preventDefault();
+    }
+    // Seleccionar la casilla de recordar usuario
+    const recuerda = document.getElementById('recuerdame');
+    if(!recuerda.checked && email && password){
+      const confirmar = window.confirm('¿Estas seguro de que no quieres que se recuerde tú sesión?');
+      if(!confirmar){
+        evento.preventDefault();
+      }
     }
   });
 });
