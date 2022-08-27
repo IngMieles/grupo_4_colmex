@@ -13,7 +13,10 @@ document.addEventListener('DOMContentLoaded', function() {
     document.querySelector('#frontName').style.display = 'none';
     document.querySelector('#frontDescription').style.display = 'none';
     document.querySelector('#frontFileImg').style.display = 'none';
-  
+    
+    const fileImg = document.getElementById('fileImg');
+    fileImg.addEventListener('mouseover',()=>document.querySelector('#frontFileImg').style.display = 'block')
+    fileImg.addEventListener('mouseout',()=>document.querySelector('#frontFileImg').style.display = 'none')
   });
 
   var formName = false;

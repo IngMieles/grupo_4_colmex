@@ -13,8 +13,8 @@ document.addEventListener('DOMContentLoaded', function() {
     document.querySelector('#password').addEventListener('focus', () => focus_password());
     
     // click cuando cambio el input
-    document.querySelector('#email').addEventListener('change', () => change_emailName());
-    document.querySelector('#password').addEventListener('change', () => change_password());
+    document.querySelector('#email').addEventListener('blur', () => change_emailName());
+    document.querySelector('#password').addEventListener('blur', () => change_password());
 
     // Por default no mostrar
     document.querySelector('#frontEmail').style.display = 'none';

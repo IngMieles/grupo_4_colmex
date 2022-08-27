@@ -20,6 +20,9 @@ document.addEventListener('DOMContentLoaded', function() {
   document.querySelector('#frontPassword').style.display = 'none';
   document.querySelector('#frontFileImg').style.display = 'none';
 
+  const fileImg = document.getElementById('fileImg');
+  fileImg.addEventListener('mouseover',()=>document.querySelector('#frontFileImg').style.display = 'block')
+  fileImg.addEventListener('mouseout',()=>document.querySelector('#frontFileImg').style.display = 'none')
 });
 
   var fname = false;
