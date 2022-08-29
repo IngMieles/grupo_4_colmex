@@ -89,6 +89,16 @@ document.addEventListener('DOMContentLoaded', function() {
     }else{
       document.querySelector('#frontEmail').style.display = 'none';
       email = true;
+
+      fetch('http://localhost:3000/api/users/emailExist/'+correo.value, {method:'put'})
+      .then(response => response.json())
+      .then(data => {
+        if(data.errors[0].msg == 'El correo ya existe ingresa otro!!'){
+            document.querySelector('#frontEmail').style.display = 'block';
+            document.querySelector('#frontEmail b').innerHTML = data.errors[0].msg;
+        }
+      })
+      .catch(err => console.log(err));
     }
   }
 
