@@ -1,11 +1,10 @@
-
-// window.addEventListener('load', function() {
+window.addEventListener('load', function() {
     // const usuarioLogin = req.session.userID;
     // console.log(primerMiddleware);
 
-    // fetch('https://api.chucknorris.io/jokes/random')
+    // fetch('http://localhost:3000/api/users/userPerfil')
     // .then(response => response.json())
-    // .then(data => console.log(data))
+    // .then(data => console.log(data.email))
     // .catch(error=>console.error(error));
 
     // location.reload();
@@ -44,7 +43,7 @@
     //     miInput.onkeydown = function(event){
     //     alert("Se presionó la tecla: "+ event.key);
     // }
-// });
+});
 
 // window.addEventListener("keypress", function(e){
 //     alert(1);
