@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', function() {
       .then(data => {
         if(data.errors[0].msg == 'El correo no existe'){
             document.querySelector('#frontEmail').style.display = 'block';
-            document.querySelector('#frontEmail b').innerHTML = 'No estas registrado con este correo. ¡Registrate!';
+            document.querySelector('#frontEmail b').innerHTML = 'No estás registrado con este correo. ¡Registrate!';
         }
       })
       .catch(err => console.log(err));
@@ -104,7 +104,7 @@ window.addEventListener('load', function(e){
   const formulario = document.querySelector('#formLogin');
   formulario.addEventListener('submit',(evento)=>{
     if(!email){
-      this.alert('Falta el campo de Usuario ingre tú "correo electrónico"!!!');
+      this.alert('Falta el campo de Usuario ingresa tú "correo electrónico"!!!');
       evento.preventDefault();
     }
     if(!password){
