@@ -254,15 +254,16 @@ const controller = {
                     save_product: parseInt(req.body.save_product),
                 },{where:{product_id:req.params.id}})
                 .then(res.redirect('/detalleProducto/'+req.params.id));
+            }else{
+                db.OfferModel.create({
+                    ...req.body,
+                    userId: parseInt(req.body.userId),
+                    product_id: req.params.id,
+                    precio: parseInt(req.body.precio),
+                    save_product: parseInt(req.body.save_product),
+                })
+                .then(res.redirect('/detalleProducto/'+req.params.id));
             }
-            db.OfferModel.create({
-                ...req.body,
-                userId: parseInt(req.body.userId),
-                product_id: req.params.id,
-                precio: parseInt(req.body.precio),
-                save_product: parseInt(req.body.save_product),
-            })
-            .then(res.redirect('/detalleProducto/'+req.params.id));
         } catch (error) {
             res.send(error);
         }
