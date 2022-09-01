@@ -27,12 +27,21 @@ const controller = {
         try {
             const productsId = await db.ProductModel.findByPk(req.params.id)
 
-            let ApiResult = {
-                id:productsId.id,
-                name:productsId.name,
-                description:productsId.description,
-                url_img:'/img/products/' + productsId.img,
-                url_fileImg:'/img/products/' + productsId.fileImg,
+            let ApiResult = {}
+            if(productsId.img == null){
+                ApiResult = {
+                    id:productsId.id,
+                    name:productsId.name,
+                    description:productsId.description,
+                    url_img:'/img/products/' + productsId.fileImg,
+                }
+            }else{
+                ApiResult = {
+                    id:productsId.id,
+                    name:productsId.name,
+                    description:productsId.description,
+                    url_img: productsId.img,
+                }
             }
             res.json(ApiResult);
         } catch (error) {
