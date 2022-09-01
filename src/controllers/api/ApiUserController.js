@@ -1,15 +1,53 @@
-let bcrypt = require('bcryptjs');
-
-const {validationResult} = require('express-validator');
 const db = require('../../database/models');
 
 const controller = {
+    users: async (req, res) => {
+        try {
+            const dbUsers = await db.UserModel.findAll({attributes:{exclude: ["password"]}});
+            let ApiUsers =[];
+            dbUsers.forEach(element => {
+                ApiUsers.push({
+                    id:element.dataValues.id,
+                    name:element.dataValues.fname,
+                    email:element.dataValues.email,
+                    detail: 'api/users/' + element.dataValues.id
+                });
+            });
+            let ApiResult = {
+                count: {
+                    count : dbUsers.length,
+                    status : 200
+                },
+                users: ApiUsers
+            }
+            res.json(ApiResult);
+        } catch (error) {
+            res.json(error);
+        }
+    },
+    usersId: async (req, res) => {
+        try {
+            const usersIds = await db.UserModel.findByPk(req.params.id)
+
+            let ApiResult = {
+                id:usersIds.id,
+                name:usersIds.fname,
+                lastName:usersIds.lname,
+                phone:usersIds.telefono,
+                birth_date:usersIds.birth_date,
+                email:usersIds.email,
+                url_img:'/img/users/' + usersIds.fileImg
+            }
+            res.json(ApiResult);
+        } catch (error) {
+            res.json(error);
+        }
+    },
     userPerfil: (req, res) => {
         let userID = req.userID;
         res.json(userID);
     },
     emailExist: async (req, res) => {
-        console.log('req.params.apiGet');
         let errors = [];
         try {
             const validaEmail = await db.UserModel.findOne({
@@ -34,7 +72,7 @@ const controller = {
                 res.json({errors});
             }
         } catch (error) {
-            res.send(error);
+            res.json(error);
         }
     },
 };

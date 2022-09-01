@@ -15,6 +15,8 @@ var cookieParser = require('cookie-parser');
 
 //Aquí llamo a la ruta de las api de UserRouter
 const apiUserRouter = require('./routes/api/apiUserRouter')
+//Aquí llamo a la ruta de las api de ProductRouter
+const apiProductRouter = require('./routes/api/apiProductRouter')
 
 app.use(methodOverride('_method')); 
 
@@ -37,6 +39,8 @@ app.use('/registro', mainUsers);
 
 //Aquí creo la colección de recursos de UserRouter (APIs)
 app.use('/api/users',apiUserRouter);
+//Aquí creo la colección de recursos de ProductRouter (APIs)
+app.use('/api/products/',apiProductRouter);
 
 app.listen(3000,() => console.log('Servidor activo en el puerto 3000...'));
 
