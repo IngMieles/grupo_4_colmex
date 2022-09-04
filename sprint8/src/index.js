@@ -1,15 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
-import Prueba from './components/index';
+// import App from './App'; 
+// import Prueba from './components/index';
+import SearchUsers from './components/SearchUsers';
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
-    <Prueba/>
+    <SearchUsers/>
+    {/* <App /> */}
   </React.StrictMode>
 );
 

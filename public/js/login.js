@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', function() {
         document.querySelector('#frontEmail').style.display = 'none';
         email = true;
 
-      fetch('http://localhost:3000/api/users/emailExist/'+correo.value, {method:'put'})
+      fetch('http://localhost:3001/api/users/emailExist/'+correo.value, {method:'put'})
       .then(response => response.json())
       .then(data => {
         if(data.errors[0].msg == 'El correo no existe'){
