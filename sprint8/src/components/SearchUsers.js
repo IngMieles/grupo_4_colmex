@@ -129,7 +129,7 @@ function SearchUsers() {
                                         </tbody>
                                     </table>
                                     {/* Panel de los detalles */}
-                                    <table>
+                                    {/* <table>
                                         <caption>
                                         <a href="/" className="section">Detalle del último producto creado</a>
                                         </caption>
@@ -159,7 +159,7 @@ function SearchUsers() {
                                                 </td>
                                             </tr>
                                         </tbody>
-                                    </table>
+                                    </table> */}
                                     {/* Panel de categorias */}
                                     <table>
                                         <caption>
