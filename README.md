@@ -23,3 +23,7 @@
 ## 6. Instalar las dependencias npm install
 ## 7. Iniciar el proyecto con el comando npm start
 ## 8. Get your mind blowned up
+## 9. Para iniciar la dashboard en react. Abrír en otra ventana de vs-code
+## 10. Debes de estar en la siguiente ruta /grupo_4_colmex/sprint8
+## 11. Instalar las dependencias npm install
+## 12. Iniciar el proyecto react con el comando npm start
