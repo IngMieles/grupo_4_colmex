@@ -82,7 +82,6 @@ function SearchUsers() {
             <div id="header">
                 <div id='branding'>
                     <h1>Dashboard en React</h1>
-                    {/* <p>{users.length}</p> */}
                 </div>
                 <div id='user-tools'>
                     Bienvenido, 
@@ -90,7 +89,6 @@ function SearchUsers() {
                     <a href="http://localhost:3001/">Ir al sitio COLMEX</a> 
                     /
                     <a href="/">Log-out</a>
-                    {/* <p>{users.length}</p> */}
                 </div>
             </div>
             <div className="main">
