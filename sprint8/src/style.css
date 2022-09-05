@@ -190,10 +190,8 @@ tr:nth-child(2n), tr:nth-child(2n) .errorlist, tr:nth-child(2n+1) + .row-form-er
 
 #content-related .module h2 {
   background: none;
-  /* padding: 16px; */
   margin-bottom: 16px;
   border-bottom: 1px solid #272727;
-  /* font-size: 1.125rem; */
   color: #eeeeee;
   text-align: center;
 }
