@@ -129,7 +129,7 @@ function SearchUsers() {
                                         </tbody>
                                     </table>
                                     {/* Panel de los detalles */}
-                                    {/* <table>
+                                    <table>
                                         <caption>
                                         <a href="/" className="section">Detalle del último producto creado</a>
                                         </caption>
@@ -139,7 +139,7 @@ function SearchUsers() {
                                                     <a href="/">Nombre:</a>
                                                 </th>
                                                 <td>
-                                                    <a href="/" className="addlink">{productID.name}</a>
+                                                    {/* <a href="/" className="addlink">{productID.name}</a> */}
                                                 </td>
                                             </tr>
                                             <tr>
@@ -147,7 +147,7 @@ function SearchUsers() {
                                                     <a href="/">Descripción</a>
                                                 </th>
                                                 <td>
-                                                    <a href="/" className="addlink">{productID.description}</a>
+                                                    {/* <a href="/" className="addlink">{productID.description}</a> */}
                                                 </td>
                                             </tr>
                                             <tr>
@@ -155,11 +155,11 @@ function SearchUsers() {
                                                     <a href="/">URL de la imagen</a>
                                                 </th>
                                                 <td>
-                                                    <a href="/" className="addlink">{productID.url_img}</a>
+                                                    {/* <a href="/" className="addlink">{productID.url_img}</a> */}
                                                 </td>
                                             </tr>
                                         </tbody>
-                                    </table> */}
+                                    </table>
                                     {/* Panel de categorias */}
                                     <table>
                                         <caption>
