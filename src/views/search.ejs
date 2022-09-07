@@ -17,11 +17,11 @@
                         <p class=""> <%= result.name %></p>
                         <ul class="nav">
                             <% if (result.fileImg) { %>
-                                <li class="nav-item nav-item-end"><a href="detalleProducto/<%= result.product_id %>">
+                                <li class="nav-item nav-item-end"><a href="detalleProducto/<%= result.id %>">
                                     <img src="/img/products/<%= result.fileImg %>" alt="No image"></a>
                                 </li>
                             <% } else { %>
-                                <li class="nav-item nav-item-end"><a href="detalleProducto/<%= result.product_id %>">
+                                <li class="nav-item nav-item-end"><a href="detalleProducto/<%= result.id %>">
                                     <img src="<%= result.img %>" alt="No image"></a>
                                 </li>
                             <% } %>
