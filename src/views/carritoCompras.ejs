@@ -3,8 +3,9 @@
         <%- include('./partials/header')  %>
         <main>
             <section>
-                <h1>Carrito de compras</h1>
-                <article class="comentarios">
+                <!-- <article class="comentarios" style="width: 42%;"> -->
+                <article class="carrito-compras">
+                    <h1 style="text-align: center;">Carrito de compras</h1>
                     <% if (!(carritos.find((carrito)=>{
                         return carrito.id == userID.id && carrito.userCart.id != null;
                     }))) { %>
@@ -40,7 +41,7 @@
                                         <input type="hidden" id="userId" name="userId" value="<%= userID.id %>" >
                                         <input type="hidden" id="product_id" name="product_id" value="<%= carrito.userCart.id %>" >
                                         <input type="hidden" id="seller_id" name="seller_id" value="<%= carrito.userCart.userId %>" >
-                                        <input type="number" id="quantity" name="quantity" min="1" max="100" 
+                                        <input style="width: 100%;" type="number" id="quantity" name="quantity" min="1" max="100" 
                                             value="<%= cantidad[0].quantity %>">
                                         <button id="icon" type="submit"><i class="fa-solid fa-cart-plus"></i></button>
                                     </form>

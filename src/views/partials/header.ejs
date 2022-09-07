@@ -26,7 +26,7 @@
                 <% if (locals.userID) { %>
                     <li class="nav-item"><a class="nav-link" href="/crearLista">Crear lista</a></li>
                     <li class="nav-item"><a class="nav-link" href="/carritoCompras"><i class="fa-solid fa-cart-shopping"></i></a></li>
-                    <li class="nav-item"><a class="nav-link" href="/notification"><i class="fa-solid fa-bell"></i></a></li>
+                    <li class="nav-item"><a class="nav-link" id="notificacionHead" href="/notification"><i class="fa-solid fa-bell"></i> <b style="color: #eb5353;"></b></a></li>
                     <li class="nav-item"><a class="nav-link" href="/registro/userPerfil"><img class="img-nav" src="/img/users/<%= userID.fileImg %>" alt="No image"></a></li>
                     <li class="nav-item"><a class="nav-link" href="/logOut">Log Out</a></li>
                 <% } else { %>

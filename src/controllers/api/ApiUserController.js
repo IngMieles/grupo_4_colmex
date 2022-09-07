@@ -75,6 +75,17 @@ const controller = {
             res.json(error);
         }
     },
+    notification: async (req,res) =>{
+        try{
+            let userID = req.userID;
+            const userNotifications = await db.NotificationModel.findAll({
+                where:{seller_id:userID.id}
+            });
+            res.json(userNotifications);
+        }catch (error) {
+            res.json(error);
+        }
+    },
 };
 
 module.exports = controller;

@@ -1,11 +1,32 @@
 window.addEventListener('load', function() {
     // const usuarioLogin = req.session.userID;
     // console.log(primerMiddleware);
+    
+    // fetch('http://localhost:3001/api/users/', {method:'get'})
+    //   .then(response => response.json())
+    //   .then(data => {
+        //         document.querySelector('#notificacion').style.display = 'block';
+        //         document.querySelector('#notificacion').innerHTML = '1';
+        //   })
+        //   .catch(err => console.log(err));
+        //   }
+        
+        // console.log(locals.userID);
+        
+    // document.querySelector('#notificacionHead').style.display = 'nome';
 
-    // fetch('http://localhost:3000/api/users/userPerfil')
-    // .then(response => response.json())
-    // .then(data => console.log(data.email))
-    // .catch(error=>console.error(error));
+    fetch('http://localhost:3001/api/users/notification')
+    .then(response => response.json())
+    .then(data => {
+        if(data.length == 0){
+            document.querySelector('#notificacionHead  b').innerHTML = '';
+        }else{
+            document.querySelector('#notificacionHead  b').innerHTML = '('+data.length+')';
+        }
+    })
+    .catch(error=>console.error(error));
+
+    // document.querySelector('#notificacionHead').addEventListener('keydown', () => load_notificacion());
 
     // location.reload();
     // let userName = document.querySelector('#userName');
@@ -49,3 +70,9 @@ window.addEventListener('load', function() {
 //     alert(1);
 //     console.log(e.key);
 // })
+// let aux = true;
+
+// function load_notificacion(){
+//     document.querySelector('#notificacionHead  b').innerHTML = '';
+//     aux = false;
+//   }
