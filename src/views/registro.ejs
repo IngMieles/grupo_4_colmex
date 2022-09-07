@@ -11,10 +11,10 @@
         <h2>Registro de nuevo usuario</h2>
         <form id="formRegistro" action="/registro" method="post" enctype="multipart/form-data">
           <div class="container">
-            <label for="birth_date"><b>Fecha de nacimiento</b></label>
+            <!-- <label for="birth_date"><b>Fecha de nacimiento</b></label>
             <input type="date" name="birth_date" id="birth_date">
-            <br>
-            <label for="adress"><b>Direccion</b></label>
+            <br> -->
+            <label for="adress"><b>Dirección</b></label>
             <input type="text" name="addres" 
               <% if (locals.old && old.addres) { %>
                 value= "<%= old.addres %>"
@@ -166,7 +166,7 @@
 
             <div class="row">
               <div class="col-25">
-                <label for="country">Pais</label>
+                <label for="country">País</label>
               </div>
               <div class="col-75">
                 <select id="country" name="country">
