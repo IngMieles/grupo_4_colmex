@@ -307,6 +307,21 @@ const controller = {
             res.send(error);
         }
     },
+    search: async (req, res) => {
+        try {
+            const results = await db.ProductModel.findAll({
+                where:{name:{[db.Sequelize.Op.like]:'%'+req.body.search+'%'}},
+                order:[['name','ASC']],
+                limit: 10
+            })
+            if(results.length == 0){
+                res.render('search',{results,errorSearch:[{msg:"No existe el producto, vuelve a intentar"}]});
+            }
+            res.render('search', {results});
+        } catch (error) {
+            res.send(error);
+        }
+    },
     
 };
 
