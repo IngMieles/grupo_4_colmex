@@ -150,9 +150,19 @@ const controller = {
     delete: async (req, res) => {
         try {
             const productDelete = await db.ProductModel.findByPk(req.params.id)
+
             db.ProductModel.destroy({
                 where:{id:req.params.id}
             })
+            
+            db.OfferModel.destroy({
+                where:{product_id:productDelete.id}
+            })
+            
+            db.StarProdModel.destroy({
+                where:{product_id:productDelete.id}
+            })
+            
             res.redirect('/category/'+productDelete.categoria);
         } catch (error) {
             res.send(error);

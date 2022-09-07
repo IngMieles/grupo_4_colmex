@@ -71,6 +71,7 @@
                         type="number"
                         id="precio"
                         name="precio"
+                        min="1"
                         <% if (locals.old && old.precio) { %>
                           value= "<%= old.precio %>"
                         <% } else { %>
@@ -175,7 +176,7 @@
                       <% } else { %>
                           placeholder="Descripción general del producto" 
                       <% } %> 
-                      style="height:200px"></textarea>
+                      style="height:70px"></textarea>
                       <div class="container" id="frontDescription" style="background-color: #eb5353;">
                         <b>Debe tener al menos 20 caracteres</b>
                       </div>
