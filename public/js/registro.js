@@ -41,7 +41,8 @@ document.addEventListener('DOMContentLoaded', function() {
   function blur_fistName() {
     const name = document.querySelector('#fname');
     if(name.value.length < 2){
-        alert('Este campo no puede estar vacio!!!')
+        document.querySelector('#frontFname').style.display = 'block';
+        document.querySelector('#frontFname b').innerHTML = 'Este campo no puede estar vacio';
     }
   }
 
@@ -61,7 +62,8 @@ document.addEventListener('DOMContentLoaded', function() {
   function blur_lastName() {
     const name = document.querySelector('#lname');
     if(name.value.length < 2){
-        alert('Este campo no puede estar vacio!!!')
+        document.querySelector('#frontLname').style.display = 'block';
+        document.querySelector('#frontLname b').innerHTML = 'Este campo no puede estar vacio';
     }
   }
 
@@ -85,12 +87,13 @@ document.addEventListener('DOMContentLoaded', function() {
     var regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/;
     
     if(!regex.test(correo.value)){
-      alert('Este campo no puede estar vacio!!!')
+      document.querySelector('#frontEmail').style.display = 'block';
+      document.querySelector('#frontEmail b').innerHTML = 'Ingresa un email recuerda que no debe de estar previamente registrado';
     }else{
       document.querySelector('#frontEmail').style.display = 'none';
       email = true;
 
-      fetch('http://localhost:3000/api/users/emailExist/'+correo.value, {method:'put'})
+      fetch('http://localhost:3001/api/users/emailExist/'+correo.value, {method:'put'})
       .then(response => response.json())
       .then(data => {
         if(data.errors[0].msg == 'El correo ya existe ingresa otro!!'){
@@ -118,7 +121,8 @@ document.addEventListener('DOMContentLoaded', function() {
   function blur_password() {
     const name = document.querySelector('#password');
     if(name.value.length < 7){
-        alert('Este campo no puede estar vacio!!!')
+        document.querySelector('#frontPassword').style.display = 'block';
+        document.querySelector('#frontPassword b').innerHTML = 'Este campo no puede estar vacio y debe tener al menos 8 caracteres';
     }
   }
 

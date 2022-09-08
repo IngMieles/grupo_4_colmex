@@ -26,10 +26,10 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 insert into users (telefono, birth_date, addres, profile, fname, lname, email, country, password, subject, fileImg)
-values (4422503259, '06-11-2022', 'Pirineos', 'sell', 'LUIS ALBERTO', 'ANGELES', 'langeles11@alumnos.uaq.mx', 'mexico', '$2a$10$bUDQnGBwSXb80w8Ep49K1O.x/v1C4/c9OLU9J49APLuJyQLB0Kcgq', null, 'beto.jpg');
+values (4422503259, '06-11-2022', 'Pirineos', 'sell', 'LUIS ALBERTO', 'ANGELES', 'langeles11@alumnos.uaq.mx', 'mexico', '$2a$10$bUDQnGBwSXb80w8Ep49K1O.x/v1C4/c9OLU9J49APLuJyQLB0Kcgq', 'saludos', 'beto.jpg');
 
 insert into users (telefono, birth_date, addres, profile, fname, lname, email, country, password, subject, fileImg)
-values (3118739670, '14-08-1992', 'Bogotá', 'buy', 'David', 'Pieters', 'davidpieters12@gmail.com', 'Colombia', '$2a$10$bUDQnGBwSXb80w8Ep49K1O.x/v1C4/c9OLU9J49APLuJyQLB0Kcgq', null, '1656633069900-th-1649551002.jpg');
+values (3118739670, '14-08-1992', 'Bogotá', 'buy', 'David', 'Pieters', 'davidpieters12@gmail.com', 'Colombia', '$2a$10$bUDQnGBwSXb80w8Ep49K1O.x/v1C4/c9OLU9J49APLuJyQLB0Kcgq', 'saludos', '1656633069900-th-1649551002.jpg');
 
 insert into users (telefono, birth_date, addres, profile, fname, lname, email, country, password, subject, fileImg)
 values (11251458, '2022-06-21', 'Av. siempre vida', 'sell', 'Pablo', 'M', 'pablo@digitalHouse.com', 'Colombia', '$2a$10$LdK8oF0HoL38i4XoOi9VxO4VHs5PMmMF3n/eG1Zto6kyWyIDzG52e', 'saludos', '1655866290764-pablo.JPG');

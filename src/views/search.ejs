@@ -1,0 +1,36 @@
+<!-- Listado-->
+<%- include('./partials/head')  %>
+    <body>
+        <%- include('./partials/header')  %>
+        <main>
+            <section>
+                <h2>Resultados de la busqueda...</h2>
+
+                <% if (locals.errorSearch) { %>
+                    <div class="container" style="background-color: #eb5353;">
+                      <b><%= errorSearch[0].msg  %></b>
+                    </div>
+                <% } %>
+
+                <% for( let result of results ) { %>
+                    <article>
+                        <p class=""> <%= result.name %></p>
+                        <ul class="nav">
+                            <% if (result.fileImg) { %>
+                                <li class="nav-item nav-item-end"><a href="detalleProducto/<%= result.id %>">
+                                    <img src="/img/products/<%= result.fileImg %>" alt="No image"></a>
+                                </li>
+                            <% } else { %>
+                                <li class="nav-item nav-item-end"><a href="detalleProducto/<%= result.id %>">
+                                    <img src="<%= result.img %>" alt="No image"></a>
+                                </li>
+                            <% } %>
+                        </ul>
+                    </article>
+                <% } %>
+
+            </section>
+        </main>
+        <%- include('./partials/footer')  %>
+    </body>
+</html>
