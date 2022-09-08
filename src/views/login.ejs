@@ -2,25 +2,27 @@
     <body>
         <%- include('./partials/header')  %>
         <main>
-
-          <% if (locals.errors) { %>
-            <div class="container" style="background-color: #eb5353;">
-              <b>Faltan campos por llenar!!!</b>
-            </div>
-          <% } %>
-          <% if (locals.errorLog) { %>
-            <div class="container" style="background-color: #eb5353;">
-              <b><%= errorLog[0].msg  %></b>
-            </div>
-          <% } %>
-          <% if (locals.registro) { %>
-            <div class="container" style="background-color: #1f7a54;">
-              <b><%= registro[0].msg  %></b>
-            </div>
-          <% } %>
+          <section>
 
           <form id="formLogin" action="/login" method="post">
             <div class="container">
+
+              <% if (locals.errors) { %>
+                <div class="container" style="background-color: #eb5353;">
+                  <b>Faltan campos por llenar!!!</b>
+                </div>
+              <% } %>
+              <% if (locals.errorLog) { %>
+                <div class="container" style="background-color: #eb5353;">
+                  <b><%= errorLog[0].msg  %></b>
+                </div>
+              <% } %>
+              <% if (locals.registro) { %>
+                <div class="container" style="background-color: #1f7a54;">
+                  <b><%= registro[0].msg  %></b>
+                </div>
+              <% } %>
+              
               <div class="row">
                 <div class="col-25">
                   <% if (locals.errors) { %>
@@ -79,11 +81,15 @@
                 <br>
                 <input type="submit" value="Login" />
               </div>
+              <p>¿No tienes una cuenta? <a class="nav-link" href="/registro">Registro</a></p>
             </div>
           </form>
+        </section>
+        <!-- <section>
           <div class="container">
             <p>¿No tienes una cuenta? <a class="nav-link" href="/registro">Registro</a></p>
           </div>
+        </section> -->
         </main>
         <%- include('./partials/footer')  %>
         <script src="js/login.js"></script>

@@ -3,16 +3,18 @@
     <body>
         <%- include('./partials/header')  %>
         <main>
-            <% if (locals.errors) { %>
-              <div class="container" style="background-color: #eb5353;">
-                <b>Faltan campos por llenar!!!</b>
-              </div>
-            <% } %>
+          <section>
+
             <h2>Crea un nuevo producto</h2>
 
             <form id="formCrear" action="/crearLista" method="post" enctype = "multipart/form-data">
 
               <div class="container">
+                <% if (locals.errors) { %>
+                  <div class="container" style="background-color: #eb5353;">
+                    <b>Faltan campos por llenar!!!</b>
+                  </div>
+                <% } %>
                 <div class="row">
                   <div class="col-25">
                     <% if (locals.errors) { %>
@@ -42,7 +44,7 @@
                           placeholder="Nuevo nombre del producto"
                         <% } %>
                       />
-                      <div class="container" id="frontName" style="background-color: #eb5353;">
+                      <div class="container" id="frontName" style="color: #eb5353;">
                         <b>Debe tener al menos 5 caracteres</b>
                       </div>
                     </div>
@@ -71,6 +73,7 @@
                         type="number"
                         id="precio"
                         name="precio"
+                        min="1"
                         <% if (locals.old && old.precio) { %>
                           value= "<%= old.precio %>"
                         <% } else { %>
@@ -147,6 +150,9 @@
                           placeholder="Categoría del producto"
                         <% } %>
                       />
+                      <div class="container" id="frontCategoria" style="color: #eb5353;">
+                        <b>Vas a crear una nueva categoría</b>
+                      </div>
                     </div>
                 </div>
 
@@ -175,8 +181,8 @@
                       <% } else { %>
                           placeholder="Descripción general del producto" 
                       <% } %> 
-                      style="height:200px"></textarea>
-                      <div class="container" id="frontDescription" style="background-color: #eb5353;">
+                      style="height:70px"></textarea>
+                      <div class="container" id="frontDescription" style="color: #eb5353;">
                         <b>Debe tener al menos 20 caracteres</b>
                       </div>
                     </div>
@@ -188,7 +194,7 @@
               </div>
               </div>
             </form>
-
+          </section>
         </main>
         <%- include('./partials/footer')  %>
         <script src="js/crearLista.js"></script>

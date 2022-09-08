@@ -62,7 +62,9 @@ document.addEventListener('DOMContentLoaded', function() {
       var regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/;
       
       if(!regex.test(correo.value)){
-        alert('El campo usuario no puede estar vacio!!!')
+        // alert('El campo usuario no puede estar vacio!!!')
+        document.querySelector('#frontEmail').style.display = 'block';
+        document.querySelector('#frontEmail b').innerHTML = 'El campo usuario no puede estar vacio!!!';
       }else{
         document.querySelector('#frontEmail').style.display = 'none';
         email = true;
@@ -95,7 +97,9 @@ document.addEventListener('DOMContentLoaded', function() {
       function blur_password() {
         const name = document.querySelector('#password');
         if(name.value.length < 7){
-            alert('Falta el campo de "contraseña"!!!')
+            // alert('Falta el campo de "contraseña"!!!')
+            document.querySelector('#frontPassword').style.display = 'block';
+            document.querySelector('#frontPassword b').innerHTML = 'El campo contraseña no puede estar vacio y debe tener al menos 8 caracteres';
         }
       }
 

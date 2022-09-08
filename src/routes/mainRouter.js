@@ -72,4 +72,7 @@ router.get('/notification', mainController.notification);
 // Vista de las notificaciones
 router.post('/notifications', mainController.notifications);
 
+// Vista de los resultados de busqueda en la base de datos
+router.post('/search', mainController.search);
+
 module.exports = router;

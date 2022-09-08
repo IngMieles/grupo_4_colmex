@@ -210,7 +210,7 @@ main h2{
 }
 
 main section .comentarios {
-  width: 100%;
+  width: 99%;
   margin: 0rem;
   background-color: #fefbe7;
   list-style-type: none;
@@ -358,6 +358,10 @@ footer section .nav-item i:hover{
   color: #1f7a54;
 }
 
+.carrito-compras{
+  width: 100%;
+}
+
 /* Tablets */
 @media (min-width: 480px) {
   nav .nav {
@@ -411,6 +415,10 @@ footer section .nav-item i:hover{
   footer section article {
     width: 33.3%;
   }
+
+  .carrito-compras{
+    width: 52%;
+  }
 }
 
 /*Formularios*/
@@ -435,7 +443,7 @@ textarea {
 }
 
 input[type="number"]{
-  width: 35%;
+  width: 80%;
   padding: 12px;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -470,20 +478,21 @@ input[type="number"]{
 
   main section .carrito-item-img {
     align-self: center;
-    width: 35%;
+    width: 38%;
   }
 
   main section .descripcion {
     /* font-size: 1rem; */
     width: 600px;
   }
+
 }
 
 /* Laptop */
 @media (min-width: 922px) {
   main section .carrito-item-img {
     align-self: center;
-    width: 40%;
+    width: 42%;
   }
 }
 
@@ -526,14 +535,14 @@ input[type="submit"] {
 /* columnas flotantes para labels: 25% width */
 .col-25 {
   float: left;
-  width: 25%;
+  width: 40%;
   margin-top: 6px;
 }
 
 /* columnas flotantes para inputs: 75% width */
 .col-75 {
   float: left;
-  width: 75%;
+  width: 100%;
   margin-top: 6px;
 }
 

@@ -150,9 +150,19 @@ const controller = {
     delete: async (req, res) => {
         try {
             const productDelete = await db.ProductModel.findByPk(req.params.id)
+
             db.ProductModel.destroy({
                 where:{id:req.params.id}
             })
+            
+            db.OfferModel.destroy({
+                where:{product_id:productDelete.id}
+            })
+            
+            db.StarProdModel.destroy({
+                where:{product_id:productDelete.id}
+            })
+            
             res.redirect('/category/'+productDelete.categoria);
         } catch (error) {
             res.send(error);
@@ -294,6 +304,21 @@ const controller = {
             })
             res.redirect('carritoCompras');
         }catch (error) {
+            res.send(error);
+        }
+    },
+    search: async (req, res) => {
+        try {
+            const results = await db.ProductModel.findAll({
+                where:{name:{[db.Sequelize.Op.like]:'%'+req.body.search+'%'}},
+                order:[['name','ASC']],
+                limit: 10
+            })
+            if(results.length == 0){
+                res.render('search',{results,errorSearch:[{msg:"No existe el producto, vuelve a intentar"}]});
+            }
+            res.render('search', {results});
+        } catch (error) {
             res.send(error);
         }
     },

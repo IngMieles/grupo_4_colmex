@@ -16,9 +16,9 @@
             <article class="descripcion">
                 <form action="/registro/userPerfil/<%= userID.id %>/edita?_method=PUT" method="post">
                     <div class="container">
-                        <label for="birth_date"><b>Fecha de nacimiento</b></label>
+                        <!-- <label for="birth_date"><b>Fecha de nacimiento</b></label>
                         <input type="date" name="birth_date" id="birth_date">
-                        <br>
+                        <br> -->
                         <label for="adress"><b>Direccion</b></label>
                         <input type="text" name="addres" 
                           <% if (locals.old && old.addres) { %>
@@ -37,12 +37,12 @@
                           <% } %>
                         >
                         <h4>Perfil del usuario</h4>
-                        <div class="profile">
+                        <!-- <div class="profile">
                             <input type="radio" name="profile" value="buy" id="buy">
                             <label for="buy">Comprador</label>
                             <input type="radio" name="profile" value="sell" id="sell">
                             <label for="sell">Vendedor</label>
-                        </div>
+                        </div> -->
                         <div class="row">
                           <div class="col-25">
                             <label for="fileImg">Agrega una imagen de perfil</label>
@@ -114,10 +114,10 @@
                           </div>
                           <div class="col-75">
                             <select id="country" name="country">
-                              <option value="colombia">Colombia</option>
-                              <option value="venezuela">Venezuela</option>
-                              <option value="mexico">Mexico</option>
-                              <option value="argentina">Argentina</option>
+                              <option value="Colombia">Colombia</option>
+                              <option value="Venezuela">Venezuela</option>
+                              <option value="México">México</option>
+                              <option value="Argentina">Argentina</option>
                             </select>
                           </div>
                         </div>
@@ -143,7 +143,7 @@
                             <% } else { %>
                               placeholder=<%= userID.subject %>
                             <% } %>
-                            style="height:200px"></textarea>
+                            style="height:100px"></textarea>
                           </div>
                         </div>
                         <div class="row">
